@@ -1,0 +1,467 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D1132472B8FAA3B00CF6752 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1132462B8FAA3B00CF6752 /* Plant.swift */; };
+		1D1132492B8FAAF400CF6752 /* PlantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1132482B8FAAF400CF6752 /* PlantView.swift */; };
+		1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */; };
+		1D56E7312B83799000311C6F /* Drink_WaterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D56E7302B83799000311C6F /* Drink_WaterApp.swift */; };
+		1D56E7332B83799000311C6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D56E7322B83799000311C6F /* ContentView.swift */; };
+		1D56E7352B83799200311C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7342B83799200311C6F /* Assets.xcassets */; };
+		1D56E7382B83799200311C6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7372B83799200311C6F /* Preview Assets.xcassets */; };
+		1D8317B92B867497009DF17F /* PlantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317B82B867497009DF17F /* PlantsView.swift */; };
+		1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317BA2B86749E009DF17F /* ShopView.swift */; };
+		1D8317BD2B8674A6009DF17F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317BC2B8674A6009DF17F /* SettingsView.swift */; };
+		1D8317BF2B8674AF009DF17F /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317BE2B8674AF009DF17F /* AccountView.swift */; };
+		1D8317C12B8674B9009DF17F /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317C02B8674B9009DF17F /* TrackerView.swift */; };
+		1D8317C52B869731009DF17F /* AddDrinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317C42B869731009DF17F /* AddDrinkButtonView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D1132462B8FAA3B00CF6752 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
+		1D1132482B8FAAF400CF6752 /* PlantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantView.swift; sourceTree = "<group>"; };
+		1D2420132B91C0EA00B4E08D /* Drink-Water-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drink-Water-Info.plist"; sourceTree = SOURCE_ROOT; };
+		1D56E72D2B83799000311C6F /* Drink&Water.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink&Water.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D56E7302B83799000311C6F /* Drink_WaterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink_WaterApp.swift; sourceTree = "<group>"; };
+		1D56E7322B83799000311C6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1D56E7342B83799200311C6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1D56E7372B83799200311C6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkWaterTabView.swift; sourceTree = "<group>"; };
+		1D8317B82B867497009DF17F /* PlantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsView.swift; sourceTree = "<group>"; };
+		1D8317BA2B86749E009DF17F /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		1D8317BC2B8674A6009DF17F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1D8317BE2B8674AF009DF17F /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		1D8317C02B8674B9009DF17F /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerView.swift; sourceTree = "<group>"; };
+		1D8317C42B869731009DF17F /* AddDrinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkButtonView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D56E72A2B83799000311C6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D1132452B8FAA2100CF6752 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1D1132462B8FAA3B00CF6752 /* Plant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1D56E7242B83799000311C6F = {
+			isa = PBXGroup;
+			children = (
+				1D56E72F2B83799000311C6F /* Drink&Water */,
+				1D56E72E2B83799000311C6F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1D56E72E2B83799000311C6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D56E72D2B83799000311C6F /* Drink&Water.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1D56E72F2B83799000311C6F /* Drink&Water */ = {
+			isa = PBXGroup;
+			children = (
+				1D2420132B91C0EA00B4E08D /* Drink-Water-Info.plist */,
+				1D1132452B8FAA2100CF6752 /* Models */,
+				1D8317C22B86970C009DF17F /* Views */,
+				1D8317B02B8673FC009DF17F /* Screens */,
+				1D56E7302B83799000311C6F /* Drink_WaterApp.swift */,
+				1D56E7322B83799000311C6F /* ContentView.swift */,
+				1D56E7342B83799200311C6F /* Assets.xcassets */,
+				1D56E7362B83799200311C6F /* Preview Content */,
+			);
+			path = "Drink&Water";
+			sourceTree = "<group>";
+		};
+		1D56E7362B83799200311C6F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1D56E7372B83799200311C6F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1D8317B02B8673FC009DF17F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				1DB6206C2B8D4C7900BEE6F0 /* OnboardingViews */,
+				1D8317B72B86747C009DF17F /* PlantsView */,
+				1D8317B62B867465009DF17F /* ShopVIew */,
+				1D8317B52B86745D009DF17F /* SettingsVIew */,
+				1D8317B42B867456009DF17F /* AccountView */,
+				1D8317B32B86744B009DF17F /* TrackerView */,
+				1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		1D8317B32B86744B009DF17F /* TrackerView */ = {
+			isa = PBXGroup;
+			children = (
+				1D8317C02B8674B9009DF17F /* TrackerView.swift */,
+			);
+			path = TrackerView;
+			sourceTree = "<group>";
+		};
+		1D8317B42B867456009DF17F /* AccountView */ = {
+			isa = PBXGroup;
+			children = (
+				1D8317BE2B8674AF009DF17F /* AccountView.swift */,
+			);
+			path = AccountView;
+			sourceTree = "<group>";
+		};
+		1D8317B52B86745D009DF17F /* SettingsVIew */ = {
+			isa = PBXGroup;
+			children = (
+				1D8317BC2B8674A6009DF17F /* SettingsView.swift */,
+			);
+			path = SettingsVIew;
+			sourceTree = "<group>";
+		};
+		1D8317B62B867465009DF17F /* ShopVIew */ = {
+			isa = PBXGroup;
+			children = (
+				1D8317BA2B86749E009DF17F /* ShopView.swift */,
+			);
+			path = ShopVIew;
+			sourceTree = "<group>";
+		};
+		1D8317B72B86747C009DF17F /* PlantsView */ = {
+			isa = PBXGroup;
+			children = (
+				1D8317B82B867497009DF17F /* PlantsView.swift */,
+			);
+			path = PlantsView;
+			sourceTree = "<group>";
+		};
+		1D8317C22B86970C009DF17F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1D8317C32B869713009DF17F /* Buttons */,
+				1D1132482B8FAAF400CF6752 /* PlantView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1D8317C32B869713009DF17F /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				1D8317C42B869731009DF17F /* AddDrinkButtonView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		1DB6206C2B8D4C7900BEE6F0 /* OnboardingViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OnboardingViews;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D56E72C2B83799000311C6F /* Drink&Water */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D56E73B2B83799200311C6F /* Build configuration list for PBXNativeTarget "Drink&Water" */;
+			buildPhases = (
+				1D56E7292B83799000311C6F /* Sources */,
+				1D56E72A2B83799000311C6F /* Frameworks */,
+				1D56E72B2B83799000311C6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Drink&Water";
+			productName = "Drink&Water";
+			productReference = 1D56E72D2B83799000311C6F /* Drink&Water.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1D56E7252B83799000311C6F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1D56E72C2B83799000311C6F = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 1D56E7282B83799000311C6F /* Build configuration list for PBXProject "Drink&Water" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1D56E7242B83799000311C6F;
+			productRefGroup = 1D56E72E2B83799000311C6F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D56E72C2B83799000311C6F /* Drink&Water */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D56E72B2B83799000311C6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D56E7382B83799200311C6F /* Preview Assets.xcassets in Resources */,
+				1D56E7352B83799200311C6F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D56E7292B83799000311C6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */,
+				1D8317B92B867497009DF17F /* PlantsView.swift in Sources */,
+				1D56E7332B83799000311C6F /* ContentView.swift in Sources */,
+				1D8317C12B8674B9009DF17F /* TrackerView.swift in Sources */,
+				1D8317BD2B8674A6009DF17F /* SettingsView.swift in Sources */,
+				1D1132492B8FAAF400CF6752 /* PlantView.swift in Sources */,
+				1D8317C52B869731009DF17F /* AddDrinkButtonView.swift in Sources */,
+				1D8317BF2B8674AF009DF17F /* AccountView.swift in Sources */,
+				1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */,
+				1D1132472B8FAA3B00CF6752 /* Plant.swift in Sources */,
+				1D56E7312B83799000311C6F /* Drink_WaterApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D56E7392B83799200311C6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1D56E73A2B83799200311C6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1D56E73C2B83799200311C6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Drink&Water/Preview Content\"";
+				DEVELOPMENT_TEAM = 727T6M4PM2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Drink-Water-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "vikas.Drink-Water";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D56E73D2B83799200311C6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Drink&Water/Preview Content\"";
+				DEVELOPMENT_TEAM = 727T6M4PM2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Drink-Water-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "vikas.Drink-Water";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D56E7282B83799000311C6F /* Build configuration list for PBXProject "Drink&Water" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D56E7392B83799200311C6F /* Debug */,
+				1D56E73A2B83799200311C6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D56E73B2B83799200311C6F /* Build configuration list for PBXNativeTarget "Drink&Water" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D56E73C2B83799200311C6F /* Debug */,
+				1D56E73D2B83799200311C6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1D56E7252B83799000311C6F /* Project object */;
+}
