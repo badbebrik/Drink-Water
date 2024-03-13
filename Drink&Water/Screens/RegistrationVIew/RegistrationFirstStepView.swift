@@ -8,8 +8,79 @@
 import SwiftUI
 
 struct RegistrationFirstStepView: View {
+    
+    @State var name: String = ""
+    @State var lastName: String = ""
+    let genders = ["Male", "Female"]
+    @State private var gender: Bool = false
+    @State private var isShowingNextStep = false
+
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color(.brandBlue)
+                .ignoresSafeArea()
+            
+            VStack(spacing: 40) {
+                
+                Text("Registration")
+                    .font(.system(size: 32, weight: .black))
+                    .foregroundStyle(.white)
+                    .multilineTextAlignment(.leading)
+                .frame(width: 353, height: 26, alignment: .center)
+                
+                VStack(spacing: 20) {
+                    
+                    VStack(spacing: 10) {
+                        Text("First Name")
+                            .frame(width: 353, alignment: .leading)
+                        TextField("", text: $name)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.leading)
+                            .padding(.trailing)
+                    }
+                    
+                    VStack(spacing: 10) {
+                        Text("Last Name")
+                            .frame(width: 353, alignment: .leading)
+                        
+                        TextField("", text: $lastName)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.leading)
+                            .padding(.trailing)
+                    }
+                    
+                }
+                
+                VStack {
+                    
+                    Text("Gender")
+                        .frame(width: 353, alignment: .leading)
+                    HStack {
+                        Picker("Gender", selection: $gender) {
+                            ForEach(genders, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding(.leading)
+                        .padding(.trailing)
+                    }
+                }
+                
+                Button {
+                    isShowingNextStep = true
+                } label: {
+                    Text("Next")
+                }
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle)
+                .fullScreenCover(isPresented: $isShowingNextStep, content: {
+                    RegistrationSecondStepView(name: $name, lastName: $lastName, gender: $gender)
+                })
+
+            }
+        }
     }
 }
 

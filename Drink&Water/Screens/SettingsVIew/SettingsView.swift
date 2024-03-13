@@ -36,6 +36,8 @@ struct SettingsView: View {
     @State private var selectedTheme: Theme = .system
     @State private var selectedLanguage: Language = .eng
     @State private var selectedDate: Date = Date()
+    @State private var isShowingAboutPage: Bool = false
+    @State private var isDeleteAccountButtonTapped = false
     
     
     var body: some View {
@@ -78,6 +80,38 @@ struct SettingsView: View {
                             
                             Text(elem)
                         }
+                    }
+                    
+                    Section(header: Text("Account")) {
+                        Button() {
+                        } label: {
+                            Text("Reset progress")
+                                .foregroundStyle(.red)
+                        }
+                        
+                        Button() {
+                            let coreDataManager = CoreDataManager()
+                            coreDataManager.deleteUser()
+                            isDeleteAccountButtonTapped = true
+                        } label: {
+                            Text("Delete account")
+                                .foregroundStyle(.red)
+                        }
+                        .fullScreenCover(isPresented: $isDeleteAccountButtonTapped, content: {
+                            ContentView()
+                        })
+                    }
+                    
+                    Section(header: Text("Developer")) {
+                        Button() {
+                            isShowingAboutPage = true
+                        } label: {
+                            Text("About")
+                        }
+                        .sheet(isPresented: $isShowingAboutPage, content: {
+                            AboutView()
+                        })
+                        
                     }
                 }
                 

@@ -10,6 +10,8 @@
 		1D1132472B8FAA3B00CF6752 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1132462B8FAA3B00CF6752 /* Plant.swift */; };
 		1D1132492B8FAAF400CF6752 /* PlantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1132482B8FAAF400CF6752 /* PlantView.swift */; };
 		1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */; };
+		1D2420AB2B93E42800B4E08D /* RegistrationFirstStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2420AA2B93E42800B4E08D /* RegistrationFirstStepView.swift */; };
+		1D2420AD2B93F6CA00B4E08D /* RegistrationSecondStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2420AC2B93F6CA00B4E08D /* RegistrationSecondStepView.swift */; };
 		1D56E7312B83799000311C6F /* Drink_WaterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D56E7302B83799000311C6F /* Drink_WaterApp.swift */; };
 		1D56E7332B83799000311C6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D56E7322B83799000311C6F /* ContentView.swift */; };
 		1D56E7352B83799200311C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7342B83799200311C6F /* Assets.xcassets */; };
@@ -20,12 +22,21 @@
 		1D8317BF2B8674AF009DF17F /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317BE2B8674AF009DF17F /* AccountView.swift */; };
 		1D8317C12B8674B9009DF17F /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317C02B8674B9009DF17F /* TrackerView.swift */; };
 		1D8317C52B869731009DF17F /* AddDrinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317C42B869731009DF17F /* AddDrinkButtonView.swift */; };
+		1DA40DE02BA071F500921ADF /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DDF2BA071F500921ADF /* AboutView.swift */; };
+		1DA40DE22BA0A53300921ADF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DE12BA0A53300921ADF /* CoreDataManager.swift */; };
+		1DA40DE52BA0A80800921ADF /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DE42BA0A80800921ADF /* OnboardingView.swift */; };
+		1DA40DE72BA0A82600921ADF /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DE62BA0A82600921ADF /* OnboardingStep.swift */; };
+		1DA40DED2BA0CE2800921ADF /* Drink&Water.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DEB2BA0CE2800921ADF /* Drink&Water.xcdatamodeld */; };
+		1DA40DEF2BA14EF300921ADF /* DrinkAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DEE2BA14EF300921ADF /* DrinkAddView.swift */; };
+		1DA40DF12BA1508900921ADF /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DF02BA1508900921ADF /* Drink.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D1132462B8FAA3B00CF6752 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		1D1132482B8FAAF400CF6752 /* PlantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantView.swift; sourceTree = "<group>"; };
 		1D2420132B91C0EA00B4E08D /* Drink-Water-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drink-Water-Info.plist"; sourceTree = SOURCE_ROOT; };
+		1D2420AA2B93E42800B4E08D /* RegistrationFirstStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFirstStepView.swift; sourceTree = "<group>"; };
+		1D2420AC2B93F6CA00B4E08D /* RegistrationSecondStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStepView.swift; sourceTree = "<group>"; };
 		1D56E72D2B83799000311C6F /* Drink&Water.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink&Water.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D56E7302B83799000311C6F /* Drink_WaterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink_WaterApp.swift; sourceTree = "<group>"; };
 		1D56E7322B83799000311C6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +49,13 @@
 		1D8317BE2B8674AF009DF17F /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		1D8317C02B8674B9009DF17F /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerView.swift; sourceTree = "<group>"; };
 		1D8317C42B869731009DF17F /* AddDrinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkButtonView.swift; sourceTree = "<group>"; };
+		1DA40DDF2BA071F500921ADF /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		1DA40DE12BA0A53300921ADF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		1DA40DE42BA0A80800921ADF /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1DA40DE62BA0A82600921ADF /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
+		1DA40DEC2BA0CE2800921ADF /* Drink&Water.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Drink&Water.xcdatamodel"; sourceTree = "<group>"; };
+		1DA40DEE2BA14EF300921ADF /* DrinkAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkAddView.swift; sourceTree = "<group>"; };
+		1DA40DF02BA1508900921ADF /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +73,19 @@
 			isa = PBXGroup;
 			children = (
 				1D1132462B8FAA3B00CF6752 /* Plant.swift */,
+				1DA40DE62BA0A82600921ADF /* OnboardingStep.swift */,
+				1DA40DF02BA1508900921ADF /* Drink.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1D2420A92B93E40700B4E08D /* RegistrationVIew */ = {
+			isa = PBXGroup;
+			children = (
+				1D2420AA2B93E42800B4E08D /* RegistrationFirstStepView.swift */,
+				1D2420AC2B93F6CA00B4E08D /* RegistrationSecondStepView.swift */,
+			);
+			path = RegistrationVIew;
 			sourceTree = "<group>";
 		};
 		1D56E7242B83799000311C6F = {
@@ -86,6 +115,8 @@
 				1D56E7322B83799000311C6F /* ContentView.swift */,
 				1D56E7342B83799200311C6F /* Assets.xcassets */,
 				1D56E7362B83799200311C6F /* Preview Content */,
+				1DA40DE12BA0A53300921ADF /* CoreDataManager.swift */,
+				1DA40DEB2BA0CE2800921ADF /* Drink&Water.xcdatamodeld */,
 			);
 			path = "Drink&Water";
 			sourceTree = "<group>";
@@ -101,13 +132,15 @@
 		1D8317B02B8673FC009DF17F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				1DB6206C2B8D4C7900BEE6F0 /* OnboardingViews */,
+				1DA40DE32BA0A7F500921ADF /* Onboarding */,
+				1D2420A92B93E40700B4E08D /* RegistrationVIew */,
 				1D8317B72B86747C009DF17F /* PlantsView */,
 				1D8317B62B867465009DF17F /* ShopVIew */,
 				1D8317B52B86745D009DF17F /* SettingsVIew */,
 				1D8317B42B867456009DF17F /* AccountView */,
 				1D8317B32B86744B009DF17F /* TrackerView */,
 				1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */,
+				1DA40DDF2BA071F500921ADF /* AboutView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -157,6 +190,7 @@
 			children = (
 				1D8317C32B869713009DF17F /* Buttons */,
 				1D1132482B8FAAF400CF6752 /* PlantView.swift */,
+				1DA40DEE2BA14EF300921ADF /* DrinkAddView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,11 +203,12 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		1DB6206C2B8D4C7900BEE6F0 /* OnboardingViews */ = {
+		1DA40DE32BA0A7F500921ADF /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				1DA40DE42BA0A80800921ADF /* OnboardingView.swift */,
 			);
-			path = OnboardingViews;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,16 +281,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DA40DE72BA0A82600921ADF /* OnboardingStep.swift in Sources */,
+				1DA40DE02BA071F500921ADF /* AboutView.swift in Sources */,
+				1D2420AB2B93E42800B4E08D /* RegistrationFirstStepView.swift in Sources */,
 				1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */,
+				1DA40DE52BA0A80800921ADF /* OnboardingView.swift in Sources */,
 				1D8317B92B867497009DF17F /* PlantsView.swift in Sources */,
+				1DA40DEF2BA14EF300921ADF /* DrinkAddView.swift in Sources */,
+				1DA40DE22BA0A53300921ADF /* CoreDataManager.swift in Sources */,
 				1D56E7332B83799000311C6F /* ContentView.swift in Sources */,
+				1D2420AD2B93F6CA00B4E08D /* RegistrationSecondStepView.swift in Sources */,
 				1D8317C12B8674B9009DF17F /* TrackerView.swift in Sources */,
 				1D8317BD2B8674A6009DF17F /* SettingsView.swift in Sources */,
 				1D1132492B8FAAF400CF6752 /* PlantView.swift in Sources */,
+				1DA40DED2BA0CE2800921ADF /* Drink&Water.xcdatamodeld in Sources */,
 				1D8317C52B869731009DF17F /* AddDrinkButtonView.swift in Sources */,
 				1D8317BF2B8674AF009DF17F /* AccountView.swift in Sources */,
 				1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */,
 				1D1132472B8FAA3B00CF6752 /* Plant.swift in Sources */,
+				1DA40DF12BA1508900921ADF /* Drink.swift in Sources */,
 				1D56E7312B83799000311C6F /* Drink_WaterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +438,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Drink-Water-Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To show the office location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -423,6 +468,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Drink-Water-Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To show the office location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -462,6 +508,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1DA40DEB2BA0CE2800921ADF /* Drink&Water.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1DA40DEC2BA0CE2800921ADF /* Drink&Water.xcdatamodel */,
+			);
+			currentVersion = 1DA40DEC2BA0CE2800921ADF /* Drink&Water.xcdatamodel */;
+			path = "Drink&Water.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1D56E7252B83799000311C6F /* Project object */;
 }

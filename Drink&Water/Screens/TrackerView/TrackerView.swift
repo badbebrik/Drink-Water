@@ -11,11 +11,11 @@ struct TrackerView: View {
     
     @State var progress: CGFloat = 0.5
     @State var startAnimation: CGFloat = 0
+    @State var progressDrop: CGFloat = 2
     
     @State var name = "Bob"
-    @State var arr = ["Water", "Juice", "Milk"]
     @State private var numbers = [1,2,3,4,5,6,7,8,9]
-    let colors: [Color] = [.red, .green, .blue]
+    @State private var isShowingAddDrink: Bool = false
     
     
     var body: some View {
@@ -69,7 +69,7 @@ struct TrackerView: View {
                                         .scaleEffect(x: 1.1, y: 1)
                                         .offset(y: -1)
                                     
-                                    WaterWave(progress: 0.5, waveHeight: 0.1, offset: startAnimation)
+                                    WaterWave(progress: progressDrop, waveHeight: 0.1, offset: startAnimation)
                                         .fill(Color(.blue))
                                         .mask {
                                             Image(systemName: "drop.fill")
@@ -124,9 +124,29 @@ struct TrackerView: View {
                             
                         }
                         
-                        AddDrinkButtonView()
-                            .padding(.top, 200)
-                            .padding(.leading, 150)
+                        Button {
+                            isShowingAddDrink = true
+                        } label: {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 65, height: 65)
+                                    .foregroundStyle(.white)
+                                    .shadow(color: Color(red: 0, green: 0, blue: 0).opacity(0.25), radius: 2, x: 0, y: 4)
+                                    .shadow(radius: 5)
+                                
+                                Image(systemName: "plus")
+                                    .foregroundStyle(.blue)
+                            }
+                        }
+                        .padding(.top, 200)
+                        .padding(.leading, 150)
+                        .sheet(isPresented: $isShowingAddDrink, content: {
+                            DrinkAddView(isShowingDetail: $isShowingAddDrink)
+                        })
+                        
+//                        AddDrinkButtonView()
+//                            .padding(.top, 200)
+//                            .padding(.leading, 150)
                         
                     }
                     

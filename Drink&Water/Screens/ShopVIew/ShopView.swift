@@ -22,17 +22,21 @@ struct ShopView: View {
             
             VStack(spacing: 20) {
                 
-                HStack() {
-                    Text("100")
-                        .frame(alignment: .trailing)
-                        .font(.title)
-                    Image("coin")
-                        .resizable()
-                        .frame(width: 40, height: 40)
+                HStack {
+                    Spacer()
+                    HStack() {
+                        Text("100")
+                            .frame(alignment: .trailing)
+                            .font(.title)
+                        Image("coin")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                    }
+                    .padding()
+                    .background(.white)
+                    .cornerRadius(20)
                 }
                 .padding()
-                .background(.white)
-                .cornerRadius(20)
                 
                 
                 Text("Shop")
