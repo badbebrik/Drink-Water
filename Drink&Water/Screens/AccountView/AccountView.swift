@@ -1,15 +1,24 @@
 import SwiftUI
 
+
+class AccountViewModel: ObservableObject {
+    var height: Double = 0
+    var weight: Double = 0
+    var birthday: Date = Date.now
+}
+
+
 struct AccountView: View {
+    
+    @StateObject var viewModel: AccountViewModel = AccountViewModel()
     
     @State private var image: UIImage? = nil
     @State private var isShowingImagePicker = false
     @State private var firstName: String = ""
     @State private var lastName: String = ""
-    @State private var height: String = "0"
-    @State private var weight: String = "0"
     @State private var genderIndex = 0
-    @State private var activityIndex = 0
+    @State private var activity: String = ""
+    
     
     let genders = ["Male", "Female"]
     let activityModes = ["Low", "Medium", "High"]
@@ -59,16 +68,6 @@ struct AccountView: View {
                         Section(header: Text("Personal Information")) {
                             TextField("First Name", text: $firstName)
                             TextField("Last Name", text: $lastName)
-                        }
-                        
-                        Section(header: Text("Physical Information")) {
-                            TextField("Height (cm)", text: $height)
-                                .keyboardType(.numberPad)
-                            TextField("Weight (kg)", text: $weight)
-                                .keyboardType(.numberPad)
-                        }
-                        
-                        Section(header: Text("Gender")) {
                             Picker("Gender", selection: $genderIndex) {
                                 ForEach(0..<genders.count) { index in
                                     Text(genders[index])
@@ -77,21 +76,50 @@ struct AccountView: View {
                             .pickerStyle(SegmentedPickerStyle())
                         }
                         
+                        Section(header: Text("Birthday")) {
+                            DatePicker("Select a date", selection: $viewModel.birthday, in: Date(timeIntervalSince1970: 0)...Date(), displayedComponents: .date)
+                                .datePickerStyle(.automatic)
+                                .labelsHidden()
+                                .padding()
+                                .onChange(of: viewModel.birthday) { newValue in
+                                    let calendar = Calendar.current
+                                    let selectedYear = calendar.component(.year, from: newValue)
+                                    if selectedYear < 2018 {
+                                        viewModel.birthday = calendar.date(from: DateComponents(year: 2018, month: 1, day: 1)) ?? Date(timeIntervalSince1970: 0)
+                                    }
+                                }
+                        }
+                        
+                        Section(header: Text("Physical Information")) {
+                            HStack {
+                                Text("Height:")
+                                    .foregroundColor(.secondary)
+                                TextField("Enter height (cm)", value: $viewModel.height, formatter: NumberFormatter())
+                                    .keyboardType(.numberPad)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .padding()
+                            }
+                            .padding(.horizontal)
+
+                            HStack {
+                                Text("Weight:")
+                                    .foregroundColor(.secondary)
+                                TextField("Enter weight (kg)", value: $viewModel.weight, formatter: NumberFormatter())
+                                    .keyboardType(.numberPad)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .padding()
+                            }
+                            .padding(.horizontal)
+                        }
+                        
                         Section(header: Text("Activity Mode")) {
-                            Picker("Activity Mode", selection: $activityIndex) {
-                                ForEach(0..<activityModes.count) { index in
-                                    Text(activityModes[index])
+                            Picker("Activity", selection: $activity) {
+                                ForEach(activityModes, id: \.self) {
+                                    Text($0)
                                 }
                             }
                             .pickerStyle(SegmentedPickerStyle())
                         }
-                        
-                        Section {
-//                            Button("Submit") {
-//                                coreDataManager.updateUser(name: firstName, lastName: lastName, gender: genderIndex, weight: weight, height: height, birthday: Date.now)
-//                            }
-                        }
-                        
                     }
                 }
             }
@@ -99,9 +127,11 @@ struct AccountView: View {
                 if let userData = coreDataManager.getUserData() {
                     firstName = userData.name ?? ""
                     lastName = userData.lastName ?? ""
-                    height = "\(userData.height)"
-                    weight = "\(userData.weight)"
-                    genderIndex = userData.gender ? 0 : 1
+                    viewModel.height = userData.height
+                    viewModel.weight = userData.weight
+                    genderIndex = Int(userData.gender)
+                    activity = userData.activity ?? "Low"
+                    viewModel.birthday = userData.birthday ?? Date.now
                 }
             }
         }

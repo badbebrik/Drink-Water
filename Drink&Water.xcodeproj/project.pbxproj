@@ -29,6 +29,10 @@
 		1DA40DED2BA0CE2800921ADF /* Drink&Water.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DEB2BA0CE2800921ADF /* Drink&Water.xcdatamodeld */; };
 		1DA40DEF2BA14EF300921ADF /* DrinkAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DEE2BA14EF300921ADF /* DrinkAddView.swift */; };
 		1DA40DF12BA1508900921ADF /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DF02BA1508900921ADF /* Drink.swift */; };
+		1DA40DF42BA1F13B00921ADF /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DF32BA1F13B00921ADF /* CircularProgressView.swift */; };
+		1DA40DF62BA1F1F600921ADF /* WaterWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DF52BA1F1F600921ADF /* WaterWave.swift */; };
+		1DA40DFA2BA21AF400921ADF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DF92BA21AF400921ADF /* Alert.swift */; };
+		1DA40DFC2BA21AFF00921ADF /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DFB2BA21AFF00921ADF /* AppError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +60,10 @@
 		1DA40DEC2BA0CE2800921ADF /* Drink&Water.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Drink&Water.xcdatamodel"; sourceTree = "<group>"; };
 		1DA40DEE2BA14EF300921ADF /* DrinkAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkAddView.swift; sourceTree = "<group>"; };
 		1DA40DF02BA1508900921ADF /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
+		1DA40DF32BA1F13B00921ADF /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		1DA40DF52BA1F1F600921ADF /* WaterWave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWave.swift; sourceTree = "<group>"; };
+		1DA40DF92BA21AF400921ADF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		1DA40DFB2BA21AFF00921ADF /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +115,7 @@
 		1D56E72F2B83799000311C6F /* Drink&Water */ = {
 			isa = PBXGroup;
 			children = (
+				1DA40DF72BA21AC500921ADF /* Utilities */,
 				1D2420132B91C0EA00B4E08D /* Drink-Water-Info.plist */,
 				1D1132452B8FAA2100CF6752 /* Models */,
 				1D8317C22B86970C009DF17F /* Views */,
@@ -148,6 +157,7 @@
 		1D8317B32B86744B009DF17F /* TrackerView */ = {
 			isa = PBXGroup;
 			children = (
+				1DA40DF22BA1F10500921ADF /* Subviews */,
 				1D8317C02B8674B9009DF17F /* TrackerView.swift */,
 			);
 			path = TrackerView;
@@ -209,6 +219,32 @@
 				1DA40DE42BA0A80800921ADF /* OnboardingView.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		1DA40DF22BA1F10500921ADF /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				1DA40DF32BA1F13B00921ADF /* CircularProgressView.swift */,
+				1DA40DF52BA1F1F600921ADF /* WaterWave.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		1DA40DF72BA21AC500921ADF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1DA40DF82BA21AE000921ADF /* Alerts */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1DA40DF82BA21AE000921ADF /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				1DA40DF92BA21AF400921ADF /* Alert.swift */,
+				1DA40DFB2BA21AFF00921ADF /* AppError.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +320,7 @@
 				1DA40DE72BA0A82600921ADF /* OnboardingStep.swift in Sources */,
 				1DA40DE02BA071F500921ADF /* AboutView.swift in Sources */,
 				1D2420AB2B93E42800B4E08D /* RegistrationFirstStepView.swift in Sources */,
+				1DA40DFA2BA21AF400921ADF /* Alert.swift in Sources */,
 				1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */,
 				1DA40DE52BA0A80800921ADF /* OnboardingView.swift in Sources */,
 				1D8317B92B867497009DF17F /* PlantsView.swift in Sources */,
@@ -291,13 +328,16 @@
 				1DA40DE22BA0A53300921ADF /* CoreDataManager.swift in Sources */,
 				1D56E7332B83799000311C6F /* ContentView.swift in Sources */,
 				1D2420AD2B93F6CA00B4E08D /* RegistrationSecondStepView.swift in Sources */,
+				1DA40DF42BA1F13B00921ADF /* CircularProgressView.swift in Sources */,
 				1D8317C12B8674B9009DF17F /* TrackerView.swift in Sources */,
 				1D8317BD2B8674A6009DF17F /* SettingsView.swift in Sources */,
 				1D1132492B8FAAF400CF6752 /* PlantView.swift in Sources */,
+				1DA40DF62BA1F1F600921ADF /* WaterWave.swift in Sources */,
 				1DA40DED2BA0CE2800921ADF /* Drink&Water.xcdatamodeld in Sources */,
 				1D8317C52B869731009DF17F /* AddDrinkButtonView.swift in Sources */,
 				1D8317BF2B8674AF009DF17F /* AccountView.swift in Sources */,
 				1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */,
+				1DA40DFC2BA21AFF00921ADF /* AppError.swift in Sources */,
 				1D1132472B8FAA3B00CF6752 /* Plant.swift in Sources */,
 				1DA40DF12BA1508900921ADF /* Drink.swift in Sources */,
 				1D56E7312B83799000311C6F /* Drink_WaterApp.swift in Sources */,

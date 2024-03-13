@@ -7,25 +7,27 @@
 
 import SwiftUI
 
-
+class RegistrationSecondStepViewModel: ObservableObject {
+    var activity: String = "Low"
+    var selectedDate: Date = Date()
+    @Published var height: Double = 0
+    @Published var weight: Double = 0
+}
 
 struct RegistrationSecondStepView: View {
-    
+    @StateObject var viewModel = RegistrationSecondStepViewModel()
     let coreDataManager = CoreDataManager()
     @Binding var name: String
     @Binding var lastName: String
-    @Binding var gender: Bool
-    @State var height: Double = 0
-    @State var weight: Double = 0
-    @State private var activity = ""
-    @State private var selectedDate = Date()
+    @Binding var genderIndex: Int
+    
     @State private var isRegistrationFinished = false
     let activityMode = ["Low", "Medium", "High"]
     
     let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
         return formatter
     }()
     
@@ -46,44 +48,54 @@ struct RegistrationSecondStepView: View {
                 VStack(spacing: 20) {
                     
                     VStack(spacing: 10) {
-                        Text("Height")
+                        Text("Height (m)")
                             .frame(width: 353, alignment: .leading)
-                        Slider(value: $height, in: 0...240) {}
+                        Slider(value: $viewModel.height, in: 100...240) {}
                     minimumValueLabel: {
-                        Text("0").font(.title2).fontWeight(.thin)
+                        Text("100").font(.title2).fontWeight(.thin)
                     } maximumValueLabel: {
                         Text("240").font(.title2).fontWeight(.thin)
                     }
                         
                     .padding()
-                        Text("\(numberFormatter.string(for: height) ?? "")")
+                        Text("\(numberFormatter.string(for: viewModel.height) ?? "")")
                     }
                     
                     VStack(spacing: 10) {
-                        Text("Weight")
+                        Text("Weight (kg)")
                             .frame(width: 353, alignment: .leading)
-                        Slider(value: $weight, in: 0...300) {}
+                        Slider(value: $viewModel.weight, in: 20...300) {}
                     minimumValueLabel: {
-                        Text("0").font(.title2).fontWeight(.thin)
+                        Text("20").font(.title2).fontWeight(.thin)
                     } maximumValueLabel: {
                         Text("300").font(.title2).fontWeight(.thin)
                     }
                     .padding()
-                        Text("\(numberFormatter.string(for: weight) ?? "")")
+                        Text("\(numberFormatter.string(for: viewModel.weight) ?? "")")
                         
                     }
                     
                     Text("Birthday")
                         .frame(width: 353, alignment: .leading)
                     
-                    DatePicker("Select a date", selection: $selectedDate, displayedComponents: .date)
+                    DatePicker("Select a date", selection: $viewModel.selectedDate, in: ...Date(), displayedComponents: .date)
                         .datePickerStyle(.automatic)
                         .labelsHidden()
                         .padding()
+                        .onChange(of: viewModel.selectedDate) { newValue in
+                            let calendar = Calendar.current
+                            let selectedYear = calendar.component(.year, from: newValue)
+                            if selectedYear > 2018 {
+                                viewModel.selectedDate = calendar.date(from: DateComponents(year: 2018)) ?? Date()
+                            }
+                        }
+                        .onAppear {
+                            viewModel.selectedDate = Date()
+                        }
                     
                     Text("Activity")
                         .frame(width: 353, alignment: .leading)
-                    Picker("Gender", selection: $activity) {
+                    Picker("Activity", selection: $viewModel.activity) {
                         ForEach(activityMode, id: \.self) {
                             Text($0)
                         }
@@ -92,7 +104,10 @@ struct RegistrationSecondStepView: View {
                     .padding()
                     
                     Button {
-                        coreDataManager.saveUser(name: name, lastName: lastName, gender: gender, weight: weight, height: height, birthday: Date.now)
+                        print(viewModel.selectedDate)
+                        print(viewModel.weight)
+                        print(viewModel.height)
+                        coreDataManager.saveUser(name: name, lastName: lastName, gender: genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.selectedDate, activity: viewModel.activity)
                         UserDefaults.standard.set(true, forKey: "isUserRegistered")
                         
                         isRegistrationFinished = true
@@ -106,8 +121,6 @@ struct RegistrationSecondStepView: View {
                     })
                     
                 }
-                
-                
             }
         }
     }
@@ -115,9 +128,8 @@ struct RegistrationSecondStepView: View {
     
 }
 
-
 #Preview {
-    RegistrationSecondStepView(name: .constant("Bob"), lastName: .constant("Poopkins"), gender: .constant(false))
+    RegistrationSecondStepView(name: .constant("Bob"), lastName: .constant("Poopkins"), genderIndex: .constant(0))
 }
 
 

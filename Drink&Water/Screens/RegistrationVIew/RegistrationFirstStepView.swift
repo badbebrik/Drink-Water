@@ -7,14 +7,27 @@
 
 import SwiftUI
 
-struct RegistrationFirstStepView: View {
-    
-    @State var name: String = ""
-    @State var lastName: String = ""
-    let genders = ["Male", "Female"]
-    @State private var gender: Bool = false
-    @State private var isShowingNextStep = false
 
+class RegistrationFirstStepViewModel: ObservableObject {
+    
+    var name: String = ""
+    var lastName: String = ""
+    @Published var genderIndex = 0
+    
+    func validateFields() -> Bool {
+        if name.isEmpty || lastName.isEmpty {
+            return false
+        }
+        return true
+    }
+}
+
+
+struct RegistrationFirstStepView: View {
+    let genders = ["Male", "Female"]
+    @StateObject private var viewModel = RegistrationFirstStepViewModel()
+    @State var isShowingNextStep = false
+    @State private var showAlert = false
     
     var body: some View {
         ZStack {
@@ -27,14 +40,16 @@ struct RegistrationFirstStepView: View {
                     .font(.system(size: 32, weight: .black))
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.leading)
-                .frame(width: 353, height: 26, alignment: .center)
+                    .frame(width: 353, height: 26, alignment: .center)
                 
                 VStack(spacing: 20) {
                     
                     VStack(spacing: 10) {
                         Text("First Name")
                             .frame(width: 353, alignment: .leading)
-                        TextField("", text: $name)
+                        TextField("", text: $viewModel.name)
+                            .autocorrectionDisabled()
+                            .autocapitalization(.sentences)
                             .textFieldStyle(.roundedBorder)
                             .padding(.leading)
                             .padding(.trailing)
@@ -44,22 +59,23 @@ struct RegistrationFirstStepView: View {
                         Text("Last Name")
                             .frame(width: 353, alignment: .leading)
                         
-                        TextField("", text: $lastName)
+                        TextField("", text: $viewModel.lastName)
                             .textFieldStyle(.roundedBorder)
                             .padding(.leading)
                             .padding(.trailing)
+                            .autocorrectionDisabled()
+                            .autocapitalization(.sentences)
                     }
                     
                 }
                 
                 VStack {
-                    
                     Text("Gender")
                         .frame(width: 353, alignment: .leading)
                     HStack {
-                        Picker("Gender", selection: $gender) {
-                            ForEach(genders, id: \.self) {
-                                Text($0)
+                        Picker("Gender", selection: $viewModel.genderIndex) {
+                            ForEach(0..<genders.count) { index in
+                                Text(genders[index])
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
@@ -69,17 +85,24 @@ struct RegistrationFirstStepView: View {
                 }
                 
                 Button {
-                    isShowingNextStep = true
+                    if viewModel.validateFields() {
+                        isShowingNextStep = true
+                    } else {
+                        showAlert = true
+                    }
                 } label: {
                     Text("Next")
                 }
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.roundedRectangle)
                 .fullScreenCover(isPresented: $isShowingNextStep, content: {
-                    RegistrationSecondStepView(name: $name, lastName: $lastName, gender: $gender)
+                    RegistrationSecondStepView(name: $viewModel.name, lastName: $viewModel.lastName, genderIndex: $viewModel.genderIndex)
                 })
-
+                
             }
+            .alert(isPresented: $showAlert) {
+                                Alert(title: Text("Empty Fields"), message: Text("Please fill in both first name and last name."), dismissButton: .default(Text("OK")))
+                            }
         }
     }
 }
