@@ -6,8 +6,8 @@
 //
 
 struct Plant {
-    let name: String;
-    let WaterVolumeToFinish: Int;
-    let price: Int;
-    let stages: [String];
+    let name: String
+    let WaterVolumeToFinish: Int
+    let price: Int
+    let stages: [String]
 }

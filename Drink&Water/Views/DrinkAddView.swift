@@ -9,11 +9,10 @@ import SwiftUI
 
 struct DrinkAddView: View {
     let drinks: [Drink] = [
-        Drink(id: UUID(), name: "Water", imageName: "water 2"),
-        Drink(id: UUID(), name: "Coffee", imageName: "coffee"),
-        Drink(id: UUID(), name: "Tea", imageName: "tea"),
+        Drink(id: UUID(), name: "Water", imageName: "water 2", volume: 0),
+        Drink(id: UUID(), name: "Coffee", imageName: "coffee", volume: 0),
+        Drink(id: UUID(), name: "Tea", imageName: "tea", volume: 0),
     ]
-    
     
     func addDrink(_ drink: Drink) {
         todayDrinks.append(drink)
@@ -88,13 +87,14 @@ struct DrinkAddView: View {
             .scrollIndicators(.hidden)
             
             Button(action: {
+                let coreDataManager = CoreDataManager()
                 todayDrinked += selectedVolume ?? 0
                 progressDrop = CGFloat(Double(todayDrinked) / Double(dailyIntakeGoal))
+                selectedDrink?.volume = selectedVolume ?? 0
                 if let selectedDrink = selectedDrink {
                     addDrink(selectedDrink)
+                    coreDataManager.saveDrink(selectedDrink)
                 }
-                
-                let coreDataManager = CoreDataManager()
                 coreDataManager.updateTodayWaterIntake(Double(todayDrinked))
                 isShowingDetail = false
                 

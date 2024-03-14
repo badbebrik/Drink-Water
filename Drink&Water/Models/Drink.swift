@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import CoreData
 
-struct Drink : Equatable, Hashable {
+struct Drink: Hashable, Equatable  {
     let id: UUID
     let name: String
     let imageName: String
+    var volume: Int
 }

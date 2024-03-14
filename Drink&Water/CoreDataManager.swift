@@ -136,4 +136,54 @@ class CoreDataManager {
         }
     }
     
+    
+    func saveDrink(_ drink: Drink) {
+        let managedContext = persistentContainer.viewContext
+        
+        let drinkToAdd = DrinkEntity(context: managedContext)
+        drinkToAdd.name = drink.name
+        drinkToAdd.volume = Int32(drink.volume)
+        drinkToAdd.imageName = drink.imageName
+        
+        do {
+            try managedContext.save()
+        } catch {
+            print("Failed to save drink: \(error)")
+        }
+    }
+
+    func getAllDrinks() -> [Drink]? {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<DrinkEntity> = DrinkEntity.fetchRequest()
+
+        do {
+            let drinkEntities = try managedContext.fetch(fetchRequest)
+                    var drinks: [Drink] = []
+                    for entity in drinkEntities {
+                        let drink = Drink(id: UUID(),
+                                          name: entity.name ?? "",
+                                          imageName: entity.imageName ?? "",
+                                          volume: Int(entity.volume))
+                        drinks.append(drink)
+                    }
+                    return drinks
+        } catch {
+            print("Failed to fetch drinks: \(error)")
+            return nil
+        }
+    }
+    
+    
+    func deleteAllDrinks() {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "DrinkEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try managedContext.execute(deleteRequest)
+        } catch {
+            print("Failed to delete drinks: \(error)")
+        }
+    }
+    
 }

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 @main
 struct Drink_WaterApp: App {
     

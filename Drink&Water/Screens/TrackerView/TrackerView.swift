@@ -110,15 +110,15 @@ struct TrackerView: View {
                         .padding(.leading, 150)
                         .sheet(isPresented: $viewModel.isShowingAddDrink) {
                             DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink,
-                                             progressDrop: $viewModel.progressDrop,
-                                             todayDrinked: Binding<Int>(
-                                                 get: { Int(viewModel.todayWaterIntake) },
-                                                 set: { viewModel.todayWaterIntake = Double($0) }
-                                             ),
-                                             dailyIntakeGoal: Binding<Int>(
-                                                 get: { Int(viewModel.dailyWaterIntakeGoal) },
-                                                 set: { viewModel.dailyWaterIntakeGoal = Double($0) }
-                                             ), todayDrinks: $todayDrinks)
+                                         progressDrop: $viewModel.progressDrop,
+                                         todayDrinked: Binding<Int>(
+                                            get: { Int(viewModel.todayWaterIntake) },
+                                            set: { viewModel.todayWaterIntake = Double($0) }
+                                         ),
+                                         dailyIntakeGoal: Binding<Int>(
+                                            get: { Int(viewModel.dailyWaterIntakeGoal) },
+                                            set: { viewModel.dailyWaterIntakeGoal = Double($0) }
+                                         ), todayDrinks: $todayDrinks)
                         }
                     }
                     
@@ -159,7 +159,7 @@ struct TrackerView: View {
                         .frame(width: 353, height: 26, alignment: .leading)
                     
                     VStack {
-                    
+                        
                         ScrollView(.vertical) {
                             VStack(spacing: 10) {
                                 ForEach(todayDrinks, id: \.id) { drink in
@@ -168,6 +168,7 @@ struct TrackerView: View {
                                             .resizable()
                                             .frame(width: 50, height: 50)
                                         Text(drink.name)
+                                        Text("\(drink.volume) ml")
                                     }
                                     .frame(width: 300, height: 50)
                                     .padding()
@@ -185,6 +186,9 @@ struct TrackerView: View {
             let coreDataManager = CoreDataManager()
             let user = coreDataManager.getUserData()
             viewModel.name = user?.name ?? ""
+            todayDrinks = coreDataManager.getAllDrinks() ?? []
+            
+            
             viewModel.todayWaterIntake = user?.todayWaterIntake ?? 0
             viewModel.dailyWaterIntakeGoal = user?.dailyWaterIntake ?? 3000
             viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
@@ -228,18 +232,18 @@ struct MaskedImageModifier: ViewModifier {
 
 //struct WaterProgressView: View {
 //    @ObservedObject var viewModel: TrackerViewModel
-//    
+//
 //    var body: some View {
 //        ZStack {
 //            RoundedRectangle(cornerRadius: 30)
 //                .frame(height: 288)
 //                .foregroundColor(.white)
 //                .shadow(color: Color(.black).opacity(0.25), radius: 2, x: 0, y: 4)
-//            
+//
 //            VStack {
 //                Text("1500/3000 ml")
 //                    .foregroundColor(.black)
-//                
+//
 //                GeometryReader { proxy in
 //                    let size = proxy.size
 //                    WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
@@ -255,7 +259,7 @@ struct MaskedImageModifier: ViewModifier {
 //                }
 //                .frame(height: 240)
 //            }
-//            
+//
 //            Button {
 //                viewModel.isShowingAddDrink = true
 //            } label: {

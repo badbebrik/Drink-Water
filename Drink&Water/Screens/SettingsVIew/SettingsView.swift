@@ -25,7 +25,6 @@ enum Theme: String, CaseIterable {
     }
 }
 
-
 enum Language: String, CaseIterable {
     case ru = "🇷🇺Russian"
     case eng = "🇺🇸English"
@@ -39,6 +38,7 @@ struct SettingsView: View {
     @State private var isShowingAboutPage: Bool = false
     @State private var isDeleteAccountButtonTapped = false
     @State private var isDeleteAccountAlertPresented = false
+    @State private var isResetAccountAlertPresented = false
     
     
     var body: some View {
@@ -103,10 +103,20 @@ struct SettingsView: View {
                         }
                         
                         Button(action: {
-                            
+                            isResetAccountAlertPresented = true
                         }) {
                             Text("Reset Progress")
                                 .foregroundStyle(.red)
+                        }
+                        .alert(isPresented: $isResetAccountAlertPresented) {
+                            Alert(title: Text("Are you sure?"),
+                                  message: Text("Resetting your progress will empty your plants gallary and water intake activity."),
+                                  primaryButton: .cancel(Text("Cancel")),
+                                  secondaryButton: .destructive(Text("Reset progress"), action: {
+                                let coreDataManager = CoreDataManager()
+                                coreDataManager.deleteAllDrinks()
+                                
+                            }))
                         }
                         
                     }
