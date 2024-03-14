@@ -12,13 +12,17 @@ class TrackerViewModel: ObservableObject {
     @Published var progress: CGFloat = 0.5
     @Published var startAnimation: CGFloat = 0
     @Published var progressDrop: CGFloat = 0.1
-    @Published var name = "Bob"
+    @Published var name = ""
     @Published var numbers = [1,2,3,4,5,6,7,8,9]
     @Published var isShowingAddDrink: Bool = false
+    var dailyWaterIntakeGoal: Double = 0
+    @Published var todayWaterIntake: Double = 0
+
 }
 
 
 struct TrackerView: View {
+    
     @StateObject var viewModel = TrackerViewModel()
     
     var body: some View {
@@ -57,7 +61,7 @@ struct TrackerView: View {
                             .shadow(color: Color(.black)
                                 .opacity(0.25), radius: 2, x: 0, y: 4)
                         VStack {
-                            Text("1500/3000 ml")
+                            Text("\(Int(viewModel.todayWaterIntake))/\(Int(viewModel.dailyWaterIntakeGoal)) ml")
                                 .foregroundStyle(.black)
                             GeometryReader { proxy in
                                 
@@ -91,7 +95,7 @@ struct TrackerView: View {
                         
                         Button {
                             viewModel.isShowingAddDrink = true
-                            viewModel.progressDrop += 0.2
+                            viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
                         } label: {
                             ZStack {
                                 Circle()
@@ -106,9 +110,18 @@ struct TrackerView: View {
                         }
                         .padding(.top, 200)
                         .padding(.leading, 150)
-                        .sheet(isPresented: $viewModel.isShowingAddDrink, content: {
-                            DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink)
-                        })
+                        .sheet(isPresented: $viewModel.isShowingAddDrink) {
+                            DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink,
+                                             progressDrop: $viewModel.progressDrop,
+                                             todayDrinked: Binding<Int>(
+                                                 get: { Int(viewModel.todayWaterIntake) },
+                                                 set: { viewModel.todayWaterIntake = Double($0) }
+                                             ),
+                                             dailyIntakeGoal: Binding<Int>(
+                                                 get: { Int(viewModel.dailyWaterIntakeGoal) },
+                                                 set: { viewModel.dailyWaterIntakeGoal = Double($0) }
+                                             ))
+                        }
                     }
                     
                     Text("Your Plant:")
@@ -160,6 +173,14 @@ struct TrackerView: View {
                     }
                 }
             }
+        }
+        .onAppear() {
+            let coreDataManager = CoreDataManager()
+            let user = coreDataManager.getUserData()
+            viewModel.name = user?.name ?? ""
+            viewModel.todayWaterIntake = user?.todayWaterIntake ?? 0
+            viewModel.dailyWaterIntakeGoal = user?.dailyWaterIntake ?? 3000
+            viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
         }
     }
     
@@ -237,7 +258,16 @@ struct WaterProgressView: View {
             .padding(.top, 200)
             .padding(.leading, 150)
             .sheet(isPresented: $viewModel.isShowingAddDrink) {
-                DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink)
+                DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink,
+                                 progressDrop: $viewModel.progressDrop,
+                                 todayDrinked: Binding<Int>(
+                                     get: { Int(viewModel.todayWaterIntake) },
+                                     set: { viewModel.todayWaterIntake = Double($0) }
+                                 ),
+                                 dailyIntakeGoal: Binding<Int>(
+                                     get: { Int(viewModel.dailyWaterIntakeGoal) },
+                                     set: { viewModel.dailyWaterIntakeGoal = Double($0) }
+                                 ))
             }
         }
     }

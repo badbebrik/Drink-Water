@@ -104,9 +104,6 @@ struct RegistrationSecondStepView: View {
                     .padding()
                     
                     Button {
-                        print(viewModel.selectedDate)
-                        print(viewModel.weight)
-                        print(viewModel.height)
                         coreDataManager.saveUser(name: name, lastName: lastName, gender: genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.selectedDate, activity: viewModel.activity)
                         UserDefaults.standard.set(true, forKey: "isUserRegistered")
                         

@@ -84,9 +84,6 @@ struct AccountView: View {
                                 .onChange(of: viewModel.birthday) { newValue in
                                     let calendar = Calendar.current
                                     let selectedYear = calendar.component(.year, from: newValue)
-                                    if selectedYear < 2018 {
-                                        viewModel.birthday = calendar.date(from: DateComponents(year: 2018, month: 1, day: 1)) ?? Date(timeIntervalSince1970: 0)
-                                    }
                                 }
                         }
                         
@@ -120,6 +117,14 @@ struct AccountView: View {
                             }
                             .pickerStyle(SegmentedPickerStyle())
                         }
+                        
+                        Section(header: Text("Save Changes")) {
+                            Button() {
+                                coreDataManager.updateUser(name: firstName, lastName: lastName, gender: genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.birthday, activity: activity, todayWaterIntake: 0)
+                            } label: {
+                                Text("Save")
+                            }
+                        }
                     }
                 }
             }
@@ -131,7 +136,7 @@ struct AccountView: View {
                     viewModel.weight = userData.weight
                     genderIndex = Int(userData.gender)
                     activity = userData.activity ?? "Low"
-                    viewModel.birthday = userData.birthday ?? Date.now
+                    viewModel.birthday = userData.birthday!
                 }
             }
         }

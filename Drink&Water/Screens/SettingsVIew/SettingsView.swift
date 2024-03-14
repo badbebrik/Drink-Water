@@ -38,6 +38,7 @@ struct SettingsView: View {
     @State private var selectedDate: Date = Date()
     @State private var isShowingAboutPage: Bool = false
     @State private var isDeleteAccountButtonTapped = false
+    @State private var isDeleteAccountAlertPresented = false
     
     
     var body: some View {
@@ -83,23 +84,31 @@ struct SettingsView: View {
                     }
                     
                     Section(header: Text("Account")) {
-                        Button() {
-                        } label: {
-                            Text("Reset progress")
-                                .foregroundStyle(.red)
-                        }
-                        
-                        Button() {
-                            let coreDataManager = CoreDataManager()
-                            coreDataManager.deleteUser()
-                            isDeleteAccountButtonTapped = true
-                        } label: {
+                        Button(action: {
+                            isDeleteAccountAlertPresented = true
+                        }) {
                             Text("Delete account")
                                 .foregroundStyle(.red)
                         }
-                        .fullScreenCover(isPresented: $isDeleteAccountButtonTapped, content: {
-                            ContentView()
-                        })
+                        .alert(isPresented: $isDeleteAccountAlertPresented) {
+                            Alert(title: Text("Are you sure?"),
+                                  message: Text("Deleting your account will erase all your data. This action cannot be undone."),
+                                  primaryButton: .cancel(Text("Cancel")),
+                                  secondaryButton: .destructive(Text("Delete"), action: {
+                                let coreDataManager = CoreDataManager()
+                                coreDataManager.deleteUser()
+                                isDeleteAccountButtonTapped = true
+                                
+                            }))
+                        }
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Text("Reset Progress")
+                                .foregroundStyle(.red)
+                        }
+                        
                     }
                     
                     Section(header: Text("Developer")) {
@@ -118,6 +127,9 @@ struct SettingsView: View {
             }
             
             
+        }
+        .fullScreenCover(isPresented: $isDeleteAccountButtonTapped) {
+            ContentView()
         }
         
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Drink {
+struct Drink : Equatable {
     let id: UUID
     let name: String
     let imageName: String
