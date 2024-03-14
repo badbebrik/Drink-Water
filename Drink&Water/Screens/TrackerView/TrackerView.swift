@@ -13,18 +13,16 @@ class TrackerViewModel: ObservableObject {
     @Published var startAnimation: CGFloat = 0
     @Published var progressDrop: CGFloat = 0.1
     @Published var name = ""
-    @Published var numbers = [1,2,3,4,5,6,7,8,9]
     @Published var isShowingAddDrink: Bool = false
     var dailyWaterIntakeGoal: Double = 0
     @Published var todayWaterIntake: Double = 0
-
 }
 
 
 struct TrackerView: View {
     
     @StateObject var viewModel = TrackerViewModel()
-    
+    @State var todayDrinks: [Drink] = []
     var body: some View {
         ZStack {
             Color("BrandBlue")
@@ -120,7 +118,7 @@ struct TrackerView: View {
                                              dailyIntakeGoal: Binding<Int>(
                                                  get: { Int(viewModel.dailyWaterIntakeGoal) },
                                                  set: { viewModel.dailyWaterIntakeGoal = Double($0) }
-                                             ))
+                                             ), todayDrinks: $todayDrinks)
                         }
                     }
                     
@@ -161,15 +159,24 @@ struct TrackerView: View {
                         .frame(width: 353, height: 26, alignment: .leading)
                     
                     VStack {
-                        List {
-                            ForEach(self.viewModel.numbers, id: \.self) {
-                                Text("\($0)")
+                    
+                        ScrollView(.vertical) {
+                            VStack(spacing: 10) {
+                                ForEach(todayDrinks, id: \.id) { drink in
+                                    HStack {
+                                        Image(drink.imageName)
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                        Text(drink.name)
+                                    }
+                                    .frame(width: 300, height: 50)
+                                    .padding()
+                                    .background(Color(.systemGray6))
+                                    .cornerRadius(10)
+                                    .padding(.horizontal)
+                                }
                             }
-                            .onDelete { index in
-                            }
-                        }.frame(width: 350, height: 150, alignment: .center)
-                            .listStyle(.plain)
-                            .cornerRadius(30, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        }
                     }
                 }
             }
@@ -219,56 +226,56 @@ struct MaskedImageModifier: ViewModifier {
 }
 
 
-struct WaterProgressView: View {
-    @ObservedObject var viewModel: TrackerViewModel
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 30)
-                .frame(height: 288)
-                .foregroundColor(.white)
-                .shadow(color: Color(.black).opacity(0.25), radius: 2, x: 0, y: 4)
-            
-            VStack {
-                Text("1500/3000 ml")
-                    .foregroundColor(.black)
-                
-                GeometryReader { proxy in
-                    let size = proxy.size
-                    WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
-                        .fill(Color.blue)
-                        .modifier(MaskedImageModifier())
-                        .modifier(CircleOverlayModifier())
-                        .frame(width: size.width, height: size.height, alignment: .center)
-                        .onAppear {
-                            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-                                viewModel.startAnimation = size.width
-                            }
-                        }
-                }
-                .frame(height: 240)
-            }
-            
-            Button {
-                viewModel.isShowingAddDrink = true
-            } label: {
-                Image(systemName: "plus")
-                    .modifier(AddDrinkButton())
-            }
-            .padding(.top, 200)
-            .padding(.leading, 150)
-            .sheet(isPresented: $viewModel.isShowingAddDrink) {
-                DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink,
-                                 progressDrop: $viewModel.progressDrop,
-                                 todayDrinked: Binding<Int>(
-                                     get: { Int(viewModel.todayWaterIntake) },
-                                     set: { viewModel.todayWaterIntake = Double($0) }
-                                 ),
-                                 dailyIntakeGoal: Binding<Int>(
-                                     get: { Int(viewModel.dailyWaterIntakeGoal) },
-                                     set: { viewModel.dailyWaterIntakeGoal = Double($0) }
-                                 ))
-            }
-        }
-    }
-}
+//struct WaterProgressView: View {
+//    @ObservedObject var viewModel: TrackerViewModel
+//    
+//    var body: some View {
+//        ZStack {
+//            RoundedRectangle(cornerRadius: 30)
+//                .frame(height: 288)
+//                .foregroundColor(.white)
+//                .shadow(color: Color(.black).opacity(0.25), radius: 2, x: 0, y: 4)
+//            
+//            VStack {
+//                Text("1500/3000 ml")
+//                    .foregroundColor(.black)
+//                
+//                GeometryReader { proxy in
+//                    let size = proxy.size
+//                    WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
+//                        .fill(Color.blue)
+//                        .modifier(MaskedImageModifier())
+//                        .modifier(CircleOverlayModifier())
+//                        .frame(width: size.width, height: size.height, alignment: .center)
+//                        .onAppear {
+//                            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+//                                viewModel.startAnimation = size.width
+//                            }
+//                        }
+//                }
+//                .frame(height: 240)
+//            }
+//            
+//            Button {
+//                viewModel.isShowingAddDrink = true
+//            } label: {
+//                Image(systemName: "plus")
+//                    .modifier(AddDrinkButton())
+//            }
+//            .padding(.top, 200)
+//            .padding(.leading, 150)
+//            .sheet(isPresented: $viewModel.isShowingAddDrink) {
+//                DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink,
+//                                 progressDrop: $viewModel.progressDrop,
+//                                 todayDrinked: Binding<Int>(
+//                                     get: { Int(viewModel.todayWaterIntake) },
+//                                     set: { viewModel.todayWaterIntake = Double($0) }
+//                                 ),
+//                                 dailyIntakeGoal: Binding<Int>(
+//                                     get: { Int(viewModel.dailyWaterIntakeGoal) },
+//                                     set: { viewModel.dailyWaterIntakeGoal = Double($0) }
+//                                 ), todayDrinks: $todayDrinks)
+//            }
+//        }
+//    }
+//}

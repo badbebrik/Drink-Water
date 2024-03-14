@@ -26,7 +26,6 @@ struct CircularProgressView: View {
                 .frame(width: 66, height: 72, alignment: .center)
             
             Circle()
-            // 2
                 .trim(from: 0, to: progress)
                 .stroke(
                     Color.blue,

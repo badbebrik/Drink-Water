@@ -14,6 +14,11 @@ struct DrinkAddView: View {
         Drink(id: UUID(), name: "Tea", imageName: "tea"),
     ]
     
+    
+    func addDrink(_ drink: Drink) {
+        todayDrinks.append(drink)
+    }
+    
     let waterVolumes = [100, 200, 300, 400, 500]
     
     @Binding var isShowingDetail: Bool
@@ -22,6 +27,7 @@ struct DrinkAddView: View {
     @Binding var progressDrop: CGFloat
     @Binding var todayDrinked: Int
     @Binding var dailyIntakeGoal: Int
+    @Binding var todayDrinks: [Drink]
     
     var body: some View {
         VStack {
@@ -40,7 +46,8 @@ struct DrinkAddView: View {
                                 .padding(5)
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(selectedDrink == drink ? Color.gray : Color.black, lineWidth: 2)
+                                        .stroke(Color.black, lineWidth: 2)
+                                        .fill(selectedDrink == drink ? Color.gray.opacity(0.5) : Color.clear)
                                 )
                                 .onTapGesture {
                                     selectedDrink = drink
@@ -53,6 +60,7 @@ struct DrinkAddView: View {
                 }
                 .padding()
             }
+            .scrollIndicators(.hidden)
             
             Text("Choose Volume")
                 .padding()
@@ -77,10 +85,17 @@ struct DrinkAddView: View {
                 }
                 .padding()
             }
+            .scrollIndicators(.hidden)
             
             Button(action: {
                 todayDrinked += selectedVolume ?? 0
                 progressDrop = CGFloat(Double(todayDrinked) / Double(dailyIntakeGoal))
+                if let selectedDrink = selectedDrink {
+                    addDrink(selectedDrink)
+                }
+                
+                let coreDataManager = CoreDataManager()
+                coreDataManager.updateTodayWaterIntake(Double(todayDrinked))
                 isShowingDetail = false
                 
             }) {
@@ -112,5 +127,5 @@ struct DrinkAddView: View {
 
 
 #Preview {
-    DrinkAddView(isShowingDetail: .constant(true), progressDrop: .constant(0.5), todayDrinked: .constant(0), dailyIntakeGoal: .constant(3000))
+    DrinkAddView(isShowingDetail: .constant(true), progressDrop: .constant(0.5), todayDrinked: .constant(0), dailyIntakeGoal: .constant(3000), todayDrinks: .constant([]))
 }

@@ -121,4 +121,19 @@ class CoreDataManager {
         return age
     }
     
+    func updateTodayWaterIntake(_ todayWaterIntake: Double) {
+        guard let user = getUserData() else {
+            print("User not found")
+            return
+        }
+
+        user.todayWaterIntake = todayWaterIntake
+
+        do {
+            try user.managedObjectContext?.save()
+        } catch {
+            print("Failed to update today's water intake: \(error)")
+        }
+    }
+    
 }
