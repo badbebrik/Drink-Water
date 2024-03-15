@@ -19,7 +19,7 @@ struct AccountView: View {
     @State private var genderIndex = 0
     @State private var activity: String = ""
     @State private var isRefreshing = false
-
+    
     
     let genders = ["Male", "Female"]
     let activityModes = ["Low", "Medium", "High"]
@@ -96,7 +96,7 @@ struct AccountView: View {
                                     .padding()
                             }
                             .padding(.horizontal)
-
+                            
                             HStack {
                                 Text("Weight:")
                                     .foregroundColor(.secondary)

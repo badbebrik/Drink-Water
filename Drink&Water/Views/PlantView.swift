@@ -16,7 +16,7 @@ struct PlantView: View {
             Text(plant.name)
                 .font(.headline)
                 .fontWeight(.bold)
-    
+            
             Image(plantImageName)
                 .resizable()
                 .frame(width: 70, height: 100)

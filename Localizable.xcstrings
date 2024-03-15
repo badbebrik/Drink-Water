@@ -1,0 +1,287 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld ml" : {
+
+    },
+    "%lld/%lld ml" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld ml"
+          }
+        }
+      }
+    },
+    "%lldml" : {
+
+    },
+    "20" : {
+
+    },
+    "100" : {
+
+    },
+    "240" : {
+
+    },
+    "300" : {
+
+    },
+    "500 ml until next stage" : {
+
+    },
+    "About" : {
+
+    },
+    "Account" : {
+
+    },
+    "Activity" : {
+
+    },
+    "Activity Mode" : {
+
+    },
+    "Are you sure?" : {
+
+    },
+    "Back" : {
+
+    },
+    "Birthday" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Change Image" : {
+
+    },
+    "Choose The Drink" : {
+
+    },
+    "Choose Volume" : {
+
+    },
+    "Data Error" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete account" : {
+
+    },
+    "Deleting your account will erase all your data. This action cannot be undone." : {
+
+    },
+    "Dev: %@" : {
+
+    },
+    "Developer" : {
+
+    },
+    "Drink!" : {
+
+    },
+    "Email: %@" : {
+
+    },
+    "Empty Fields" : {
+
+    },
+    "Enter height (cm)" : {
+
+    },
+    "Enter weight (kg)" : {
+
+    },
+    "Error" : {
+
+    },
+    "First Name" : {
+
+    },
+    "Gender" : {
+
+    },
+    "Good Morning, %@" : {
+
+    },
+    "Height (m)" : {
+
+    },
+    "Height:" : {
+
+    },
+    "Invalid Email" : {
+
+    },
+    "Invalid Registration Data" : {
+
+    },
+    "Invalid response from the server. Please try again later or contact support." : {
+
+    },
+    "Language" : {
+
+    },
+    "Last Name" : {
+
+    },
+    "Next" : {
+
+    },
+    "No plant currently growing.\nBuy a plant in the shop!" : {
+
+    },
+    "Notifications" : {
+
+    },
+    "Office: %@" : {
+
+    },
+    "OK" : {
+
+    },
+    "Personal Information" : {
+
+    },
+    "Phone number: %@" : {
+
+    },
+    "Physical Information" : {
+
+    },
+    "Plant" : {
+
+    },
+    "Please ensure that all fields in the form have been filled out." : {
+
+    },
+    "Please ensure your email is correct." : {
+
+    },
+    "Please fill in both first name and last name." : {
+
+    },
+    "Profile Error" : {
+
+    },
+    "Profile photo" : {
+
+    },
+    "Profile Saved" : {
+
+    },
+    "Register" : {
+
+    },
+    "Registration" : {
+
+    },
+    "Reset progress" : {
+
+    },
+    "Reset Progress" : {
+
+    },
+    "Resetting your progress will empty your plants gallary and water intake activity." : {
+
+    },
+    "Save" : {
+
+    },
+    "Save Changes" : {
+
+    },
+    "Select a date" : {
+
+    },
+    "Select Image" : {
+
+    },
+    "Server Error" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Shop" : {
+
+    },
+    "Success" : {
+
+    },
+    "Telegram" : {
+
+    },
+    "The data recieved from the server was invalid. Please cpntact support." : {
+
+    },
+    "There was an error saving or retrieving your profile." : {
+
+    },
+    "There was an issue connecting to the server. If this persists, please contact support." : {
+
+    },
+    "Today Goal:" : {
+
+    },
+    "Today's records:" : {
+
+    },
+    "Tracker" : {
+
+    },
+    "Unable to complete your request at this time. Please check your internet connection." : {
+
+    },
+    "Weight (kg)" : {
+
+    },
+    "Weight:" : {
+
+    },
+    "You already have a growing plant!" : {
+
+    },
+    "You can buy plants here and then grow" : {
+
+    },
+    "You have no grown plants yet." : {
+
+    },
+    "You have successfully purchased the %@. To grow it, you need to drink %lld milliliters of water." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You have successfully purchased the %1$@. To grow it, you need to drink %2$lld milliliters of water."
+          }
+        }
+      }
+    },
+    "Your account data has been successfully saved" : {
+
+    },
+    "Your Gallery" : {
+
+    },
+    "Your Plant:" : {
+
+    }
+  },
+  "version" : "1.0"
+}

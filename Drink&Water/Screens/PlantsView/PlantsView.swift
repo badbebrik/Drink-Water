@@ -25,7 +25,7 @@ struct PlantsView: View {
     
     var body: some View {
         ZStack {
-        
+            
             Color(.brandBlue)
                 .ignoresSafeArea()
             VStack {

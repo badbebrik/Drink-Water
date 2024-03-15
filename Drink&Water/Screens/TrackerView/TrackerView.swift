@@ -17,15 +17,15 @@ class TrackerViewModel: ObservableObject {
     var dailyWaterIntakeGoal: Double = 0
     @Published var todayWaterIntake: Double = 0
     @Published var currentGrowingPlant: Plant? {
-            didSet {
-                updateProgress()
-            }
+        didSet {
+            updateProgress()
         }
+    }
     
     private func updateProgress() {
-            guard let plant = currentGrowingPlant else { return }
-            progress = CGFloat(plant.currentFillness) / CGFloat(plant.totalToGrow)
-        }
+        guard let plant = currentGrowingPlant else { return }
+        progress = CGFloat(plant.currentFillness) / CGFloat(plant.totalToGrow)
+    }
 }
 
 
@@ -36,7 +36,7 @@ struct TrackerView: View {
     @State private var isRefreshing = false
     
     
-
+    
     var body: some View {
         ZStack {
             Color("BrandBlue")
@@ -204,7 +204,7 @@ struct TrackerView: View {
                     }
                 }
             }
-                    
+            
         }
         .onAppear() {
             fetchData()
@@ -249,7 +249,7 @@ struct TrackerView: View {
         
         
         isRefreshing = true
-         
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             isRefreshing = false
         }

@@ -11,12 +11,7 @@ import SwiftUI
 
 struct DrinkWaterTabView: View {
     
-    init() {
-                let tabBarAppearance = UITabBarAppearance()
-                tabBarAppearance.configureWithOpaqueBackground()
-                tabBarAppearance.backgroundColor = UIColor.white
-                UITabBar.appearance().standardAppearance = tabBarAppearance
-    }
+    @State private var selectedTab = 2
     
     var body: some View {
         TabView {
@@ -25,34 +20,42 @@ struct DrinkWaterTabView: View {
                     Image(systemName: "cart")
                     Text("Shop")
                 }
+                .tag(0)
             
             PlantsView()
                 .tabItem {
                     Image(systemName: "leaf")
                     Text("Plant")
                 }
+                .tag(1)
             
             TrackerView()
                 .tabItem {
                     Image(systemName: "drop")
                     Text("Tracker")
                 }
+                .tag(2)
             
             AccountView()
                 .tabItem {
                     Image(systemName: "person")
                     Text("Account")
                 }
+                .tag(3)
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
+                .tag(4)
             
         }
         .tabViewStyle(.automatic)
-                .accentColor(.blue)
-                
+        .accentColor(.blue)
+        .onAppear {
+            selectedTab = 2
+        }
+        
     }
     
 }

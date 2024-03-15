@@ -19,7 +19,7 @@ struct CircularProgressView: View {
                     lineWidth: 15
                 )
             
-            Text("500 ml until next stage")
+            Text("\(progress)%")
                 .font(.system(size: 12, weight: .regular))
                 .foregroundStyle(.black)
                 .multilineTextAlignment(.center)

@@ -38,7 +38,7 @@ struct PlantShopView: View {
         }
         .alert(isPresented: $successAlert) {
             Alert(title: Text("Success"), message: Text("You have successfully purchased the \(plant.name). To grow it, you need to drink \(plant.totalToGrow) milliliters of water."), dismissButton: .default(Text("OK")))
-         }
+        }
         .alert(isPresented: Binding<Bool>(
             get: { showAlert || successAlert },
             set: { _ in
@@ -56,7 +56,7 @@ struct PlantShopView: View {
                 return Alert(title: Text(""), message: Text(""), dismissButton: .default(Text("OK")))
             }
         }
-
+        
     }
     
     func isPlantAlreadyExists() -> Bool {

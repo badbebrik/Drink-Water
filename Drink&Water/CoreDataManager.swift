@@ -126,9 +126,9 @@ class CoreDataManager {
             print("User not found")
             return
         }
-
+        
         user.todayWaterIntake = todayWaterIntake
-
+        
         do {
             try user.managedObjectContext?.save()
         } catch {
@@ -151,22 +151,22 @@ class CoreDataManager {
             print("Failed to save drink: \(error)")
         }
     }
-
+    
     func getAllDrinks() -> [Drink]? {
         let managedContext = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<DrinkEntity> = DrinkEntity.fetchRequest()
-
+        
         do {
             let drinkEntities = try managedContext.fetch(fetchRequest)
-                    var drinks: [Drink] = []
-                    for entity in drinkEntities {
-                        let drink = Drink(id: UUID(),
-                                          name: entity.name ?? "",
-                                          imageName: entity.imageName ?? "",
-                                          volume: Int(entity.volume))
-                        drinks.append(drink)
-                    }
-                    return drinks
+            var drinks: [Drink] = []
+            for entity in drinkEntities {
+                let drink = Drink(id: UUID(),
+                                  name: entity.name ?? "",
+                                  imageName: entity.imageName ?? "",
+                                  volume: Int(entity.volume))
+                drinks.append(drink)
+            }
+            return drinks
         } catch {
             print("Failed to fetch drinks: \(error)")
             return nil
@@ -178,7 +178,7 @@ class CoreDataManager {
         let managedContext = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "DrinkEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+        
         do {
             try managedContext.execute(deleteRequest)
         } catch {
@@ -261,5 +261,5 @@ extension CoreDataManager {
             print("Failed to update plant current fillness: \(error)")
         }
     }
-
+    
 }

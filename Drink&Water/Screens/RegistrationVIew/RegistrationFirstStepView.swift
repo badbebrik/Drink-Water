@@ -101,8 +101,8 @@ struct RegistrationFirstStepView: View {
                 
             }
             .alert(isPresented: $showAlert) {
-                                Alert(title: Text("Empty Fields"), message: Text("Please fill in both first name and last name."), dismissButton: .default(Text("OK")))
-                            }
+                Alert(title: Text("Empty Fields"), message: Text("Please fill in both first name and last name."), dismissButton: .default(Text("OK")))
+            }
         }
     }
 }

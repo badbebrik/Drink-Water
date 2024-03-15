@@ -101,7 +101,7 @@ struct DrinkAddView: View {
                     print("Hello! add1")
                     coreDataManager.updateFirstPlantCurrentFillness(newFillness: firstPlant?.currentFillness ?? 0)
                     print("Hello! add2")
-                        
+                    
                 }
                 coreDataManager.updateTodayWaterIntake(Double(todayDrinked))
                 isShowingDetail = false
