@@ -23,6 +23,9 @@
         }
       }
     },
+    "%lld%%" : {
+
+    },
     "%lldml" : {
 
     },
@@ -36,9 +39,6 @@
 
     },
     "300" : {
-
-    },
-    "500 ml until next stage" : {
 
     },
     "About" : {
@@ -197,7 +197,7 @@
     "Reset Progress" : {
 
     },
-    "Resetting your progress will empty your plants gallary and water intake activity." : {
+    "Resetting your progress will empty your plants gallery and water intake activity." : {
 
     },
     "Save" : {
@@ -234,6 +234,9 @@
 
     },
     "There was an issue connecting to the server. If this persists, please contact support." : {
+
+    },
+    "There will be added Notifications soon" : {
 
     },
     "Today Goal:" : {

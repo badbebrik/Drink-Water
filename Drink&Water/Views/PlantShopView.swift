@@ -42,8 +42,6 @@ struct PlantShopView: View {
         .alert(isPresented: Binding<Bool>(
             get: { showAlert || successAlert },
             set: { _ in
-                // Здесь вы можете добавить логику обработки, если это необходимо
-                // В этом примере мы просто устанавливаем оба состояния в false
                 showAlert = false
                 successAlert = false
             }

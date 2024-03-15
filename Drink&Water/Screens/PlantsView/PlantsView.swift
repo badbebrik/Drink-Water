@@ -8,24 +8,11 @@
 import SwiftUI
 
 
-class PlantsViewModel: ObservableObject {
-    @Published var plants: [Plant] = []
-    
-    func fetchPlants() {
-        let coreDataManager = CoreDataManager()
-        if let allPlants = coreDataManager.getAllPlants() {
-            plants = allPlants.filter { $0.currentFillness >= $0.totalToGrow }
-        }
-    }
-}
-
-
 struct PlantsView: View {
     @StateObject var viewModel = PlantsViewModel()
     
     var body: some View {
         ZStack {
-            
             Color(.brandBlue)
                 .ignoresSafeArea()
             VStack {

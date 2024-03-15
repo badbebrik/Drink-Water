@@ -11,6 +11,17 @@
 		1D1132492B8FAAF400CF6752 /* PlantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1132482B8FAAF400CF6752 /* PlantView.swift */; };
 		1D1D51C02BA3CCA400DEF6B9 /* PlantShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51BF2BA3CCA400DEF6B9 /* PlantShopView.swift */; };
 		1D1D51C22BA44B2800DEF6B9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D51C12BA44B2800DEF6B9 /* Localizable.xcstrings */; };
+		1D1D51C42BA45BE600DEF6B9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51C32BA45BE600DEF6B9 /* ImagePicker.swift */; };
+		1D1D51C62BA45CB200DEF6B9 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51C52BA45CB200DEF6B9 /* AccountViewModel.swift */; };
+		1D1D51C82BA45F2B00DEF6B9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51C72BA45F2B00DEF6B9 /* SettingsViewModel.swift */; };
+		1D1D51CA2BA45F4A00DEF6B9 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51C92BA45F4A00DEF6B9 /* AppTheme.swift */; };
+		1D1D51CC2BA45F7B00DEF6B9 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51CB2BA45F7B00DEF6B9 /* AppLanguage.swift */; };
+		1D1D51CE2BA4611900DEF6B9 /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51CD2BA4611900DEF6B9 /* ShopViewModel.swift */; };
+		1D1D51D02BA4616500DEF6B9 /* PlantsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51CF2BA4616500DEF6B9 /* PlantsViewModel.swift */; };
+		1D1D51D22BA4619F00DEF6B9 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51D12BA4619F00DEF6B9 /* OnboardingViewModel.swift */; };
+		1D1D51D42BA462DC00DEF6B9 /* TrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51D32BA462DC00DEF6B9 /* TrackerViewModel.swift */; };
+		1D1D51D72BA4636F00DEF6B9 /* CircleOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51D62BA4636F00DEF6B9 /* CircleOverlayModifier.swift */; };
+		1D1D51D92BA4639F00DEF6B9 /* MaskedImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51D82BA4639F00DEF6B9 /* MaskedImageModifier.swift */; };
 		1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */; };
 		1D2420AB2B93E42800B4E08D /* RegistrationFirstStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2420AA2B93E42800B4E08D /* RegistrationFirstStepView.swift */; };
 		1D2420AD2B93F6CA00B4E08D /* RegistrationSecondStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2420AC2B93F6CA00B4E08D /* RegistrationSecondStepView.swift */; };
@@ -35,7 +46,6 @@
 		1DA40DF42BA1F13B00921ADF /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DF32BA1F13B00921ADF /* CircularProgressView.swift */; };
 		1DA40DF62BA1F1F600921ADF /* WaterWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DF52BA1F1F600921ADF /* WaterWave.swift */; };
 		1DA40DFA2BA21AF400921ADF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DF92BA21AF400921ADF /* Alert.swift */; };
-		1DA40DFC2BA21AFF00921ADF /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA40DFB2BA21AFF00921ADF /* AppError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +53,17 @@
 		1D1132482B8FAAF400CF6752 /* PlantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantView.swift; sourceTree = "<group>"; };
 		1D1D51BF2BA3CCA400DEF6B9 /* PlantShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantShopView.swift; sourceTree = "<group>"; };
 		1D1D51C12BA44B2800DEF6B9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		1D1D51C32BA45BE600DEF6B9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		1D1D51C52BA45CB200DEF6B9 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		1D1D51C72BA45F2B00DEF6B9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		1D1D51C92BA45F4A00DEF6B9 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		1D1D51CB2BA45F7B00DEF6B9 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		1D1D51CD2BA4611900DEF6B9 /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
+		1D1D51CF2BA4616500DEF6B9 /* PlantsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsViewModel.swift; sourceTree = "<group>"; };
+		1D1D51D12BA4619F00DEF6B9 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		1D1D51D32BA462DC00DEF6B9 /* TrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewModel.swift; sourceTree = "<group>"; };
+		1D1D51D62BA4636F00DEF6B9 /* CircleOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleOverlayModifier.swift; sourceTree = "<group>"; };
+		1D1D51D82BA4639F00DEF6B9 /* MaskedImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedImageModifier.swift; sourceTree = "<group>"; };
 		1D2420132B91C0EA00B4E08D /* Drink-Water-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drink-Water-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1D2420AA2B93E42800B4E08D /* RegistrationFirstStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFirstStepView.swift; sourceTree = "<group>"; };
 		1D2420AC2B93F6CA00B4E08D /* RegistrationSecondStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStepView.swift; sourceTree = "<group>"; };
@@ -69,7 +90,6 @@
 		1DA40DF32BA1F13B00921ADF /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		1DA40DF52BA1F1F600921ADF /* WaterWave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWave.swift; sourceTree = "<group>"; };
 		1DA40DF92BA21AF400921ADF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		1DA40DFB2BA21AFF00921ADF /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +111,15 @@
 				1DA40DF02BA1508900921ADF /* Drink.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1D1D51D52BA4635900DEF6B9 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1D1D51D62BA4636F00DEF6B9 /* CircleOverlayModifier.swift */,
+				1D1D51D82BA4639F00DEF6B9 /* MaskedImageModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		1D2420A92B93E40700B4E08D /* RegistrationVIew */ = {
@@ -164,8 +193,10 @@
 		1D8317B32B86744B009DF17F /* TrackerView */ = {
 			isa = PBXGroup;
 			children = (
+				1D1D51D52BA4635900DEF6B9 /* Modifiers */,
 				1DA40DF22BA1F10500921ADF /* Subviews */,
 				1D8317C02B8674B9009DF17F /* TrackerView.swift */,
+				1D1D51D32BA462DC00DEF6B9 /* TrackerViewModel.swift */,
 			);
 			path = TrackerView;
 			sourceTree = "<group>";
@@ -174,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				1D8317BE2B8674AF009DF17F /* AccountView.swift */,
+				1D1D51C52BA45CB200DEF6B9 /* AccountViewModel.swift */,
 			);
 			path = AccountView;
 			sourceTree = "<group>";
@@ -182,6 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				1D8317BC2B8674A6009DF17F /* SettingsView.swift */,
+				1D1D51C72BA45F2B00DEF6B9 /* SettingsViewModel.swift */,
+				1D1D51C92BA45F4A00DEF6B9 /* AppTheme.swift */,
+				1D1D51CB2BA45F7B00DEF6B9 /* AppLanguage.swift */,
 			);
 			path = SettingsVIew;
 			sourceTree = "<group>";
@@ -190,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				1D8317BA2B86749E009DF17F /* ShopView.swift */,
+				1D1D51CD2BA4611900DEF6B9 /* ShopViewModel.swift */,
 			);
 			path = ShopVIew;
 			sourceTree = "<group>";
@@ -198,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				1D8317B82B867497009DF17F /* PlantsView.swift */,
+				1D1D51CF2BA4616500DEF6B9 /* PlantsViewModel.swift */,
 			);
 			path = PlantsView;
 			sourceTree = "<group>";
@@ -225,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				1D91C3B62BA2864300FB627C /* DailyWaterIntakeHandler.swift */,
+				1D1D51C32BA45BE600DEF6B9 /* ImagePicker.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -233,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				1DA40DE42BA0A80800921ADF /* OnboardingView.swift */,
+				1D1D51D12BA4619F00DEF6B9 /* OnboardingViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -259,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				1DA40DF92BA21AF400921ADF /* Alert.swift */,
-				1DA40DFB2BA21AFF00921ADF /* AppError.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -339,29 +377,39 @@
 				1DA40DE72BA0A82600921ADF /* OnboardingStep.swift in Sources */,
 				1DA40DE02BA071F500921ADF /* AboutView.swift in Sources */,
 				1D2420AB2B93E42800B4E08D /* RegistrationFirstStepView.swift in Sources */,
+				1D1D51CE2BA4611900DEF6B9 /* ShopViewModel.swift in Sources */,
 				1DA40DFA2BA21AF400921ADF /* Alert.swift in Sources */,
+				1D1D51CA2BA45F4A00DEF6B9 /* AppTheme.swift in Sources */,
 				1D1D51C02BA3CCA400DEF6B9 /* PlantShopView.swift in Sources */,
 				1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */,
+				1D1D51CC2BA45F7B00DEF6B9 /* AppLanguage.swift in Sources */,
+				1D1D51D42BA462DC00DEF6B9 /* TrackerViewModel.swift in Sources */,
 				1DA40DE52BA0A80800921ADF /* OnboardingView.swift in Sources */,
 				1D8317B92B867497009DF17F /* PlantsView.swift in Sources */,
 				1DA40DEF2BA14EF300921ADF /* DrinkAddView.swift in Sources */,
 				1DA40DE22BA0A53300921ADF /* CoreDataManager.swift in Sources */,
 				1D56E7332B83799000311C6F /* ContentView.swift in Sources */,
+				1D1D51D02BA4616500DEF6B9 /* PlantsViewModel.swift in Sources */,
 				1D2420AD2B93F6CA00B4E08D /* RegistrationSecondStepView.swift in Sources */,
 				1D91C3B72BA2864300FB627C /* DailyWaterIntakeHandler.swift in Sources */,
+				1D1D51C42BA45BE600DEF6B9 /* ImagePicker.swift in Sources */,
 				1DA40DF42BA1F13B00921ADF /* CircularProgressView.swift in Sources */,
+				1D1D51D22BA4619F00DEF6B9 /* OnboardingViewModel.swift in Sources */,
 				1D8317C12B8674B9009DF17F /* TrackerView.swift in Sources */,
 				1D8317BD2B8674A6009DF17F /* SettingsView.swift in Sources */,
+				1D1D51D92BA4639F00DEF6B9 /* MaskedImageModifier.swift in Sources */,
 				1D1132492B8FAAF400CF6752 /* PlantView.swift in Sources */,
 				1DA40DF62BA1F1F600921ADF /* WaterWave.swift in Sources */,
 				1DA40DED2BA0CE2800921ADF /* Drink&Water.xcdatamodeld in Sources */,
 				1D8317C52B869731009DF17F /* AddDrinkButtonView.swift in Sources */,
 				1D8317BF2B8674AF009DF17F /* AccountView.swift in Sources */,
+				1D1D51C62BA45CB200DEF6B9 /* AccountViewModel.swift in Sources */,
+				1D1D51D72BA4636F00DEF6B9 /* CircleOverlayModifier.swift in Sources */,
 				1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */,
-				1DA40DFC2BA21AFF00921ADF /* AppError.swift in Sources */,
 				1D1132472B8FAA3B00CF6752 /* Plant.swift in Sources */,
 				1DA40DF12BA1508900921ADF /* Drink.swift in Sources */,
 				1D56E7312B83799000311C6F /* Drink_WaterApp.swift in Sources */,
+				1D1D51C82BA45F2B00DEF6B9 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

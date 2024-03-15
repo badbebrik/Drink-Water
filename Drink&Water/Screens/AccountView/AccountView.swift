@@ -1,25 +1,9 @@
 import SwiftUI
 
-
-class AccountViewModel: ObservableObject {
-    var height: Double = 0
-    var weight: Double = 0
-    var birthday: Date = Date.now
-}
-
-
 struct AccountView: View {
+    @State private var isShowingImagePicker = false
     
     @StateObject var viewModel: AccountViewModel = AccountViewModel()
-    
-    @State private var image: UIImage? = nil
-    @State private var isShowingImagePicker = false
-    @State private var firstName: String = ""
-    @State private var lastName: String = ""
-    @State private var genderIndex = 0
-    @State private var activity: String = ""
-    @State private var isRefreshing = false
-    
     
     let genders = ["Male", "Female"]
     let activityModes = ["Low", "Medium", "High"]
@@ -40,7 +24,7 @@ struct AccountView: View {
                     
                     Form {
                         Section(header: Text("Profile photo")) {
-                            if let image = image {
+                            if let image = viewModel.image {
                                 Image(uiImage: image)
                                     .resizable()
                                     .frame(width: 200, height: 200)
@@ -52,7 +36,7 @@ struct AccountView: View {
                                 }
                                 .padding()
                                 .sheet(isPresented: $isShowingImagePicker) {
-                                    ImagePicker(image: $image)
+                                    ImagePicker(image: $viewModel.image)
                                 }
                             } else {
                                 Button("Select Image") {
@@ -60,15 +44,15 @@ struct AccountView: View {
                                 }
                                 .padding()
                                 .sheet(isPresented: $isShowingImagePicker) {
-                                    ImagePicker(image: $image)
+                                    ImagePicker(image: $viewModel.image)
                                 }
                             }
                         }
                         
                         Section(header: Text("Personal Information")) {
-                            TextField("First Name", text: $firstName)
-                            TextField("Last Name", text: $lastName)
-                            Picker("Gender", selection: $genderIndex) {
+                            TextField("First Name", text: $viewModel.firstName)
+                            TextField("Last Name", text: $viewModel.lastName)
+                            Picker("Gender", selection: $viewModel.genderIndex) {
                                 ForEach(0..<genders.count) { index in
                                     Text(genders[index])
                                 }
@@ -109,7 +93,7 @@ struct AccountView: View {
                         }
                         
                         Section(header: Text("Activity Mode")) {
-                            Picker("Activity", selection: $activity) {
+                            Picker("Activity", selection: $viewModel.activity) {
                                 ForEach(activityModes, id: \.self) {
                                     Text($0)
                                 }
@@ -119,7 +103,7 @@ struct AccountView: View {
                         
                         Section(header: Text("Save Changes")) {
                             Button() {
-                                coreDataManager.updateUser(name: firstName, lastName: lastName, gender: genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.birthday, activity: activity, todayWaterIntake: 0)
+                                coreDataManager.updateUser(name: viewModel.firstName, lastName: viewModel.lastName, gender: viewModel.genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.birthday, activity: viewModel.activity, todayWaterIntake: 0)
                             } label: {
                                 Text("Save")
                             }
@@ -129,12 +113,12 @@ struct AccountView: View {
             }
             .onAppear {
                 if let userData = coreDataManager.getUserData() {
-                    firstName = userData.name ?? ""
-                    lastName = userData.lastName ?? ""
+                    viewModel.firstName = userData.name ?? ""
+                    viewModel.lastName = userData.lastName ?? ""
                     viewModel.height = userData.height
                     viewModel.weight = userData.weight
-                    genderIndex = Int(userData.gender)
-                    activity = userData.activity ?? "Low"
+                    viewModel.genderIndex = Int(userData.gender)
+                    viewModel.activity = userData.activity ?? "Low"
                     viewModel.birthday = userData.birthday!
                 }
             }
@@ -142,38 +126,7 @@ struct AccountView: View {
     }
 }
 
-struct ImagePicker: UIViewControllerRepresentable {
-    @Binding var image: UIImage?
-    
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
-        
-        init(parent: ImagePicker) {
-            self.parent = parent
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let uiImage = info[.originalImage] as? UIImage {
-                parent.image = uiImage
-            }
-            
-            picker.dismiss(animated: true)
-        }
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(parent: self)
-    }
-    
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        picker.sourceType = .photoLibrary
-        return picker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-}
+
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {

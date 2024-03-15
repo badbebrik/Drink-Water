@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+import Foundation
+
+class DrinkAddViewModel: ObservableObject {
+    @Published var selectedDrink: Drink?
+    @Published var selectedVolume: Int?
+}
+
+
 struct DrinkAddView: View {
     let drinks: [Drink] = [
         Drink(id: UUID(), name: "Water", imageName: "water 2", volume: 0),

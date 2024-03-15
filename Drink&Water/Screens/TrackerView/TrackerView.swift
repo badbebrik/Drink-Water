@@ -7,28 +7,6 @@
 
 import SwiftUI
 
-
-class TrackerViewModel: ObservableObject {
-    @Published var progress: CGFloat = 0.5
-    @Published var startAnimation: CGFloat = 0
-    @Published var progressDrop: CGFloat = 0.1
-    @Published var name = ""
-    @Published var isShowingAddDrink: Bool = false
-    var dailyWaterIntakeGoal: Double = 0
-    @Published var todayWaterIntake: Double = 0
-    @Published var currentGrowingPlant: Plant? {
-        didSet {
-            updateProgress()
-        }
-    }
-    
-    private func updateProgress() {
-        guard let plant = currentGrowingPlant else { return }
-        progress = CGFloat(plant.currentFillness) / CGFloat(plant.totalToGrow)
-    }
-}
-
-
 struct TrackerView: View {
     
     @ObservedObject var viewModel = TrackerViewModel()
@@ -258,33 +236,4 @@ struct TrackerView: View {
 }
 #Preview {
     TrackerView()
-}
-
-
-struct CircleOverlayModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content.overlay(
-            ZStack {
-                Circle().fill(Color.brandBlue.opacity(0.1)).frame(width: 15, height: 15).offset(x: -20)
-                Circle().fill(Color.brandBlue.opacity(0.1)).frame(width: 15, height: 15).offset(x: 40, y: 30)
-                Circle().fill(Color.brandBlue.opacity(0.1)).frame(width: 25, height: 25).offset(x: -30, y: 80)
-                Circle().fill(Color.brandBlue.opacity(0.1)).frame(width: 25, height: 25).offset(x: 50, y: 70)
-                Circle().fill(Color.brandBlue.opacity(0.1)).frame(width: 10, height: 10).offset(x: 40, y: 100)
-                Circle().fill(Color.brandBlue.opacity(0.1)).frame(width: 10, height: 10).offset(x: -40, y: 50)
-            }
-        )
-    }
-}
-
-struct MaskedImageModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .mask(
-                Image(systemName: "drop.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .scaleEffect(x: 1.1, y: 1)
-                    .padding(20)
-            )
-    }
 }

@@ -7,45 +7,15 @@
 
 import SwiftUI
 
-
-enum Theme: String, CaseIterable {
-    case light = "Light"
-    case dark = "Dark"
-    case system = "System"
-    
-    var uiUserInterfaceStyle: UIUserInterfaceStyle? {
-        switch self {
-        case .light:
-            return .light
-        case .dark:
-            return .dark
-        case .system:
-            return nil
-        }
-    }
-}
-
-enum Language: String, CaseIterable {
-    case ru = "🇷🇺Russian"
-    case eng = "🇺🇸English"
-}
-
 struct SettingsView: View {
     
-    @State private var selectedTheme: Theme = .system
-    @State private var selectedLanguage: Language = .eng
-    @State private var selectedDate: Date = Date()
-    @State private var isShowingAboutPage: Bool = false
-    @State private var isDeleteAccountButtonTapped = false
-    @State private var isDeleteAccountAlertPresented = false
-    @State private var isResetAccountAlertPresented = false
-    
+    @StateObject var viewModel = SettingsViewModel()
+    @State private var isShowingContentView = false
     
     var body: some View {
         ZStack {
             Color(.brandBlue)
                 .ignoresSafeArea()
-            
             
             VStack {
                 Text("Settings")
@@ -55,18 +25,8 @@ struct SettingsView: View {
                     .frame(width: 353, height: 26, alignment: .leading)
                 
                 Form {
-                    //                    Section(header: Text("App Theme")) {
-                    //                        Picker("Theme", selection: $selectedTheme) {
-                    //                            ForEach(Theme.allCases, id: \.self) { theme in
-                    //                                Text(theme.rawValue).tag(theme)
-                    //                            }
-                    //                        }
-                    //                        .pickerStyle(SegmentedPickerStyle())
-                    //                        .padding()
-                    //                    }
-                    
                     Section(header: Text("Language")) {
-                        Picker("Language", selection: $selectedLanguage) {
+                        Picker("Language", selection: $viewModel.selectedLanguage) {
                             ForEach(Language.allCases, id: \.self) { language in
                                 HStack {
                                     Text(language.rawValue).tag(language)
@@ -76,78 +36,60 @@ struct SettingsView: View {
                     }
                     
                     Section(header: Text("Notifications")) {
-                        ForEach(["There will be added Notifications soon"], id: \.self) { elem in
-                            
-                            
-                            Text(elem)
-                        }
+                        Text("There will be added Notifications soon")
                     }
                     
                     Section(header: Text("Account")) {
                         Button(action: {
-                            isDeleteAccountAlertPresented = true
+                            viewModel.isDeleteAccountAlertPresented = true
                         }) {
                             Text("Delete account")
                                 .foregroundStyle(.red)
                         }
-                        .alert(isPresented: $isDeleteAccountAlertPresented) {
+                        .alert(isPresented: $viewModel.isDeleteAccountAlertPresented) {
                             Alert(title: Text("Are you sure?"),
                                   message: Text("Deleting your account will erase all your data. This action cannot be undone."),
                                   primaryButton: .cancel(Text("Cancel")),
                                   secondaryButton: .destructive(Text("Delete"), action: {
-                                let coreDataManager = CoreDataManager()
-                                coreDataManager.deleteUser()
-                                coreDataManager.deleteAllDrinks()
-                                coreDataManager.deleteAllPlants()
-                                isDeleteAccountButtonTapped = true
-                                
+                                    viewModel.deleteAccount()
+                                    isShowingContentView = true
+                                    
                             }))
                         }
                         
                         Button(action: {
-                            isResetAccountAlertPresented = true
+                            viewModel.isResetAccountAlertPresented = true
                         }) {
                             Text("Reset Progress")
                                 .foregroundStyle(.red)
                         }
-                        .alert(isPresented: $isResetAccountAlertPresented) {
+                        .alert(isPresented: $viewModel.isResetAccountAlertPresented) {
                             Alert(title: Text("Are you sure?"),
-                                  message: Text("Resetting your progress will empty your plants gallary and water intake activity."),
+                                  message: Text("Resetting your progress will empty your plants gallery and water intake activity."),
                                   primaryButton: .cancel(Text("Cancel")),
                                   secondaryButton: .destructive(Text("Reset progress"), action: {
-                                let coreDataManager = CoreDataManager()
-                                coreDataManager.deleteAllDrinks()
-                                coreDataManager.deleteAllPlants()
-                                coreDataManager.updateTodayWaterIntake(0)
-                                
+                                    viewModel.resetProgress()
                             }))
                         }
-                        
                     }
                     
                     Section(header: Text("Developer")) {
-                        Button() {
-                            isShowingAboutPage = true
-                        } label: {
+                        Button(action: {
+                            viewModel.isShowingAboutPage = true
+                        }) {
                             Text("About")
                         }
-                        .sheet(isPresented: $isShowingAboutPage, content: {
+                        .sheet(isPresented: $viewModel.isShowingAboutPage) {
                             AboutView()
-                        })
-                        
+                        }
                     }
                 }
-                
             }
-            
-            
         }
-        .fullScreenCover(isPresented: $isDeleteAccountButtonTapped) {
-            ContentView()
-        }
-        
+        .fullScreenCover(isPresented: $isShowingContentView) {
+                    ContentView()
+                }
     }
-    
 }
 
 

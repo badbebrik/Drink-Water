@@ -19,7 +19,7 @@ struct CircularProgressView: View {
                     lineWidth: 15
                 )
             
-            Text("\(progress)%")
+            Text("\(Int(progress * 100))%")
                 .font(.system(size: 12, weight: .regular))
                 .foregroundStyle(.black)
                 .multilineTextAlignment(.center)
