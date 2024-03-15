@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct Plant {
-    let name: String
-    let totalToGrow: Int
-    let price: Int
-    let startGrowDate: Date
+struct Plant: Identifiable {
+    var id: UUID
+    var name: String
+    var totalToGrow: Int
+    var price: Int
+    var startGrowDate: Date
     var currentFillness: Int
     var finishGrowDate: Date
 }

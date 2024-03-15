@@ -26,12 +26,6 @@ struct AboutView: View {
     
     var body: some View {
         VStack {
-            Image("dev")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 150, height: 150)
-                .clipShape(Circle())
-                .padding(.top, 40)
             
             Text("Dev: \(viewModel.developerModel.developerName)")
                 .font(.title)
@@ -47,6 +41,17 @@ struct AboutView: View {
                 .font(.headline)
                 .foregroundColor(.gray)
                 .padding()
+            
+            Button(action: {
+                            if let url = URL(string: "https://t.me/badbebrik") {
+                                UIApplication.shared.open(url)
+                            }
+                        }) {
+                            Text("Telegram")
+                                .font(.headline)
+                                .foregroundColor(.blue)
+                        }
+                        .padding()
             
             Text("Office: \(viewModel.developerModel.office)")
             

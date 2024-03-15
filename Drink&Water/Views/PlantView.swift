@@ -27,6 +27,6 @@ struct PlantView: View {
 
 #Preview {
     
-    PlantView(plant: Plant(name: "red tulip", totalToGrow: 1200, price: 200, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()), plantImageName: "red tulip adult")
+    PlantView(plant: Plant(id: UUID(), name: "red tulip", totalToGrow: 1200, price: 200, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()), plantImageName: "red tulip adult")
     
 }

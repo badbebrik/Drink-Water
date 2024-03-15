@@ -10,6 +10,14 @@ import SwiftUI
 import SwiftUI
 
 struct DrinkWaterTabView: View {
+    
+    init() {
+                let tabBarAppearance = UITabBarAppearance()
+                tabBarAppearance.configureWithOpaqueBackground()
+                tabBarAppearance.backgroundColor = UIColor.white
+                UITabBar.appearance().standardAppearance = tabBarAppearance
+    }
+    
     var body: some View {
         TabView {
             ShopView()
@@ -17,7 +25,7 @@ struct DrinkWaterTabView: View {
                     Image(systemName: "cart")
                     Text("Shop")
                 }
-
+            
             PlantsView()
                 .tabItem {
                     Image(systemName: "leaf")
@@ -35,15 +43,16 @@ struct DrinkWaterTabView: View {
                     Image(systemName: "person")
                     Text("Account")
                 }
-                    SettingsView()
-                        .tabItem {
-                            Image(systemName: "gear")
-                            Text("Settings")
-                        }
-                
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+            
         }
         .tabViewStyle(.automatic)
-        .accentColor(.brandBlue)
+                .accentColor(.blue)
+                
     }
     
 }

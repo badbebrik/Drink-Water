@@ -49,6 +49,7 @@ struct OnboardingView: View {
                                 .frame(width: 25, height: 25)
                                 .multilineTextAlignment(.leading)
                                 .foregroundStyle(.blue)
+                                .padding()
                         } else {
                             EmptyView()
                         }

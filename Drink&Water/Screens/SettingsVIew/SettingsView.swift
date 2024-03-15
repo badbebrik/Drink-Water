@@ -55,15 +55,15 @@ struct SettingsView: View {
                     .frame(width: 353, height: 26, alignment: .leading)
                 
                 Form {
-                    Section(header: Text("App Theme")) {
-                        Picker("Theme", selection: $selectedTheme) {
-                            ForEach(Theme.allCases, id: \.self) { theme in
-                                Text(theme.rawValue).tag(theme)
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .padding()
-                    }
+//                    Section(header: Text("App Theme")) {
+//                        Picker("Theme", selection: $selectedTheme) {
+//                            ForEach(Theme.allCases, id: \.self) { theme in
+//                                Text(theme.rawValue).tag(theme)
+//                            }
+//                        }
+//                        .pickerStyle(SegmentedPickerStyle())
+//                        .padding()
+//                    }
                     
                     Section(header: Text("Language")) {
                         Picker("Language", selection: $selectedLanguage) {

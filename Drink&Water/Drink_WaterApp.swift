@@ -13,6 +13,7 @@ struct Drink_WaterApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.light)
         }
     }
 }

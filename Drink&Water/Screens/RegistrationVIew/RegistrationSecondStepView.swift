@@ -10,8 +10,8 @@ import SwiftUI
 class RegistrationSecondStepViewModel: ObservableObject {
     var activity: String = "Low"
     var selectedDate: Date = Date()
-    @Published var height: Double = 0
-    @Published var weight: Double = 0
+    @Published var height: Double = 100
+    @Published var weight: Double = 20
 }
 
 struct RegistrationSecondStepView: View {

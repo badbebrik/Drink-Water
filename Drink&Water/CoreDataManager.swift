@@ -215,7 +215,7 @@ extension CoreDataManager {
             let plantEntities = try managedContext.fetch(fetchRequest)
             var plants: [Plant] = []
             for entity in plantEntities {
-                let plant = Plant(name: entity.name ?? "",
+                let plant = Plant(id: UUID(), name: entity.name ?? "",
                                   totalToGrow: Int(entity.totalToGrow),
                                   price: Int(entity.price),
                                   startGrowDate: entity.startGrowDate ?? Date(),
