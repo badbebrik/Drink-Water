@@ -69,8 +69,8 @@ struct DrinkAddView: View {
                     ForEach(waterVolumes, id: \.self) { volume in
                         VStack {
                             Text("\(volume)ml")
-                                .font(.caption)
-                                .padding(5)
+                                .font(.title3)
+                                .frame(width: 70, height: 25)
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(selectedVolume == volume ? Color.gray : Color.black, lineWidth: 2)
@@ -82,7 +82,7 @@ struct DrinkAddView: View {
                         .padding()
                     }
                 }
-                .padding()
+                
             }
             .scrollIndicators(.hidden)
             

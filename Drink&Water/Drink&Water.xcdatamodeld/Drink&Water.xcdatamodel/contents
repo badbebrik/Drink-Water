@@ -6,6 +6,14 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="volume" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="PlantEntity" representedClassName="PlantEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="currentFillness" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="finishGrowDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startGrowDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="totalToGrow" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="UserModel" representedClassName=".UserModel" syncable="YES" codeGenerationType="class">
         <attribute name="activity" optional="YES" attributeType="String"/>
         <attribute name="birthday" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

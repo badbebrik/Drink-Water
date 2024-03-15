@@ -8,10 +8,12 @@
 import SwiftUI
 
 class ShopViewModel: ObservableObject {
+    
     @Published var plantsToBuy: [Plant] = [
-        Plant(name: "Sunflower1", WaterVolumeToFinish: 2000, price: 200, stages: ["sunflower"]),
-        Plant(name: "Sunflower2", WaterVolumeToFinish: 2000, price: 200, stages: ["sunflower"]),
-        Plant(name: "Sunflower3", WaterVolumeToFinish: 2000, price: 200, stages: ["sunflower"])
+        Plant(name: "cactus", totalToGrow: 1200, price: 100, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()),
+        Plant(name: "red tulip", totalToGrow: 1200, price: 200, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()),
+        Plant(name: "purple tulip", totalToGrow: 1200, price: 300, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()),
+        Plant(name: "apple", totalToGrow: 1200, price: 400, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date())
     ]
 }
 
@@ -57,7 +59,7 @@ struct ShopView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(viewModel.plantsToBuy, id: \.name) { plant in
-                            PlantView(plant: plant)
+                            PlantShopView(plant: plant)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(10)

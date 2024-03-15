@@ -18,7 +18,8 @@ struct AccountView: View {
     @State private var lastName: String = ""
     @State private var genderIndex = 0
     @State private var activity: String = ""
-    
+    @State private var isRefreshing = false
+
     
     let genders = ["Male", "Female"]
     let activityModes = ["Low", "Medium", "High"]
@@ -83,7 +84,6 @@ struct AccountView: View {
                                 .padding()
                                 .onChange(of: viewModel.birthday) { newValue in
                                     let calendar = Calendar.current
-                                    let selectedYear = calendar.component(.year, from: newValue)
                                 }
                         }
                         

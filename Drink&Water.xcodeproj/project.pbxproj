@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D1132472B8FAA3B00CF6752 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1132462B8FAA3B00CF6752 /* Plant.swift */; };
 		1D1132492B8FAAF400CF6752 /* PlantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1132482B8FAAF400CF6752 /* PlantView.swift */; };
+		1D1D51C02BA3CCA400DEF6B9 /* PlantShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D51BF2BA3CCA400DEF6B9 /* PlantShopView.swift */; };
 		1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */; };
 		1D2420AB2B93E42800B4E08D /* RegistrationFirstStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2420AA2B93E42800B4E08D /* RegistrationFirstStepView.swift */; };
 		1D2420AD2B93F6CA00B4E08D /* RegistrationSecondStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2420AC2B93F6CA00B4E08D /* RegistrationSecondStepView.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		1D1132462B8FAA3B00CF6752 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		1D1132482B8FAAF400CF6752 /* PlantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantView.swift; sourceTree = "<group>"; };
+		1D1D51BF2BA3CCA400DEF6B9 /* PlantShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantShopView.swift; sourceTree = "<group>"; };
 		1D2420132B91C0EA00B4E08D /* Drink-Water-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drink-Water-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1D2420AA2B93E42800B4E08D /* RegistrationFirstStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFirstStepView.swift; sourceTree = "<group>"; };
 		1D2420AC2B93F6CA00B4E08D /* RegistrationSecondStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStepView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				1D8317C32B869713009DF17F /* Buttons */,
 				1D1132482B8FAAF400CF6752 /* PlantView.swift */,
 				1DA40DEE2BA14EF300921ADF /* DrinkAddView.swift */,
+				1D1D51BF2BA3CCA400DEF6B9 /* PlantShopView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				1DA40DE02BA071F500921ADF /* AboutView.swift in Sources */,
 				1D2420AB2B93E42800B4E08D /* RegistrationFirstStepView.swift in Sources */,
 				1DA40DFA2BA21AF400921ADF /* Alert.swift in Sources */,
+				1D1D51C02BA3CCA400DEF6B9 /* PlantShopView.swift in Sources */,
 				1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */,
 				1DA40DE52BA0A80800921ADF /* OnboardingView.swift in Sources */,
 				1D8317B92B867497009DF17F /* PlantsView.swift in Sources */,

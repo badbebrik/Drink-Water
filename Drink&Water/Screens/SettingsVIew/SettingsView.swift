@@ -76,7 +76,7 @@ struct SettingsView: View {
                     }
                     
                     Section(header: Text("Notifications")) {
-                        ForEach(["Test Notification", "Test Notification", "Test Notification"], id: \.self) { elem in
+                        ForEach(["There will be added Notifications soon"], id: \.self) { elem in
                             
                             
                             Text(elem)
@@ -97,6 +97,8 @@ struct SettingsView: View {
                                   secondaryButton: .destructive(Text("Delete"), action: {
                                 let coreDataManager = CoreDataManager()
                                 coreDataManager.deleteUser()
+                                coreDataManager.deleteAllDrinks()
+                                coreDataManager.deleteAllPlants()
                                 isDeleteAccountButtonTapped = true
                                 
                             }))
@@ -115,6 +117,8 @@ struct SettingsView: View {
                                   secondaryButton: .destructive(Text("Reset progress"), action: {
                                 let coreDataManager = CoreDataManager()
                                 coreDataManager.deleteAllDrinks()
+                                coreDataManager.deleteAllPlants()
+                                coreDataManager.updateTodayWaterIntake(0)
                                 
                             }))
                         }

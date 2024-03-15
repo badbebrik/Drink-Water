@@ -15,36 +15,17 @@ struct PlantView: View {
             Text(plant.name)
                 .font(.headline)
                 .fontWeight(.bold)
-            
-            Image(plant.stages[plant.stages.count - 1])
-                .resizable()
-                .frame(width: 100, height: 100)
-            
-            Button {
-                print("plant \(plant.name) was bought")
-            } label: {
-                HStack {
-                    Text("100")
-                        .font(.title2)
-                        .foregroundStyle(.white)
-                    Image("coin")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                }
-                .frame(width: 100, height: 50)
-                .background(.green)
-                .cornerRadius(20)
-                
-            }
-        }
-        
-    }
     
+            Image(plant.name + " " + "adult")
+                .resizable()
+                .frame(width: 70, height: 100)
+        }
+    }
 }
 
 
 #Preview {
     
-    PlantView(plant: Plant(name: "Sunflower", WaterVolumeToFinish: 3000, price: 200, stages: ["sunflower", "sunflower", "sunflower"]))
+    PlantView(plant: Plant(name: "red tulip", totalToGrow: 1200, price: 200, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()))
     
 }

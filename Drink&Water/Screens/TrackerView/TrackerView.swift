@@ -16,6 +16,7 @@ class TrackerViewModel: ObservableObject {
     @Published var isShowingAddDrink: Bool = false
     var dailyWaterIntakeGoal: Double = 0
     @Published var todayWaterIntake: Double = 0
+    @Published var currentGrowingPlant: Plant?
 }
 
 
@@ -23,6 +24,8 @@ struct TrackerView: View {
     
     @StateObject var viewModel = TrackerViewModel()
     @State var todayDrinks: [Drink] = []
+    @State private var isRefreshing = false
+
     var body: some View {
         ZStack {
             Color("BrandBlue")
@@ -128,27 +131,36 @@ struct TrackerView: View {
                         .multilineTextAlignment(.leading)
                         .frame(width: 353, height: 26, alignment: .leading)
                     
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 352, height: 167)
-                            .background(.white)
-                            .cornerRadius(30)
-                        
-                        HStack(spacing: 50) {
+                    if let currentPlant = viewModel.currentGrowingPlant {
+                        ZStack {
                             Rectangle()
                                 .foregroundColor(.clear)
-                                .frame(width: 100, height: 100)
-                                .background(
-                                    Image("sunflower")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 100, height: 100)
-                                        .clipped()
-                                )
+                                .frame(width: 352, height: 167)
+                                .background(.white)
+                                .cornerRadius(30)
                             
-                            CircularProgressView(progress: 0.8)
-                                .frame(width: 100)
+                            HStack(spacing: 50) {
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 100, height: 100)
+                                    .background(
+                                        PlantView(plant: currentPlant)
+                                    )
+                                
+                                CircularProgressView(progress: Double(currentPlant.currentFillness / currentPlant.totalToGrow))
+                                    .frame(width: 100)
+                            }
+                        }
+                    } else {
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 352, height: 167)
+                                .background(.white)
+                                .cornerRadius(30)
+                            Text("No plant currently growing.\nBuy a plant in the shop!")
+                                .font(.system(size: 16))
+                                .foregroundStyle(.black)
                         }
                     }
                     
@@ -183,15 +195,34 @@ struct TrackerView: View {
             }
         }
         .onAppear() {
-            let coreDataManager = CoreDataManager()
-            let user = coreDataManager.getUserData()
-            viewModel.name = user?.name ?? ""
-            todayDrinks = coreDataManager.getAllDrinks() ?? []
-            
-            
-            viewModel.todayWaterIntake = user?.todayWaterIntake ?? 0
-            viewModel.dailyWaterIntakeGoal = user?.dailyWaterIntake ?? 3000
-            viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
+            fetchData()
+        }
+        .refreshable {
+            fetchData()
+        }
+    }
+    
+    func fetchData() {
+        
+        let coreDataManager = CoreDataManager()
+        let user = coreDataManager.getUserData()
+        viewModel.name = user?.name ?? ""
+        todayDrinks = coreDataManager.getAllDrinks() ?? []
+        if let plants = coreDataManager.getAllPlants() {
+            let firstPlant = plants.first(where: { $0.currentFillness < $0.totalToGrow })
+            viewModel.currentGrowingPlant = firstPlant
+                
+        }
+        
+        viewModel.todayWaterIntake = user?.todayWaterIntake ?? 0
+        viewModel.dailyWaterIntakeGoal = user?.dailyWaterIntake ?? 3000
+        viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
+        
+        isRefreshing = true
+     
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        
+            isRefreshing = false
         }
     }
     
@@ -228,58 +259,3 @@ struct MaskedImageModifier: ViewModifier {
             )
     }
 }
-
-
-//struct WaterProgressView: View {
-//    @ObservedObject var viewModel: TrackerViewModel
-//
-//    var body: some View {
-//        ZStack {
-//            RoundedRectangle(cornerRadius: 30)
-//                .frame(height: 288)
-//                .foregroundColor(.white)
-//                .shadow(color: Color(.black).opacity(0.25), radius: 2, x: 0, y: 4)
-//
-//            VStack {
-//                Text("1500/3000 ml")
-//                    .foregroundColor(.black)
-//
-//                GeometryReader { proxy in
-//                    let size = proxy.size
-//                    WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
-//                        .fill(Color.blue)
-//                        .modifier(MaskedImageModifier())
-//                        .modifier(CircleOverlayModifier())
-//                        .frame(width: size.width, height: size.height, alignment: .center)
-//                        .onAppear {
-//                            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-//                                viewModel.startAnimation = size.width
-//                            }
-//                        }
-//                }
-//                .frame(height: 240)
-//            }
-//
-//            Button {
-//                viewModel.isShowingAddDrink = true
-//            } label: {
-//                Image(systemName: "plus")
-//                    .modifier(AddDrinkButton())
-//            }
-//            .padding(.top, 200)
-//            .padding(.leading, 150)
-//            .sheet(isPresented: $viewModel.isShowingAddDrink) {
-//                DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink,
-//                                 progressDrop: $viewModel.progressDrop,
-//                                 todayDrinked: Binding<Int>(
-//                                     get: { Int(viewModel.todayWaterIntake) },
-//                                     set: { viewModel.todayWaterIntake = Double($0) }
-//                                 ),
-//                                 dailyIntakeGoal: Binding<Int>(
-//                                     get: { Int(viewModel.dailyWaterIntakeGoal) },
-//                                     set: { viewModel.dailyWaterIntakeGoal = Double($0) }
-//                                 ), todayDrinks: $todayDrinks)
-//            }
-//        }
-//    }
-//}

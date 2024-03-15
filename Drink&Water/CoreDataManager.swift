@@ -187,3 +187,58 @@ class CoreDataManager {
     }
     
 }
+
+extension CoreDataManager {
+    func savePlant(name: String, totalToGrow: Int, price: Int, startGrowDate: Date, currentFillness: Int, finishGrowDate: Date) {
+        let managedContext = persistentContainer.viewContext
+        
+        let plantToAdd = PlantEntity(context: managedContext)
+        plantToAdd.name = name
+        plantToAdd.totalToGrow = Int32(totalToGrow)
+        plantToAdd.price = Int32(price)
+        plantToAdd.startGrowDate = startGrowDate
+        plantToAdd.currentFillness = Int32(currentFillness)
+        plantToAdd.finishGrowDate = finishGrowDate
+        
+        do {
+            try managedContext.save()
+        } catch {
+            print("Failed to save plant: \(error)")
+        }
+    }
+    
+    func getAllPlants() -> [Plant]? {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<PlantEntity> = PlantEntity.fetchRequest()
+        
+        do {
+            let plantEntities = try managedContext.fetch(fetchRequest)
+            var plants: [Plant] = []
+            for entity in plantEntities {
+                let plant = Plant(name: entity.name ?? "",
+                                  totalToGrow: Int(entity.totalToGrow),
+                                  price: Int(entity.price),
+                                  startGrowDate: entity.startGrowDate ?? Date(),
+                                  currentFillness: Int(entity.currentFillness),
+                                  finishGrowDate: entity.finishGrowDate ?? Date())
+                plants.append(plant)
+            }
+            return plants
+        } catch {
+            print("Failed to fetch plants: \(error)")
+            return nil
+        }
+    }
+    
+    func deleteAllPlants() {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PlantEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try managedContext.execute(deleteRequest)
+        } catch {
+            print("Failed to delete plants: \(error)")
+        }
+    }
+}
