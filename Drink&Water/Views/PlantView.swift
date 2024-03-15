@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlantView: View {
     var plant: Plant;
+    var plantImageName: String;
     var body: some View {
         
         VStack(spacing: 20) {
@@ -16,7 +17,7 @@ struct PlantView: View {
                 .font(.headline)
                 .fontWeight(.bold)
     
-            Image(plant.name + " " + "adult")
+            Image(plantImageName)
                 .resizable()
                 .frame(width: 70, height: 100)
         }
@@ -26,6 +27,6 @@ struct PlantView: View {
 
 #Preview {
     
-    PlantView(plant: Plant(name: "red tulip", totalToGrow: 1200, price: 200, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()))
+    PlantView(plant: Plant(name: "red tulip", totalToGrow: 1200, price: 200, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()), plantImageName: "red tulip adult")
     
 }

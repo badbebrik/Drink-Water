@@ -16,15 +16,26 @@ class TrackerViewModel: ObservableObject {
     @Published var isShowingAddDrink: Bool = false
     var dailyWaterIntakeGoal: Double = 0
     @Published var todayWaterIntake: Double = 0
-    @Published var currentGrowingPlant: Plant?
+    @Published var currentGrowingPlant: Plant? {
+            didSet {
+                updateProgress()
+            }
+        }
+    
+    private func updateProgress() {
+            guard let plant = currentGrowingPlant else { return }
+            progress = CGFloat(plant.currentFillness) / CGFloat(plant.totalToGrow)
+        }
 }
 
 
 struct TrackerView: View {
     
-    @StateObject var viewModel = TrackerViewModel()
+    @ObservedObject var viewModel = TrackerViewModel()
     @State var todayDrinks: [Drink] = []
     @State private var isRefreshing = false
+    
+    
 
     var body: some View {
         ZStack {
@@ -144,10 +155,10 @@ struct TrackerView: View {
                                     .foregroundColor(.clear)
                                     .frame(width: 100, height: 100)
                                     .background(
-                                        PlantView(plant: currentPlant)
+                                        PlantView(plant: currentPlant, plantImageName: currentPlant.name  + " " + checkStage())
                                     )
                                 
-                                CircularProgressView(progress: Double(currentPlant.currentFillness / currentPlant.totalToGrow))
+                                CircularProgressView(progress: Double(currentPlant.currentFillness) / Double( currentPlant.totalToGrow))
                                     .frame(width: 100)
                             }
                         }
@@ -193,6 +204,7 @@ struct TrackerView: View {
                     }
                 }
             }
+                    
         }
         .onAppear() {
             fetchData()
@@ -202,8 +214,24 @@ struct TrackerView: View {
         }
     }
     
+    func checkStage() -> String {
+        if let currentGrowingPlant = viewModel.currentGrowingPlant {
+            print("CHECK " + "\(currentGrowingPlant.currentFillness)")
+            switch (Double(currentGrowingPlant.currentFillness) / Double(currentGrowingPlant.totalToGrow)) {
+            case 0...0.25:
+                return "seed"
+            case 0.26...0.70:
+                return "sprout"
+            case 0.71...0.99:
+                return "teen"
+            default:
+                return "adult"
+            }
+        }
+        return ""
+    }
+    
     func fetchData() {
-        
         let coreDataManager = CoreDataManager()
         let user = coreDataManager.getUserData()
         viewModel.name = user?.name ?? ""
@@ -211,17 +239,18 @@ struct TrackerView: View {
         if let plants = coreDataManager.getAllPlants() {
             let firstPlant = plants.first(where: { $0.currentFillness < $0.totalToGrow })
             viewModel.currentGrowingPlant = firstPlant
-                
         }
+        print("FETCH")
+        print(viewModel.currentGrowingPlant?.currentFillness)
         
         viewModel.todayWaterIntake = user?.todayWaterIntake ?? 0
         viewModel.dailyWaterIntakeGoal = user?.dailyWaterIntake ?? 3000
         viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
         
-        isRefreshing = true
-     
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
         
+        isRefreshing = true
+         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             isRefreshing = false
         }
     }

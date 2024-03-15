@@ -95,6 +95,14 @@ struct DrinkAddView: View {
                     addDrink(selectedDrink)
                     coreDataManager.saveDrink(selectedDrink)
                 }
+                if let plants = coreDataManager.getAllPlants() {
+                    var firstPlant = plants.first(where: { $0.currentFillness < $0.totalToGrow })
+                    firstPlant?.currentFillness += selectedVolume ?? 0
+                    print("Hello! add1")
+                    coreDataManager.updateFirstPlantCurrentFillness(newFillness: firstPlant?.currentFillness ?? 0)
+                    print("Hello! add2")
+                        
+                }
                 coreDataManager.updateTodayWaterIntake(Double(todayDrinked))
                 isShowingDetail = false
                 

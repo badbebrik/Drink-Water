@@ -43,9 +43,9 @@ struct AccountView: View {
                             if let image = image {
                                 Image(uiImage: image)
                                     .resizable()
-                                    .scaledToFit()
                                     .frame(width: 200, height: 200)
-                                    .cornerRadius(10)
+                                    .aspectRatio(contentMode: .fill)
+                                    .clipShape(Circle())
                                     .padding()
                                 Button("Change Image") {
                                     isShowingImagePicker = true
@@ -63,7 +63,6 @@ struct AccountView: View {
                                     ImagePicker(image: $image)
                                 }
                             }
-                            
                         }
                         
                         Section(header: Text("Personal Information")) {
