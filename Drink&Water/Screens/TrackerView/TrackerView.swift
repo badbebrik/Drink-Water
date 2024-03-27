@@ -15,6 +15,7 @@ struct TrackerView: View {
     
     
     
+    
     var body: some View {
         ZStack {
             Color("BrandBlue")
@@ -66,16 +67,44 @@ struct TrackerView: View {
                                         .scaleEffect(x: 1.1, y: 1)
                                         .offset(y: -1)
                                     
-                                    WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
-                                        .fill(Color(.blue))
-                                        .modifier(MaskedImageModifier())
-                                        .modifier(CircleOverlayModifier())
+                                    GeometryReader { proxy in
+                                        let size = proxy.size
+                                        
+                                        ZStack {
+                                
+                                            if viewModel.isAnimating {
+                                    
+                                                WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
+                                                    .fill(Color.blue)
+                                                    .modifier(MaskedImageModifier())
+                                                
+                                            } else {
+                                            
+                                                WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
+                                                    .fill(Color.blue)
+                                                    .modifier(MaskedImageModifier())
+                                
+                                            }
+                                        }
+                                        .frame(width: size.width, height: size.height, alignment: .center)
+                                        .onAppear {
+                                            viewModel.isAnimating = true
+                                        }
+                                        .onDisappear {
+                                            viewModel.isAnimating = false
+                                        }
+                                    }
+                                    
                                 }
                                 .frame(width: size.width, height: size.height, alignment: .center)
                                 .onAppear {
-                                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)){
-                                        viewModel.startAnimation = size.width
+                                    viewModel.isAnimating = true
+                                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                                        viewModel.startAnimation += 360
                                     }
+                                }
+                                .onDisappear {
+                                    viewModel.isAnimating = false
                                 }
                                 
                             }

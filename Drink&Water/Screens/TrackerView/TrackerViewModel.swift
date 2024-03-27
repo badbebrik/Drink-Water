@@ -15,11 +15,13 @@ class TrackerViewModel: ObservableObject {
     @Published var isShowingAddDrink: Bool = false
     var dailyWaterIntakeGoal: Double = 0
     @Published var todayWaterIntake: Double = 0
+    @Published var isAnimating: Bool = false
     @Published var currentGrowingPlant: Plant? {
         didSet {
             updateProgress()
         }
     }
+    
     
     private func updateProgress() {
         guard let plant = currentGrowingPlant else { return }
