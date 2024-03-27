@@ -144,6 +144,8 @@ class CoreDataManager {
         drinkToAdd.name = drink.name
         drinkToAdd.volume = Int32(drink.volume)
         drinkToAdd.imageName = drink.imageName
+        drinkToAdd.id = drink.id
+        
         
         do {
             try managedContext.save()
@@ -160,7 +162,7 @@ class CoreDataManager {
             let drinkEntities = try managedContext.fetch(fetchRequest)
             var drinks: [Drink] = []
             for entity in drinkEntities {
-                let drink = Drink(id: UUID(),
+                let drink = Drink(id: entity.id ?? UUID(),
                                   name: entity.name ?? "",
                                   imageName: entity.imageName ?? "",
                                   volume: Int(entity.volume))
@@ -280,6 +282,22 @@ extension CoreDataManager {
             }
         } else {
             print("User not found")
+        }
+    }
+    
+    func deleteDrink(id: UUID) {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<DrinkEntity> = DrinkEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+
+        do {
+            let drinks = try managedContext.fetch(fetchRequest)
+            if let drinkToDelete = drinks.first {
+                managedContext.delete(drinkToDelete)
+                try managedContext.save()
+            }
+        } catch {
+            print("Failed to delete drink: \(error)")
         }
     }
 

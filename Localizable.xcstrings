@@ -53,6 +53,9 @@
     "Activity Mode" : {
 
     },
+    "Are you sure you want to delete this drink?" : {
+
+    },
     "Are you sure?" : {
 
     },
@@ -81,6 +84,9 @@
 
     },
     "Delete account" : {
+
+    },
+    "Delete Drink" : {
 
     },
     "Deleting your account will erase all your data. This action cannot be undone." : {

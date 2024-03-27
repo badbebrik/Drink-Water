@@ -7,13 +7,11 @@
 
 import SwiftUI
 
+
 struct TrackerView: View {
     
     @ObservedObject var viewModel = TrackerViewModel()
-    @State var todayDrinks: [Drink] = []
-    @State private var isRefreshing = false
-    
-    
+    @State private var showingDeleteAlert = false
     
     
     var body: some View {
@@ -77,12 +75,14 @@ struct TrackerView: View {
                                                 WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
                                                     .fill(Color.blue)
                                                     .modifier(MaskedImageModifier())
+                                                    .modifier(CircleOverlayModifier())
                                                 
                                             } else {
                                             
                                                 WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
                                                     .fill(Color.blue)
                                                     .modifier(MaskedImageModifier())
+                                                    .modifier(CircleOverlayModifier())
                                 
                                             }
                                         }
@@ -130,16 +130,7 @@ struct TrackerView: View {
                         .padding(.top, 200)
                         .padding(.leading, 150)
                         .sheet(isPresented: $viewModel.isShowingAddDrink) {
-                            DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink,
-                                         progressDrop: $viewModel.progressDrop,
-                                         todayDrinked: Binding<Int>(
-                                            get: { Int(viewModel.todayWaterIntake) },
-                                            set: { viewModel.todayWaterIntake = Double($0) }
-                                         ),
-                                         dailyIntakeGoal: Binding<Int>(
-                                            get: { Int(viewModel.dailyWaterIntakeGoal) },
-                                            set: { viewModel.dailyWaterIntakeGoal = Double($0) }
-                                         ), todayDrinks: $todayDrinks)
+                            DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink, trackerViewModel: viewModel)
                         }
                     }
                     
@@ -162,7 +153,7 @@ struct TrackerView: View {
                                     .foregroundColor(.clear)
                                     .frame(width: 100, height: 100)
                                     .background(
-                                        PlantView(plant: currentPlant, plantImageName: currentPlant.name  + " " + checkStage())
+                                        PlantView(plant: currentPlant, plantImageName: currentPlant.name  + " " + viewModel.checkStage())
                                     )
                                 
                                 CircularProgressView(progress: Double(currentPlant.currentFillness) / Double( currentPlant.totalToGrow))
@@ -190,75 +181,66 @@ struct TrackerView: View {
                     
                     VStack {
                         
-                        ScrollView(.vertical) {
-                            VStack(spacing: 10) {
-                                ForEach(todayDrinks, id: \.id) { drink in
-                                    HStack {
-                                        Image(drink.imageName)
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
+                        ForEach(viewModel.todayDrinks, id: \.id) { drink in
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.white)
+                                    .shadow(radius: 5)
+                                    .frame(width: 353)
+
+                                HStack {
+                                    Image(drink.imageName)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50)
+                                        .cornerRadius(10)
+
+                                    VStack(alignment: .leading) {
                                         Text(drink.name)
+                                            .font(.headline)
+
                                         Text("\(drink.volume) ml")
+                                            .font(.subheadline)
                                     }
-                                    .frame(width: 300, height: 50)
-                                    .padding()
-                                    .background(Color(.systemGray6))
-                                    .cornerRadius(10)
-                                    .padding(.horizontal)
+                                    .padding(.leading)
+
+                                    Spacer()
+
+                                    Button(action: {
+                                        self.viewModel.drinkToDelete = drink
+                                        self.showingDeleteAlert = true
+                                    }) {
+                                        Image(systemName: "xmark.circle.fill")
+                                            .foregroundColor(.red)
+                                    }
                                 }
+                                .padding()
                             }
+                            .frame(width: 353, height: 80)
+                            .padding(.horizontal)
                         }
+                        .alert(isPresented: $showingDeleteAlert) {
+                            Alert(
+                                title: Text("Delete Drink"),
+                                message: Text("Are you sure you want to delete this drink?"),
+                                primaryButton: .destructive(Text("Delete")) {
+                                    if let drinkToDelete = viewModel.drinkToDelete {
+                                        let coreDataManager = CoreDataManager()
+                                        coreDataManager.deleteDrink(id: drinkToDelete.id)
+                                        viewModel.fetchData()
+                                    }
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
+
                     }
                 }
             }
             
         }
         .onAppear() {
-            fetchData()
-        }
-        .refreshable {
-            fetchData()
-        }
-    }
-    
-    func checkStage() -> String {
-        if let currentGrowingPlant = viewModel.currentGrowingPlant {
-            print("CHECK " + "\(currentGrowingPlant.currentFillness)")
-            switch (Double(currentGrowingPlant.currentFillness) / Double(currentGrowingPlant.totalToGrow)) {
-            case 0...0.25:
-                return "seed"
-            case 0.26...0.70:
-                return "sprout"
-            case 0.71...0.99:
-                return "teen"
-            default:
-                return "adult"
-            }
-        }
-        return ""
-    }
-    
-    func fetchData() {
-        let coreDataManager = CoreDataManager()
-        let user = coreDataManager.getUserData()
-        viewModel.name = user?.name ?? ""
-        todayDrinks = coreDataManager.getAllDrinks() ?? []
-        if let plants = coreDataManager.getAllPlants() {
-            let firstPlant = plants.first(where: { $0.currentFillness < $0.totalToGrow })
-            viewModel.currentGrowingPlant = firstPlant
-        }
-        print("FETCH")
-        print(viewModel.currentGrowingPlant?.currentFillness)
-        
-        viewModel.todayWaterIntake = user?.todayWaterIntake ?? 0
-        viewModel.dailyWaterIntakeGoal = user?.dailyWaterIntake ?? 3000
-        viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
-        
-        
-        isRefreshing = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            isRefreshing = false
+            viewModel.fetchData()
         }
     }
     

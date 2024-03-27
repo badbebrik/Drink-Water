@@ -9,11 +9,6 @@ import SwiftUI
 
 import Foundation
 
-class DrinkAddViewModel: ObservableObject {
-    @Published var selectedDrink: Drink?
-    @Published var selectedVolume: Int?
-}
-
 
 struct DrinkAddView: View {
     let drinks: [Drink] = [
@@ -23,7 +18,7 @@ struct DrinkAddView: View {
     ]
     
     func addDrink(_ drink: Drink) {
-        todayDrinks.append(drink)
+        trackerViewModel.todayDrinks.append(drink)
     }
     
     let waterVolumes = [100, 200, 300, 400, 500]
@@ -31,10 +26,7 @@ struct DrinkAddView: View {
     @Binding var isShowingDetail: Bool
     @State private var selectedDrink: Drink?
     @State private var selectedVolume: Int?
-    @Binding var progressDrop: CGFloat
-    @Binding var todayDrinked: Int
-    @Binding var dailyIntakeGoal: Int
-    @Binding var todayDrinks: [Drink]
+    @ObservedObject var trackerViewModel: TrackerViewModel
     
     var body: some View {
         VStack {
@@ -96,8 +88,8 @@ struct DrinkAddView: View {
             
             Button(action: {
                 let coreDataManager = CoreDataManager()
-                todayDrinked += selectedVolume ?? 0
-                progressDrop = CGFloat(Double(todayDrinked) / Double(dailyIntakeGoal))
+                trackerViewModel.todayWaterIntake += Double(selectedVolume ?? 0)
+                trackerViewModel.progressDrop = Double(trackerViewModel.todayWaterIntake) / trackerViewModel.dailyWaterIntakeGoal
                 selectedDrink?.volume = selectedVolume ?? 0
                 if let selectedDrink = selectedDrink {
                     addDrink(selectedDrink)
@@ -106,12 +98,12 @@ struct DrinkAddView: View {
                 if let plants = coreDataManager.getAllPlants() {
                     var firstPlant = plants.first(where: { $0.currentFillness < $0.totalToGrow })
                     firstPlant?.currentFillness += selectedVolume ?? 0
-                    print("Hello! add1")
+                   
                     coreDataManager.updateFirstPlantCurrentFillness(newFillness: firstPlant?.currentFillness ?? 0)
-                    print("Hello! add2")
                     
                 }
-                coreDataManager.updateTodayWaterIntake(Double(todayDrinked))
+                coreDataManager.updateTodayWaterIntake(Double(trackerViewModel.todayWaterIntake))
+                trackerViewModel.fetchData()
                 isShowingDetail = false
                 
             }) {
@@ -143,5 +135,5 @@ struct DrinkAddView: View {
 
 
 #Preview {
-    DrinkAddView(isShowingDetail: .constant(true), progressDrop: .constant(0.5), todayDrinked: .constant(0), dailyIntakeGoal: .constant(3000), todayDrinks: .constant([]))
+    DrinkAddView(isShowingDetail: .constant(true), trackerViewModel: TrackerViewModel())
 }

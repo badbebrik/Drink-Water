@@ -16,6 +16,8 @@ class TrackerViewModel: ObservableObject {
     var dailyWaterIntakeGoal: Double = 0
     @Published var todayWaterIntake: Double = 0
     @Published var isAnimating: Bool = false
+    @Published var drinkToDelete: Drink?
+    @Published var todayDrinks: [Drink] = []
     @Published var currentGrowingPlant: Plant? {
         didSet {
             updateProgress()
@@ -26,5 +28,37 @@ class TrackerViewModel: ObservableObject {
     private func updateProgress() {
         guard let plant = currentGrowingPlant else { return }
         progress = CGFloat(plant.currentFillness) / CGFloat(plant.totalToGrow)
+    }
+    
+    
+    func fetchData() {
+        let coreDataManager = CoreDataManager()
+        let user = coreDataManager.getUserData()
+        name = user?.name ?? ""
+        todayDrinks = coreDataManager.getAllDrinks() ?? []
+        if let plants = coreDataManager.getAllPlants() {
+            let firstPlant = plants.first(where: { $0.currentFillness < $0.totalToGrow })
+            currentGrowingPlant = firstPlant
+        }
+        
+        todayWaterIntake = user?.todayWaterIntake ?? 0
+        dailyWaterIntakeGoal = user?.dailyWaterIntake ?? 3000
+        progressDrop = todayWaterIntake / dailyWaterIntakeGoal
+    }
+    
+    func checkStage() -> String {
+        if let currentGrowingPlant = currentGrowingPlant {
+            switch (Double(currentGrowingPlant.currentFillness) / Double(currentGrowingPlant.totalToGrow)) {
+            case 0...0.25:
+                return "seed"
+            case 0.26...0.70:
+                return "sprout"
+            case 0.71...0.99:
+                return "teen"
+            default:
+                return "adult"
+            }
+        }
+        return ""
     }
 }
