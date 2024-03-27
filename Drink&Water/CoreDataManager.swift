@@ -262,4 +262,27 @@ extension CoreDataManager {
         }
     }
     
+    func updateUserProfileImagePath(_ fileName: String) {
+        let managedContext = persistentContainer.viewContext
+
+        if let user = getUserData() {
+            if let oldFileName = user.profileImagePath, !oldFileName.isEmpty {
+                FileManagerService.shared.deleteImageFromFileSystem(fileName: oldFileName)
+            }
+
+            user.profileImagePath = fileName
+
+            do {
+                try managedContext.save()
+                print("Successfully updated user profile image path.")
+            } catch {
+                print("Failed to update user profile image path: \(error)")
+            }
+        } else {
+            print("User not found")
+        }
+    }
+
+
+    
 }

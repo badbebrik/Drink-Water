@@ -18,5 +18,14 @@ class AccountViewModel: ObservableObject {
     @Published var activity: String = ""
     @Published var isRefreshing = false
 
+    
+    func saveProfileImage(_ image: UIImage) {
+            if let fileName = FileManagerService.shared.saveImageToFileSystem(image) {
+                let coreDataManager = CoreDataManager()
+                coreDataManager.updateUserProfileImagePath(fileName)
+                self.image = FileManagerService.shared.loadImageFromFileSystem(fileName: fileName)
+            }
+        }
+
 }
 

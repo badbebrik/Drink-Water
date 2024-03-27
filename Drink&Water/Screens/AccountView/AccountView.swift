@@ -36,7 +36,14 @@ struct AccountView: View {
                                 }
                                 .padding()
                                 .sheet(isPresented: $isShowingImagePicker) {
-                                    ImagePicker(image: $viewModel.image)
+                                    ImagePicker(image: Binding<UIImage?>(get: {
+                                        self.viewModel.image
+                                    }, set: { newImage in
+                                        self.viewModel.image = newImage
+                                        if let newImage = newImage {
+                                            self.viewModel.saveProfileImage(newImage)
+                                        }
+                                    }))
                                 }
                             } else {
                                 Button("Select Image") {
@@ -44,7 +51,14 @@ struct AccountView: View {
                                 }
                                 .padding()
                                 .sheet(isPresented: $isShowingImagePicker) {
-                                    ImagePicker(image: $viewModel.image)
+                                    ImagePicker(image: Binding<UIImage?>(get: {
+                                        self.viewModel.image
+                                    }, set: { newImage in
+                                        self.viewModel.image = newImage
+                                        if let newImage = newImage {
+                                            self.viewModel.saveProfileImage(newImage)
+                                        }
+                                    }))
                                 }
                             }
                         }
@@ -120,7 +134,12 @@ struct AccountView: View {
                     viewModel.genderIndex = Int(userData.gender)
                     viewModel.activity = userData.activity ?? "Low"
                     viewModel.birthday = userData.birthday!
+                    
+                    if let profileImagePath = userData.profileImagePath {
+                                self.viewModel.image = FileManagerService.shared.loadImageFromFileSystem(fileName: profileImagePath)
+                            }
                 }
+            
             }
         }
     }
