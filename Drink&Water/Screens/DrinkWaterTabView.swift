@@ -15,7 +15,7 @@ struct DrinkWaterTabView: View {
     
     var body: some View {
         TabView {
-            ShopView()
+            ShopView(viewModel: ShopViewModel())
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Shop")

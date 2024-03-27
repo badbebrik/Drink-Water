@@ -20,7 +20,7 @@ class CoreDataManager {
         }
     }
     
-    func saveUser(name: String, lastName: String, gender: Int, weight: Double, height: Double, birthday: Date, activity: String) {
+    func saveUser(name: String, lastName: String, gender: Int, weight: Double, height: Double, birthday: Date, activity: String, balance: Int32) {
         let managedContext = persistentContainer.viewContext
         
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "UserModel", in: managedContext) else {
@@ -40,6 +40,7 @@ class CoreDataManager {
         user.activity = activity
         user.dailyWaterIntake = dailyWaterIntake
         user.todayWaterIntake = 0
+        user.balance = balance
         
         do {
             try managedContext.save()
@@ -88,7 +89,7 @@ class CoreDataManager {
         }
     }
     
-    func updateUser(name: String, lastName: String, gender: Int, weight: Double, height: Double, birthday: Date, activity: String, todayWaterIntake: Double) {
+    func updateUser(name: String, lastName: String, gender: Int, weight: Double, height: Double, birthday: Date, activity: String, todayWaterIntake: Double, balance: Int32) {
         guard let user = getUserData() else {
             print("User not found")
             return
@@ -105,6 +106,7 @@ class CoreDataManager {
         user.activity = activity
         user.dailyWaterIntake = dailyWaterIntake
         user.todayWaterIntake = todayWaterIntake
+        user.balance = balance
         
         do {
             try user.managedObjectContext?.save()
@@ -300,7 +302,22 @@ extension CoreDataManager {
             print("Failed to delete drink: \(error)")
         }
     }
-
+    
+    func updateBalance(_ newBalance: Int32) {
+        let managedContext = persistentContainer.viewContext
+        if let user = getUserData() {
+            user.balance = newBalance
+            
+            do {
+                try managedContext.save()
+                print("Successfully updated user profile image path.")
+            } catch {
+                print("Failed to update user profile image path: \(error)")
+            }
+        }
+        
+    }
+ 
 
     
 }

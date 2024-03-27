@@ -10,6 +10,9 @@ import SwiftUI
 struct PlantShopView: View {
     @State private var showAlert = false
     @State private var successAlert = false
+    
+    @ObservedObject var shopViewModel: ShopViewModel
+    
     let plant: Plant
     
     var body: some View {
@@ -19,6 +22,7 @@ struct PlantShopView: View {
                 if isPlantAlreadyExists() {
                     showAlert = true
                 } else {
+                    shopViewModel.balance -= Int32(plant.price)
                     successAlert = true
                     savePlant()
                 }
@@ -32,10 +36,11 @@ struct PlantShopView: View {
                         .frame(width: 40, height: 40)
                 }
                 .frame(width: 100, height: 50)
-                .background(Color.green)
+                .background(shopViewModel.balance < Int32(plant.price) ? Color.gray : Color.green)
                 .cornerRadius(20)
             }
         }
+        .disabled(shopViewModel.balance < Int32(plant.price))
         .alert(isPresented: $successAlert) {
             Alert(title: Text("Success"), message: Text("You have successfully purchased the \(plant.name). To grow it, you need to drink \(plant.totalToGrow) milliliters of water."), dismissButton: .default(Text("OK")))
         }
@@ -74,8 +79,9 @@ struct PlantShopView: View {
     func savePlant() {
         let coreDataManager = CoreDataManager()
         coreDataManager.savePlant(name: plant.name, totalToGrow: plant.totalToGrow, price: plant.price, startGrowDate: plant.startGrowDate, currentFillness: plant.currentFillness, finishGrowDate: plant.finishGrowDate)
+        coreDataManager.updateBalance(shopViewModel.balance)
     }
 }
 #Preview {
-    PlantShopView(plant: Plant(id: UUID(), name: "red tulip", totalToGrow: 1200, price: 200, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()))
+    PlantShopView(shopViewModel: ShopViewModel(), plant: Plant(id: UUID(), name: "red tulip", totalToGrow: 1200, price: 200, startGrowDate: Date(), currentFillness: 0, finishGrowDate: Date()))
 }

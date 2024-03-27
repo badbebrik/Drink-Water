@@ -30,5 +30,6 @@ class SettingsViewModel: ObservableObject {
         coreDataManager.deleteAllDrinks()
         coreDataManager.deleteAllPlants()
         coreDataManager.updateTodayWaterIntake(0)
+        coreDataManager.updateBalance(100)
     }
 }

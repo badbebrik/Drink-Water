@@ -117,7 +117,7 @@ struct AccountView: View {
                         
                         Section(header: Text("Save Changes")) {
                             Button() {
-                                coreDataManager.updateUser(name: viewModel.firstName, lastName: viewModel.lastName, gender: viewModel.genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.birthday, activity: viewModel.activity, todayWaterIntake: 0)
+                                coreDataManager.updateUser(name: viewModel.firstName, lastName: viewModel.lastName, gender: viewModel.genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.birthday, activity: viewModel.activity, todayWaterIntake: 0, balance: 100)
                             } label: {
                                 Text("Save")
                             }

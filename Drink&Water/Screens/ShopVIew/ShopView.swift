@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShopView: View {
-    @StateObject var viewModel = ShopViewModel()
+    @StateObject var viewModel: ShopViewModel
     
     let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -21,7 +21,7 @@ struct ShopView: View {
                 HStack {
                     Spacer()
                     HStack() {
-                        Text("100")
+                        Text("\(viewModel.balance)")
                             .frame(alignment: .trailing)
                             .font(.title)
                         Image("coin")
@@ -49,7 +49,7 @@ struct ShopView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(viewModel.plantsToBuy, id: \.name) { plant in
-                            PlantShopView(plant: plant)
+                            PlantShopView(shopViewModel: viewModel, plant: plant)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(10)
@@ -60,5 +60,9 @@ struct ShopView: View {
                 }
             }
         }
+        .onAppear() {
+            viewModel.fetchBalance()
+        }
     }
+        
 }
