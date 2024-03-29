@@ -18,6 +18,35 @@ class TrackerViewModel: ObservableObject {
     @Published var isAnimating: Bool = false
     @Published var drinkToDelete: Drink?
     @Published var todayDrinks: [Drink] = []
+    
+    
+    private let lastUpdateKey = "lastUpdate"
+    private var lastUpdate: Date? {
+        get {
+            UserDefaults.standard.object(forKey: lastUpdateKey) as? Date
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: lastUpdateKey)
+        }
+    }
+    
+    init() {
+        checkForDailyReset()
+    }
+    
+    func checkForDailyReset() {
+        let calendar = Calendar.current
+        if var lastUpdate = lastUpdate, !calendar.isDateInToday(lastUpdate) {
+            todayWaterIntake = 0
+            let coreDataManager = CoreDataManager()
+            coreDataManager.deleteAllDrinks()
+            lastUpdate = Date()
+        } else if lastUpdate == nil {
+            lastUpdate = Date()
+        }
+    }
+    
+    
     @Published var currentGrowingPlant: Plant? {
         didSet {
             updateProgress()
@@ -48,16 +77,16 @@ class TrackerViewModel: ObservableObject {
     
     func checkStage(plant: Plant) -> String {
         
-            switch (Double(plant.currentFillness) / Double(plant.totalToGrow)) {
-            case 0...0.25:
-                return "seed"
-            case 0.26...0.70:
-                return "sprout"
-            case 0.71...0.99:
-                return "teen"
-            default:
-                return "adult"
-            }
+        switch (Double(plant.currentFillness) / Double(plant.totalToGrow)) {
+        case 0...0.25:
+            return "seed"
+        case 0.26...0.70:
+            return "sprout"
+        case 0.71...0.99:
+            return "teen"
+        default:
+            return "adult"
+        }
     }
     
     func greetingBasedOnTime() -> String {

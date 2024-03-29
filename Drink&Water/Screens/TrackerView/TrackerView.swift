@@ -27,6 +27,8 @@ struct TrackerView: View {
                             .foregroundStyle(.white)
                             .multilineTextAlignment(.leading)
                             .frame(width: 353, height: 26, alignment: .leading)
+                            .padding(.top, 20)
+                            .padding(.bottom, 10)
                         
                         Text("\(viewModel.greetingBasedOnTime()), \(viewModel.name)")
                             .font(.system(size: 24, weight: .bold))

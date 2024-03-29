@@ -22,7 +22,7 @@ class NotificationManager {
         print("Notofication removed successfully")
     }
     
-    func scheduleDailyNotification(hour: Int, minute: Int, identifier: String, title: String = "Reminder", body: String = "It's time!") {
+    func scheduleDailyNotification(hour: Int, minute: Int, identifier: String, title: String = "Drink&Water", body: String = "It's time!") {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body

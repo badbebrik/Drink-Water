@@ -33,6 +33,7 @@
 		1D7BE89F2BB4E49C004D383A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */; };
 		1D7BE8A12BB4E670004D383A /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE8A02BB4E670004D383A /* NotificationModel.swift */; };
 		1D7BE8A32BB4E6E9004D383A /* AddNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE8A22BB4E6E9004D383A /* AddNotificationView.swift */; };
+		1D7BE8A52BB661AA004D383A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE8A42BB661AA004D383A /* HealthKitManager.swift */; };
 		1D8317B92B867497009DF17F /* PlantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317B82B867497009DF17F /* PlantsView.swift */; };
 		1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317BA2B86749E009DF17F /* ShopView.swift */; };
 		1D8317BD2B8674A6009DF17F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317BC2B8674A6009DF17F /* SettingsView.swift */; };
@@ -80,6 +81,8 @@
 		1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		1D7BE8A02BB4E670004D383A /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		1D7BE8A22BB4E6E9004D383A /* AddNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotificationView.swift; sourceTree = "<group>"; };
+		1D7BE8A42BB661AA004D383A /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		1D7BE8A62BB6624D004D383A /* Drink&Water.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Drink&Water.entitlements"; sourceTree = "<group>"; };
 		1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkWaterTabView.swift; sourceTree = "<group>"; };
 		1D8317B82B867497009DF17F /* PlantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsView.swift; sourceTree = "<group>"; };
 		1D8317BA2B86749E009DF17F /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 		1D56E72F2B83799000311C6F /* Drink&Water */ = {
 			isa = PBXGroup;
 			children = (
+				1D7BE8A62BB6624D004D383A /* Drink&Water.entitlements */,
 				1DA40DF72BA21AC500921ADF /* Utilities */,
 				1D2420132B91C0EA00B4E08D /* Drink-Water-Info.plist */,
 				1D1132452B8FAA2100CF6752 /* Models */,
@@ -275,6 +279,7 @@
 				1D1D51C32BA45BE600DEF6B9 /* ImagePicker.swift */,
 				1D7BE89C2BB3C755004D383A /* FileManagerService.swift */,
 				1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */,
+				1D7BE8A42BB661AA004D383A /* HealthKitManager.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				1DA40DE52BA0A80800921ADF /* OnboardingView.swift in Sources */,
 				1D8317B92B867497009DF17F /* PlantsView.swift in Sources */,
 				1DA40DEF2BA14EF300921ADF /* DrinkAddView.swift in Sources */,
+				1D7BE8A52BB661AA004D383A /* HealthKitManager.swift in Sources */,
 				1DA40DE22BA0A53300921ADF /* CoreDataManager.swift in Sources */,
 				1D56E7332B83799000311C6F /* ContentView.swift in Sources */,
 				1D1D51D02BA4616500DEF6B9 /* PlantsViewModel.swift in Sources */,
@@ -556,6 +562,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Drink&Water/Drink&Water.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Drink&Water/Preview Content\"";
@@ -563,6 +570,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Drink-Water-Info.plist";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Please give us access to add drinks in Apple Health app";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To show the office location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -586,6 +594,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Drink&Water/Drink&Water.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Drink&Water/Preview Content\"";
@@ -593,6 +602,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Drink-Water-Info.plist";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Please give us access to add drinks in Apple Health app";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To show the office location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

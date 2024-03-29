@@ -29,7 +29,7 @@ struct AddNotificationView: View {
                 
                 NotificationManager.shared.requestAuthorization()
                 
-                NotificationManager.shared.scheduleDailyNotification(hour: hour, minute: minute, identifier: identifier)
+                NotificationManager.shared.scheduleDailyNotification(hour: hour, minute: minute, identifier: identifier, body: notificationText)
                 
                 let notification = NotificationModel(id: UUID(), hour: hour, minute: minute, text: notificationText)
                 viewModel.coreDataManager.saveNotification(notificationModel: notification)

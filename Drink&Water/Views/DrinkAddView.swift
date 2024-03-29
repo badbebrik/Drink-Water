@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-import Foundation
-
-
 struct DrinkAddView: View {
     let drinks: [Drink] = [
         Drink(id: UUID(), name: "Water", imageName: "water", volume: 0, coefficient: 1),
@@ -94,6 +91,7 @@ struct DrinkAddView: View {
             .scrollIndicators(.hidden)
             
             Button(action: {
+                HealthKitManager.shared.requestHealthKitAuthorization()
                 let coreDataManager = CoreDataManager()
                 
                 if var selectedDrink = selectedDrink {
@@ -122,6 +120,8 @@ struct DrinkAddView: View {
                 }
                 
                 coreDataManager.updateTodayWaterIntake(Double(trackerViewModel.todayWaterIntake))
+                
+                HealthKitManager.shared.addDrinkToHealthKit(volume: Double(selectedVolume ?? 0), coefficient: selectedDrink?.coefficient ?? 1)
                 
                 trackerViewModel.fetchData()
                 isShowingDetail = false
