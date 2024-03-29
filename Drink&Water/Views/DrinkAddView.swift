@@ -95,14 +95,20 @@ struct DrinkAddView: View {
                     addDrink(selectedDrink)
                     coreDataManager.saveDrink(selectedDrink)
                 }
-                if let plants = coreDataManager.getAllPlants() {
-                    var firstPlant = plants.first(where: { $0.currentFillness < $0.totalToGrow })
-                    firstPlant?.currentFillness += selectedVolume ?? 0
-                   
-                    coreDataManager.updateFirstPlantCurrentFillness(newFillness: firstPlant?.currentFillness ?? 0)
+                if var currentPlant = trackerViewModel.currentGrowingPlant {
+                    if trackerViewModel.checkStage(plant: currentPlant) != "adult" {
+                        currentPlant.currentFillness += selectedVolume ?? 0
+                        coreDataManager.updateFirstPlantCurrentFillness(newFillness: currentPlant.currentFillness )
+                        
+                        if trackerViewModel.checkStage(plant: currentPlant) == "adult" {
+                            coreDataManager.addBalance(Int32(1.5 * Double(currentPlant.price)))
+                        }
+                    }
                     
                 }
+                
                 coreDataManager.updateTodayWaterIntake(Double(trackerViewModel.todayWaterIntake))
+                
                 trackerViewModel.fetchData()
                 isShowingDetail = false
                 

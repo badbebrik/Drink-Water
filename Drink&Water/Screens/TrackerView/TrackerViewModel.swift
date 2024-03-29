@@ -37,7 +37,7 @@ class TrackerViewModel: ObservableObject {
         name = user?.name ?? ""
         todayDrinks = coreDataManager.getAllDrinks() ?? []
         if let plants = coreDataManager.getAllPlants() {
-            let firstPlant = plants.first(where: { $0.currentFillness < $0.totalToGrow })
+            let firstPlant = plants.last
             currentGrowingPlant = firstPlant
         }
         
@@ -46,9 +46,9 @@ class TrackerViewModel: ObservableObject {
         progressDrop = todayWaterIntake / dailyWaterIntakeGoal
     }
     
-    func checkStage() -> String {
-        if let currentGrowingPlant = currentGrowingPlant {
-            switch (Double(currentGrowingPlant.currentFillness) / Double(currentGrowingPlant.totalToGrow)) {
+    func checkStage(plant: Plant) -> String {
+        
+            switch (Double(plant.currentFillness) / Double(plant.totalToGrow)) {
             case 0...0.25:
                 return "seed"
             case 0.26...0.70:
@@ -58,8 +58,6 @@ class TrackerViewModel: ObservableObject {
             default:
                 return "adult"
             }
-        }
-        return ""
     }
     
     func greetingBasedOnTime() -> String {

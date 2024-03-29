@@ -14,7 +14,6 @@ struct ContentView: View {
     
     var body: some View {
         if coreDataManager.isUserRegistered() {
-            let user = coreDataManager.getUserData()!
             DrinkWaterTabView()
         } else {
             OnboardingView()

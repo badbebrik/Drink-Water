@@ -319,6 +319,20 @@ extension CoreDataManager {
         
     }
     
+    func addBalance(_ balanceToAdd: Int32) {
+        let managedContext = persistentContainer.viewContext
+        if let user = getUserData() {
+            user.balance += balanceToAdd
+            
+            do {
+                try managedContext.save()
+                print("Successfully updated user profile image path.")
+            } catch {
+                print("Failed to update user profile image path: \(error)")
+            }
+        }
+    }
+    
     func getAllNotifications() -> [NotificationModel] {
         let fetchRequest: NSFetchRequest<NotificationEntity> = NotificationEntity.fetchRequest()
         do {

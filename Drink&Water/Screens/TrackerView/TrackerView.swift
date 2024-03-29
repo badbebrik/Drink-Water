@@ -153,7 +153,7 @@ struct TrackerView: View {
                                     .foregroundColor(.clear)
                                     .frame(width: 100, height: 100)
                                     .background(
-                                        PlantView(plant: currentPlant, plantImageName: currentPlant.name  + " " + viewModel.checkStage())
+                                        PlantView(plant: currentPlant, plantImageName: currentPlant.name  + " " + viewModel.checkStage(plant: currentPlant))
                                     )
                                 
                                 CircularProgressView(progress: Double(currentPlant.currentFillness) / Double( currentPlant.totalToGrow))
