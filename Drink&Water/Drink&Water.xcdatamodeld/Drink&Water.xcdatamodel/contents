@@ -6,6 +6,12 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="volume" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="NotificationEntity" representedClassName="NotificationEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="hour" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="minute" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="PlantEntity" representedClassName="PlantEntity" syncable="YES" codeGenerationType="class">
         <attribute name="currentFillness" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="finishGrowDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

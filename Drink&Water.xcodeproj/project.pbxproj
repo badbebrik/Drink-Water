@@ -30,6 +30,9 @@
 		1D56E7352B83799200311C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7342B83799200311C6F /* Assets.xcassets */; };
 		1D56E7382B83799200311C6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7372B83799200311C6F /* Preview Assets.xcassets */; };
 		1D7BE89D2BB3C755004D383A /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE89C2BB3C755004D383A /* FileManagerService.swift */; };
+		1D7BE89F2BB4E49C004D383A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */; };
+		1D7BE8A12BB4E670004D383A /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE8A02BB4E670004D383A /* NotificationModel.swift */; };
+		1D7BE8A32BB4E6E9004D383A /* AddNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE8A22BB4E6E9004D383A /* AddNotificationView.swift */; };
 		1D8317B92B867497009DF17F /* PlantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317B82B867497009DF17F /* PlantsView.swift */; };
 		1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317BA2B86749E009DF17F /* ShopView.swift */; };
 		1D8317BD2B8674A6009DF17F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8317BC2B8674A6009DF17F /* SettingsView.swift */; };
@@ -74,6 +77,9 @@
 		1D56E7342B83799200311C6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D56E7372B83799200311C6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1D7BE89C2BB3C755004D383A /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
+		1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		1D7BE8A02BB4E670004D383A /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		1D7BE8A22BB4E6E9004D383A /* AddNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotificationView.swift; sourceTree = "<group>"; };
 		1D8317B12B867428009DF17F /* DrinkWaterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkWaterTabView.swift; sourceTree = "<group>"; };
 		1D8317B82B867497009DF17F /* PlantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsView.swift; sourceTree = "<group>"; };
 		1D8317BA2B86749E009DF17F /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
@@ -111,6 +117,7 @@
 				1D1132462B8FAA3B00CF6752 /* Plant.swift */,
 				1DA40DE62BA0A82600921ADF /* OnboardingStep.swift */,
 				1DA40DF02BA1508900921ADF /* Drink.swift */,
+				1D7BE8A02BB4E670004D383A /* NotificationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 				1D1132482B8FAAF400CF6752 /* PlantView.swift */,
 				1DA40DEE2BA14EF300921ADF /* DrinkAddView.swift */,
 				1D1D51BF2BA3CCA400DEF6B9 /* PlantShopView.swift */,
+				1D7BE8A22BB4E6E9004D383A /* AddNotificationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,6 +274,7 @@
 				1D91C3B62BA2864300FB627C /* DailyWaterIntakeHandler.swift */,
 				1D1D51C32BA45BE600DEF6B9 /* ImagePicker.swift */,
 				1D7BE89C2BB3C755004D383A /* FileManagerService.swift */,
+				1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -386,6 +395,7 @@
 				1D1D51CA2BA45F4A00DEF6B9 /* AppTheme.swift in Sources */,
 				1D1D51C02BA3CCA400DEF6B9 /* PlantShopView.swift in Sources */,
 				1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */,
+				1D7BE8A12BB4E670004D383A /* NotificationModel.swift in Sources */,
 				1D1D51CC2BA45F7B00DEF6B9 /* AppLanguage.swift in Sources */,
 				1D1D51D42BA462DC00DEF6B9 /* TrackerViewModel.swift in Sources */,
 				1DA40DE52BA0A80800921ADF /* OnboardingView.swift in Sources */,
@@ -399,6 +409,7 @@
 				1D1D51C42BA45BE600DEF6B9 /* ImagePicker.swift in Sources */,
 				1DA40DF42BA1F13B00921ADF /* CircularProgressView.swift in Sources */,
 				1D1D51D22BA4619F00DEF6B9 /* OnboardingViewModel.swift in Sources */,
+				1D7BE8A32BB4E6E9004D383A /* AddNotificationView.swift in Sources */,
 				1D8317C12B8674B9009DF17F /* TrackerView.swift in Sources */,
 				1D8317BD2B8674A6009DF17F /* SettingsView.swift in Sources */,
 				1D1D51D92BA4639F00DEF6B9 /* MaskedImageModifier.swift in Sources */,
@@ -411,6 +422,7 @@
 				1D1D51D72BA4636F00DEF6B9 /* CircleOverlayModifier.swift in Sources */,
 				1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */,
 				1D1132472B8FAA3B00CF6752 /* Plant.swift in Sources */,
+				1D7BE89F2BB4E49C004D383A /* NotificationManager.swift in Sources */,
 				1DA40DF12BA1508900921ADF /* Drink.swift in Sources */,
 				1D56E7312B83799000311C6F /* Drink_WaterApp.swift in Sources */,
 				1D1D51C82BA45F2B00DEF6B9 /* SettingsViewModel.swift in Sources */,

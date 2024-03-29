@@ -12,6 +12,7 @@ class SettingsViewModel: ObservableObject {
     @Published var isDeleteAccountAlertPresented = false
     @Published var isResetAccountAlertPresented = false
     @Published var isShowingAboutPage = false
+    @Published var notifications: [NotificationModel] = []
 
     
     let coreDataManager: CoreDataManager
@@ -24,6 +25,8 @@ class SettingsViewModel: ObservableObject {
         coreDataManager.deleteUser()
         coreDataManager.deleteAllDrinks()
         coreDataManager.deleteAllPlants()
+        coreDataManager.deleteAllNotifications()
+        
     }
     
     func resetProgress() {
@@ -31,5 +34,9 @@ class SettingsViewModel: ObservableObject {
         coreDataManager.deleteAllPlants()
         coreDataManager.updateTodayWaterIntake(0)
         coreDataManager.updateBalance(100)
+    }
+    
+    func fetchNotifications() {
+        notifications = coreDataManager.getAllNotifications()
     }
 }

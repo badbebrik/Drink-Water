@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UserNotifications
 
 class CoreDataManager {
     let persistentContainer: NSPersistentContainer
@@ -268,14 +269,14 @@ extension CoreDataManager {
     
     func updateUserProfileImagePath(_ fileName: String) {
         let managedContext = persistentContainer.viewContext
-
+        
         if let user = getUserData() {
             if let oldFileName = user.profileImagePath, !oldFileName.isEmpty {
                 FileManagerService.shared.deleteImageFromFileSystem(fileName: oldFileName)
             }
-
+            
             user.profileImagePath = fileName
-
+            
             do {
                 try managedContext.save()
                 print("Successfully updated user profile image path.")
@@ -291,7 +292,7 @@ extension CoreDataManager {
         let managedContext = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<DrinkEntity> = DrinkEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-
+        
         do {
             let drinks = try managedContext.fetch(fetchRequest)
             if let drinkToDelete = drinks.first {
@@ -317,7 +318,69 @@ extension CoreDataManager {
         }
         
     }
- 
+    
+    func getAllNotifications() -> [NotificationModel] {
+        let fetchRequest: NSFetchRequest<NotificationEntity> = NotificationEntity.fetchRequest()
+        do {
+            let notificationEntities = try persistentContainer.viewContext.fetch(fetchRequest)
+            return notificationEntities.map { entity in
+                
+                return NotificationModel(id: entity.id!, hour: Int(entity.hour), minute: Int(entity.minute), text: entity.text!)
+            }
+        } catch let error as NSError {
+            print("Не удалось получить данные \(error), \(error.userInfo)")
+            return []
+        }
+    }
+    
+    func saveNotification(notificationModel: NotificationModel) {
+        let context = persistentContainer.viewContext
+        let notificationEntity = NotificationEntity(context: context)
+        
+        notificationEntity.id = notificationModel.id
+        notificationEntity.hour = Int32(notificationModel.hour)
+        notificationEntity.minute = Int32(notificationModel.minute)
+        notificationEntity.text = notificationModel.text
+        
+        do {
+            try context.save()
+            print("Уведомление успешно сохранено.")
+        } catch {
+            print("Ошибка при сохранении уведомления: \(error.localizedDescription)")
+        }
+    }
+    
+    func deleteNotification(id: UUID) {
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NotificationEntity> = NotificationEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let notificationToDelete = results.first {
+                context.delete(notificationToDelete)
+                NotificationManager.shared.removeNotification(id: id)
+                try context.save()
+                print("Уведомление успешно удалено.")
+            }
+        } catch {
+            print("Ошибка при удалении уведомления: \(error.localizedDescription)")
+        }
+    }
+    
+    func deleteAllNotifications() {
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NotificationEntity.fetchRequest()
+        
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
+        do {
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            try context.execute(deleteRequest)
+            print("Все уведомления успешно удалены.")
+        } catch {
+            print("Ошибка при удалении всех уведомлений: \(error.localizedDescription)")
+        }
+    }
     
 }

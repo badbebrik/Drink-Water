@@ -11,6 +11,7 @@ struct SettingsView: View {
     
     @StateObject var viewModel = SettingsViewModel()
     @State private var isShowingContentView = false
+    @State private var showingAddNotificationView = false
     
     var body: some View {
         ZStack {
@@ -36,7 +37,31 @@ struct SettingsView: View {
                     }
                     
                     Section(header: Text("Notifications")) {
-                        Text("There will be added Notifications soon")
+                        
+                        List {
+                            ForEach(viewModel.notifications, id: \.id) { notification in
+                                NotificationCell(notification: notification, onDelete: { id in
+                                    viewModel.coreDataManager.deleteNotification(id: id)
+                                    viewModel.fetchNotifications()
+                                })
+                            }
+                            
+                            Button(action: {
+                                showingAddNotificationView = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "plus.circle.fill")
+                                    Text("Add Notification")
+                                }
+                            }
+                            .foregroundColor(.blue)
+                        }
+                        .sheet(isPresented: $showingAddNotificationView) {
+                            AddNotificationView(viewModel: viewModel)
+                        }
+                        .onAppear {
+                            viewModel.fetchNotifications()
+                        }
                     }
                     
                     Section(header: Text("Account")) {
@@ -51,9 +76,9 @@ struct SettingsView: View {
                                   message: Text("Deleting your account will erase all your data. This action cannot be undone."),
                                   primaryButton: .cancel(Text("Cancel")),
                                   secondaryButton: .destructive(Text("Delete"), action: {
-                                    viewModel.deleteAccount()
-                                    isShowingContentView = true
-                                    
+                                viewModel.deleteAccount()
+                                isShowingContentView = true
+                                
                             }))
                         }
                         
@@ -68,7 +93,7 @@ struct SettingsView: View {
                                   message: Text("Resetting your progress will empty your plants gallery and water intake activity."),
                                   primaryButton: .cancel(Text("Cancel")),
                                   secondaryButton: .destructive(Text("Reset progress"), action: {
-                                    viewModel.resetProgress()
+                                viewModel.resetProgress()
                             }))
                         }
                     }
@@ -84,13 +109,53 @@ struct SettingsView: View {
                         }
                     }
                 }
+                
+                
             }
         }
         .fullScreenCover(isPresented: $isShowingContentView) {
-                    ContentView()
-                }
+            ContentView()
+        }
+    }
+    
+}
+
+
+
+struct NotificationCell: View {
+    var notification: NotificationModel
+    var onDelete: (UUID) -> Void
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(notification.text)
+                    .font(.headline)
+                Text("\(notification.hour):\(notification.minute)")
+                    .font(.caption)
+                
+            }
+            
+            Spacer()
+
+            Button(action: { self.onDelete(notification.id) }) {
+                Image(systemName: "xmark.circle")
+                    .foregroundColor(.red)
+            }
+            
+        }
+        .padding()
     }
 }
+
+
+private let itemFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .none
+    formatter.timeStyle = .short
+    return formatter
+}()
+
 
 
 #Preview {

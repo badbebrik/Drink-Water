@@ -7,6 +7,16 @@
     "%@" : {
 
     },
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
     "%d" : {
 
     },
@@ -15,6 +25,16 @@
     },
     "%lld ml" : {
 
+    },
+    "%lld:%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld:%2$lld"
+          }
+        }
+      }
     },
     "%lld/%lld ml" : {
       "localizations" : {
@@ -54,6 +74,9 @@
 
     },
     "Activity Mode" : {
+
+    },
+    "Add Notification" : {
 
     },
     "Are you sure you want to delete this drink?" : {
@@ -125,9 +148,6 @@
     "Gender" : {
 
     },
-    "Good Morning, %@" : {
-
-    },
     "Height (m)" : {
 
     },
@@ -153,6 +173,9 @@
 
     },
     "No plant currently growing.\nBuy a plant in the shop!" : {
+
+    },
+    "Notification Text" : {
 
     },
     "Notifications" : {
@@ -221,6 +244,9 @@
     "Select Image" : {
 
     },
+    "Select Time" : {
+
+    },
     "Server Error" : {
 
     },
@@ -243,9 +269,6 @@
 
     },
     "There was an issue connecting to the server. If this persists, please contact support." : {
-
-    },
-    "There will be added Notifications soon" : {
 
     },
     "Today Goal:" : {

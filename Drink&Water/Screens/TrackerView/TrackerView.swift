@@ -28,7 +28,7 @@ struct TrackerView: View {
                             .multilineTextAlignment(.leading)
                             .frame(width: 353, height: 26, alignment: .leading)
                         
-                        Text("Good Morning, \(viewModel.name)")
+                        Text("\(viewModel.greetingBasedOnTime()), \(viewModel.name)")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundStyle(.black)
                             .multilineTextAlignment(.leading)
@@ -225,8 +225,10 @@ struct TrackerView: View {
                                 message: Text("Are you sure you want to delete this drink?"),
                                 primaryButton: .destructive(Text("Delete")) {
                                     if let drinkToDelete = viewModel.drinkToDelete {
+                                        viewModel.todayWaterIntake -= Double(drinkToDelete.volume)
                                         let coreDataManager = CoreDataManager()
                                         coreDataManager.deleteDrink(id: drinkToDelete.id)
+                                        coreDataManager.updateTodayWaterIntake(viewModel.todayWaterIntake)
                                         viewModel.fetchData()
                                     }
                                 },
