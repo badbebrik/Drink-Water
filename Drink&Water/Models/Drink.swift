@@ -13,4 +13,5 @@ struct Drink: Hashable, Equatable  {
     let name: String
     let imageName: String
     var volume: Int
+    let coefficient: Double
 }

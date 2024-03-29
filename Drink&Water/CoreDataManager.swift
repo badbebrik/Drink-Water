@@ -148,7 +148,7 @@ class CoreDataManager {
         drinkToAdd.volume = Int32(drink.volume)
         drinkToAdd.imageName = drink.imageName
         drinkToAdd.id = drink.id
-        
+        drinkToAdd.liquidCoefficient = drink.coefficient
         
         do {
             try managedContext.save()
@@ -168,7 +168,7 @@ class CoreDataManager {
                 let drink = Drink(id: entity.id ?? UUID(),
                                   name: entity.name ?? "",
                                   imageName: entity.imageName ?? "",
-                                  volume: Int(entity.volume))
+                                  volume: Int(entity.volume), coefficient: entity.liquidCoefficient)
                 drinks.append(drink)
             }
             return drinks

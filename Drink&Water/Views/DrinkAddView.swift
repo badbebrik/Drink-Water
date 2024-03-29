@@ -12,9 +12,16 @@ import Foundation
 
 struct DrinkAddView: View {
     let drinks: [Drink] = [
-        Drink(id: UUID(), name: "Water", imageName: "water 2", volume: 0),
-        Drink(id: UUID(), name: "Coffee", imageName: "coffee", volume: 0),
-        Drink(id: UUID(), name: "Tea", imageName: "tea", volume: 0),
+        Drink(id: UUID(), name: "Water", imageName: "water", volume: 0, coefficient: 1),
+        Drink(id: UUID(), name: "Coffee", imageName: "coffee", volume: 0, coefficient: 0.7),
+        Drink(id: UUID(), name: "Tea", imageName: "tea", volume: 0, coefficient: 1),
+        Drink(id: UUID(), name: "Milk", imageName: "milk", volume: 0, coefficient: 1),
+        Drink(id: UUID(), name: "Juice", imageName: "juice", volume: 0, coefficient: 0.8),
+        Drink(id: UUID(), name: "Soda", imageName: "soda", volume: 0, coefficient: 0.9),
+        Drink(id: UUID(), name: "Beer", imageName: "beer", volume: 0, coefficient: 0.5),
+        Drink(id: UUID(), name: "Wine", imageName: "wine", volume: 0, coefficient: 0.6),
+        Drink(id: UUID(), name: "Champagn", imageName: "champagn", volume: 0, coefficient: 0.6),
+        
     ]
     
     func addDrink(_ drink: Drink) {
@@ -88,16 +95,23 @@ struct DrinkAddView: View {
             
             Button(action: {
                 let coreDataManager = CoreDataManager()
-                trackerViewModel.todayWaterIntake += Double(selectedVolume ?? 0)
-                trackerViewModel.progressDrop = Double(trackerViewModel.todayWaterIntake) / trackerViewModel.dailyWaterIntakeGoal
-                selectedDrink?.volume = selectedVolume ?? 0
-                if let selectedDrink = selectedDrink {
+                
+                if var selectedDrink = selectedDrink {
+                    trackerViewModel.todayWaterIntake += Double(Double(selectedVolume ?? 0) * selectedDrink.coefficient)
+                    trackerViewModel.progressDrop = Double(trackerViewModel.todayWaterIntake) / trackerViewModel.dailyWaterIntakeGoal
+                    if let selectedVolume = selectedVolume {
+                        let volume = Double(selectedVolume)
+                        let totalVolume = volume * (selectedDrink.coefficient)
+                        selectedDrink.volume = Int(totalVolume)
+                    } else {
+                        selectedDrink.volume = 0
+                    }
                     addDrink(selectedDrink)
                     coreDataManager.saveDrink(selectedDrink)
                 }
                 if var currentPlant = trackerViewModel.currentGrowingPlant {
                     if trackerViewModel.checkStage(plant: currentPlant) != "adult" {
-                        currentPlant.currentFillness += selectedVolume ?? 0
+                        currentPlant.currentFillness += Int(Double(selectedVolume ?? 0) * (selectedDrink?.coefficient ?? 1)) 
                         coreDataManager.updateFirstPlantCurrentFillness(newFillness: currentPlant.currentFillness )
                         
                         if trackerViewModel.checkStage(plant: currentPlant) == "adult" {
