@@ -35,7 +35,7 @@ struct PlantShopView: View {
                         .resizable()
                         .frame(width: 40, height: 40)
                 }
-                .frame(width: 100, height: 50)
+                .frame(width: 125, height: 50)
                 .background(shopViewModel.balance < Int32(plant.price) ? Color.gray : Color.green)
                 .cornerRadius(20)
             }

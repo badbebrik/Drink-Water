@@ -17,6 +17,7 @@ struct TrackerView: View {
     var body: some View {
         ZStack {
             Color("BrandBlue")
+                .opacity(0.7)
                 .ignoresSafeArea()
             
             ScrollView(.vertical, showsIndicators: false) {
@@ -71,21 +72,21 @@ struct TrackerView: View {
                                         let size = proxy.size
                                         
                                         ZStack {
-                                
+                                            
                                             if viewModel.isAnimating {
-                                    
+                                                
                                                 WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
                                                     .fill(Color.blue)
                                                     .modifier(MaskedImageModifier())
                                                     .modifier(CircleOverlayModifier())
                                                 
                                             } else {
-                                            
+                                                
                                                 WaterWave(progress: viewModel.progressDrop, waveHeight: 0.05, offset: viewModel.startAnimation)
                                                     .fill(Color.blue)
                                                     .modifier(MaskedImageModifier())
                                                     .modifier(CircleOverlayModifier())
-                                
+                                                
                                             }
                                         }
                                         .frame(width: size.width, height: size.height, alignment: .center)
@@ -189,25 +190,25 @@ struct TrackerView: View {
                                     .fill(Color.white)
                                     .shadow(radius: 5)
                                     .frame(width: 353)
-
+                                
                                 HStack {
                                     Image(drink.imageName)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 50, height: 50)
                                         .cornerRadius(10)
-
+                                    
                                     VStack(alignment: .leading) {
                                         Text(drink.name)
                                             .font(.headline)
-
+                                        
                                         Text("\(drink.volume) ml")
                                             .font(.subheadline)
                                     }
                                     .padding(.leading)
-
+                                    
                                     Spacer()
-
+                                    
                                     Button(action: {
                                         self.viewModel.drinkToDelete = drink
                                         self.showingDeleteAlert = true
@@ -231,13 +232,17 @@ struct TrackerView: View {
                                         let coreDataManager = CoreDataManager()
                                         coreDataManager.deleteDrink(id: drinkToDelete.id)
                                         coreDataManager.updateTodayWaterIntake(viewModel.todayWaterIntake)
-                                        viewModel.fetchData()
+                                        if (((viewModel.currentGrowingPlant?.currentFillness ?? 0) - drinkToDelete.volume) > 0) {
+                                            viewModel.currentGrowingPlant?.currentFillness -= drinkToDelete.volume
+                                            coreDataManager.updateFirstPlantCurrentFillness(newFillness: viewModel.currentGrowingPlant?.currentFillness ?? 0)
+                                        }
+                                            viewModel.fetchData()
                                     }
                                 },
                                 secondaryButton: .cancel()
                             )
                         }
-
+                        
                     }
                 }
             }

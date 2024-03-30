@@ -10,7 +10,10 @@ import SwiftUI
 struct ShopView: View {
     @StateObject var viewModel: ShopViewModel
     
-    let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    let columns: [GridItem] = [
+            GridItem(.flexible(minimum: 100, maximum: 300)),
+            GridItem(.flexible(minimum: 100, maximum: 300))
+        ]
     
     var body: some View {
         ZStack {
@@ -51,9 +54,11 @@ struct ShopView: View {
                         ForEach(viewModel.plantsToBuy, id: \.name) { plant in
                             PlantShopView(shopViewModel: viewModel, plant: plant)
                                 .padding()
+                                .frame(width: 150) 
                                 .background(Color.white)
                                 .cornerRadius(10)
                                 .shadow(radius: 5)
+
                         }
                         .padding()
                     }
