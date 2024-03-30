@@ -31,6 +31,7 @@ class TrackerViewModel: ObservableObject {
     }
     
     init() {
+        lastUpdate = Date()
         checkForDailyReset()
     }
     
@@ -40,6 +41,7 @@ class TrackerViewModel: ObservableObject {
             todayWaterIntake = 0
             let coreDataManager = CoreDataManager()
             coreDataManager.deleteAllDrinks()
+            coreDataManager.updateTodayWaterIntake(0)
             lastUpdate = Date()
         } else if lastUpdate == nil {
             lastUpdate = Date()
@@ -93,13 +95,13 @@ class TrackerViewModel: ObservableObject {
         let hour = Calendar.current.component(.hour, from: Date())
         switch hour {
         case 6..<12:
-            return "Good Morning"
+            return NSLocalizedString("Good Morning", comment: "Morning Greeting")
         case 12..<17:
-            return "Good Afternoon"
+            return NSLocalizedString("Good Afternoon", comment: "Afternoon Greeting")
         case 17..<22:
-            return "Good Evening"
+            return NSLocalizedString("Good Evening", comment: "Evening Greeting")
         default:
-            return "Good Night"
+            return NSLocalizedString("Good Night", comment: "Night Greeting")
         }
     }
 }

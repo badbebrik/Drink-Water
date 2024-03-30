@@ -12,6 +12,12 @@ struct SettingsView: View {
     @StateObject var viewModel = SettingsViewModel()
     @State private var isShowingContentView = false
     @State private var showingAddNotificationView = false
+    @State private var showRestartAlert = false
+    
+    func saveLanguageSelection(language: Language) {
+        UserDefaults.standard.set(language.rawValue, forKey: "SelectedLanguage")
+            showRestartAlert = true
+        }
     
     var body: some View {
         ZStack {
@@ -36,6 +42,17 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                        Button("Сохранить выбор языка") {
+                            saveLanguageSelection(language: viewModel.selectedLanguage)
+                                    showRestartAlert = true
+                                }
+                                .alert(isPresented: $showRestartAlert) {
+                                    Alert(
+                                        title: Text("Restart Required"),
+                                        message: Text("Please restart the app to apply the language change."),
+                                        dismissButton: .default(Text("OK"))
+                                    )
+                                }
                     }
                     
                     Section(header: Text("Notifications")) {
@@ -115,6 +132,10 @@ struct SettingsView: View {
                 
             }
         }
+        .onAppear() {
+            let languageCode = UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"
+            viewModel.selectedLanguage = Language(rawValue: languageCode) ?? .eng
+        }
         .fullScreenCover(isPresented: $isShowingContentView) {
             ContentView()
         }
@@ -139,7 +160,7 @@ struct NotificationCell: View {
             }
             
             Spacer()
-
+            
             Button(action: { self.onDelete(notification.id) }) {
                 Image(systemName: "xmark.circle")
                     .foregroundColor(.red)
@@ -148,7 +169,10 @@ struct NotificationCell: View {
         }
         .padding()
     }
+    
 }
+
+
 
 
 private let itemFormatter: DateFormatter = {

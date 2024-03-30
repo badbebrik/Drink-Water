@@ -8,6 +8,6 @@
 import Foundation
 
 enum Language: String, CaseIterable {
-    case ru = "🇷🇺Russian"
-    case eng = "🇺🇸English"
+    case ru = "ru"
+    case eng = "eng"
 }

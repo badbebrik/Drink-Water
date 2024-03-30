@@ -39,4 +39,5 @@ class SettingsViewModel: ObservableObject {
     func fetchNotifications() {
         notifications = coreDataManager.getAllNotifications()
     }
+    
 }

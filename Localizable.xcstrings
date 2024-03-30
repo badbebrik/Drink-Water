@@ -2,10 +2,24 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%@, %@" : {
       "localizations" : {
@@ -14,23 +28,56 @@
             "state" : "new",
             "value" : "%1$@, %2$@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
         }
       }
     },
     "%d" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d"
+          }
+        }
+      }
     },
     "%lld" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%lld ml" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld мл"
+          }
+        }
+      }
     },
     "%lld:%lld" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "%1$lld:%2$lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "%1$lld:%2$lld"
           }
         }
@@ -43,26 +90,74 @@
             "state" : "new",
             "value" : "%1$lld/%2$lld ml"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld/%2$lld мл"
+          }
         }
       }
     },
     "%lld%%" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        }
+      }
     },
     "%lldml" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldмл"
+          }
+        }
+      }
     },
     "20" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20"
+          }
+        }
+      }
     },
     "100" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100"
+          }
+        }
+      }
     },
     "240" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "240"
+          }
+        }
+      }
     },
     "300" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "300"
+          }
+        }
+      }
     },
     "About" : {
       "localizations" : {
@@ -271,7 +366,14 @@
 
     },
     "Empty Fields" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поля не заполнены"
+          }
+        }
+      }
     },
     "Enter height (cm)" : {
       "localizations" : {
@@ -303,6 +405,17 @@
         }
       }
     },
+    "Female" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Женщина"
+          }
+        }
+      }
+    },
     "First Name" : {
       "localizations" : {
         "ru" : {
@@ -323,6 +436,50 @@
         }
       }
     },
+    "Good Afternoon" : {
+      "comment" : "Afternoon Greeting",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добрый день"
+          }
+        }
+      }
+    },
+    "Good Evening" : {
+      "comment" : "Evening Greeting",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добрый вечер"
+          }
+        }
+      }
+    },
+    "Good Morning" : {
+      "comment" : "Morning Greeting",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доброе утро"
+          }
+        }
+      }
+    },
+    "Good Night" : {
+      "comment" : "Night Greeting",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доброй ночи"
+          }
+        }
+      }
+    },
     "Height (m)" : {
       "localizations" : {
         "ru" : {
@@ -339,6 +496,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Рост:"
+          }
+        }
+      }
+    },
+    "High" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Высокая"
           }
         }
       }
@@ -368,6 +536,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Фамилия"
+          }
+        }
+      }
+    },
+    "Low" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Низкая"
+          }
+        }
+      }
+    },
+    "Male" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мужчина"
+          }
+        }
+      }
+    },
+    "Medium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средняя"
           }
         }
       }
@@ -436,7 +637,14 @@
       }
     },
     "Phone number: %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Телефон: %@"
+          }
+        }
+      }
     },
     "Physical Information" : {
       "localizations" : {
@@ -449,7 +657,14 @@
       }
     },
     "Plant" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Галерея"
+          }
+        }
+      }
     },
     "Please ensure that all fields in the form have been filled out." : {
 
@@ -466,6 +681,9 @@
           }
         }
       }
+    },
+    "Please restart the app to apply the language change." : {
+
     },
     "Profile Error" : {
 
@@ -539,6 +757,9 @@
           }
         }
       }
+    },
+    "Restart Required" : {
+
     },
     "Save" : {
       "localizations" : {
@@ -732,6 +953,12 @@
             "state" : "new",
             "value" : "You have successfully purchased the %1$@. To grow it, you need to drink %2$lld milliliters of water."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Успешная покупка %1$@. Для выращивания понадобится выпить %2$lld миллилитров."
+          }
         }
       }
     },
@@ -764,6 +991,9 @@
           }
         }
       }
+    },
+    "Сохранить выбор языка" : {
+
     }
   },
   "version" : "1.0"

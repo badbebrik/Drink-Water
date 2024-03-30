@@ -27,12 +27,16 @@ struct AccountView: View {
                     Form {
                         Section(header: Text("Profile photo")) {
                             if let image = viewModel.image {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .frame(width: 200, height: 200)
-                                    .aspectRatio(contentMode: .fill)
-                                    .clipShape(Circle())
-                                    .padding()
+                                HStack {
+                                    Spacer()
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200, height: 200)
+                                        .aspectRatio(contentMode: .fill)
+                                        .clipShape(Circle())
+                                        .padding()
+                                    Spacer()
+                                }
                                 Button("Change Image") {
                                     isShowingImagePicker = true
                                 }
@@ -70,7 +74,7 @@ struct AccountView: View {
                             TextField("Last Name", text: $viewModel.lastName)
                             Picker("Gender", selection: $viewModel.genderIndex) {
                                 ForEach(0..<genders.count) { index in
-                                    Text(genders[index])
+                                    Text(LocalizedStringKey(genders[index]))
                                 }
                             }
                             .pickerStyle(SegmentedPickerStyle())
@@ -110,8 +114,8 @@ struct AccountView: View {
                         
                         Section(header: Text("Activity Mode")) {
                             Picker("Activity", selection: $viewModel.activity) {
-                                ForEach(activityModes, id: \.self) {
-                                    Text($0)
+                                ForEach(activityModes, id: \.self) { mode in
+                                    Text(LocalizedStringKey(mode))
                                 }
                             }
                             .pickerStyle(SegmentedPickerStyle())
