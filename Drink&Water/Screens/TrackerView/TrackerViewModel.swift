@@ -12,7 +12,6 @@ class TrackerViewModel: ObservableObject {
     @Published var startAnimation: CGFloat = 0
     @Published var progressDrop: CGFloat = 0.1
     @Published var name = ""
-    @Published var isShowingAddDrink: Bool = false
     var dailyWaterIntakeGoal: Double = 0
     @Published var todayWaterIntake: Double = 0
     @Published var isAnimating: Bool = false

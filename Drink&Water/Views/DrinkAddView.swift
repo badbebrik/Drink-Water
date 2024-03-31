@@ -136,7 +136,7 @@ struct DrinkAddView: View {
             }
             .padding()
         }
-        .frame(width: 300, height: 525)
+        .frame(width: 350, height: 525)
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(radius: 40)

@@ -75,9 +75,6 @@ struct SettingsView: View {
                             }
                             .foregroundColor(.blue)
                         }
-                        .sheet(isPresented: $showingAddNotificationView) {
-                            AddNotificationView(viewModel: viewModel)
-                        }
                         .onAppear {
                             viewModel.fetchNotifications()
                         }
@@ -123,9 +120,6 @@ struct SettingsView: View {
                         }) {
                             Text("About")
                         }
-                        .sheet(isPresented: $viewModel.isShowingAboutPage) {
-                            AboutView()
-                        }
                     }
                 }
                 
@@ -136,6 +130,18 @@ struct SettingsView: View {
             let languageCode = UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"
             viewModel.selectedLanguage = Language(rawValue: languageCode) ?? .eng
         }
+        .disabled(showingAddNotificationView || viewModel.isShowingAboutPage)
+        .blur(radius: showingAddNotificationView || viewModel.isShowingAboutPage ? 3 : 0)
+        
+        .overlay() {
+            viewModel.isShowingAboutPage ? AboutView().transition(.opacity) : nil
+            
+        }
+        .animation(.easeInOut, value: viewModel.isShowingAboutPage)
+        .overlay() {
+            showingAddNotificationView ? AddNotificationView(viewModel: viewModel).transition(.opacity) : nil
+        }
+        .animation(.easeInOut, value: showingAddNotificationView)
         .fullScreenCover(isPresented: $isShowingContentView) {
             ContentView()
         }

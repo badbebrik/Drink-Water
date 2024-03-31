@@ -12,6 +12,7 @@ struct TrackerView: View {
     
     @ObservedObject var viewModel = TrackerViewModel()
     @State private var showingDeleteAlert = false
+    @State var isShowingAddDrink: Bool = false
     
     
     var body: some View {
@@ -116,7 +117,7 @@ struct TrackerView: View {
                         }
                         
                         Button {
-                            viewModel.isShowingAddDrink = true
+                            isShowingAddDrink = true
                             viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
                         } label: {
                             ZStack {
@@ -132,9 +133,7 @@ struct TrackerView: View {
                         }
                         .padding(.top, 200)
                         .padding(.leading, 150)
-                        .sheet(isPresented: $viewModel.isShowingAddDrink) {
-                            DrinkAddView(isShowingDetail: $viewModel.isShowingAddDrink, trackerViewModel: viewModel)
-                        }
+                        
                     }
                     
                     Text("Your Plant:")
@@ -248,12 +247,20 @@ struct TrackerView: View {
             }
             
         }
+        .disabled(isShowingAddDrink)
+        .blur(radius: isShowingAddDrink ? 3 : 0)
         .onAppear() {
             viewModel.fetchData()
         }
+        .overlay(
+            isShowingAddDrink ? DrinkAddView(isShowingDetail: $isShowingAddDrink, trackerViewModel: viewModel)
+                .transition(.opacity): nil
+            
+                )
+        .animation(.easeInOut, value: isShowingAddDrink)
     }
     
 }
 #Preview {
-    TrackerView()
+    TrackerView(isShowingAddDrink: false)
 }
