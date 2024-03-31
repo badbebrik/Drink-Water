@@ -7,7 +7,14 @@
 
 import SwiftUI
 
+
 struct DrinkAddView: View {
+    
+    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
+        let bundle = Bundle.forLanguage(language) ?? Bundle.main
+        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
+    }
+    
     let drinks: [Drink] = [
         Drink(id: UUID(), name: "Water", imageName: "water", volume: 0, coefficient: 1),
         Drink(id: UUID(), name: "Coffee", imageName: "coffee", volume: 0, coefficient: 0.7),
@@ -55,7 +62,7 @@ struct DrinkAddView: View {
                                 .onTapGesture {
                                     selectedDrink = drink
                                 }
-                            Text(drink.name)
+                            Text(localizedString(forKey: drink.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                                 .font(.caption)
                         }
                         .padding()

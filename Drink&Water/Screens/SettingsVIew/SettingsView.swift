@@ -42,7 +42,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                        Button("Сохранить выбор языка") {
+                        Button("Save Language Selection") {
                             saveLanguageSelection(language: viewModel.selectedLanguage)
                                     showRestartAlert = true
                                 }

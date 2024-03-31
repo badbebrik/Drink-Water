@@ -21,22 +21,6 @@
         }
       }
     },
-    "%@, %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@, %2$@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@, %2$@"
-          }
-        }
-      }
-    },
     "%d" : {
       "localizations" : {
         "ru" : {
@@ -209,6 +193,17 @@
         }
       }
     },
+    "apple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "яблоня"
+          }
+        }
+      }
+    },
     "Are you sure you want to delete this drink?" : {
       "localizations" : {
         "ru" : {
@@ -239,6 +234,17 @@
         }
       }
     },
+    "Beer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пиво"
+          }
+        }
+      }
+    },
     "Birthday" : {
       "localizations" : {
         "ru" : {
@@ -249,12 +255,34 @@
         }
       }
     },
+    "cactus" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "кактус"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "Champagn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шампанское"
           }
         }
       }
@@ -285,6 +313,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выберите объем"
+          }
+        }
+      }
+    },
+    "Coffee" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кофе"
           }
         }
       }
@@ -437,7 +476,8 @@
       }
     },
     "Good Afternoon" : {
-      "comment" : "Afternoon Greeting",
+      "comment" : "Afternoon greeting",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -448,7 +488,8 @@
       }
     },
     "Good Evening" : {
-      "comment" : "Evening Greeting",
+      "comment" : "Evening greeting",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -459,7 +500,8 @@
       }
     },
     "Good Morning" : {
-      "comment" : "Morning Greeting",
+      "comment" : "Morning greeting",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -470,7 +512,8 @@
       }
     },
     "Good Night" : {
-      "comment" : "Night Greeting",
+      "comment" : "Night greeting",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -519,6 +562,17 @@
     },
     "Invalid response from the server. Please try again later or contact support." : {
 
+    },
+    "Juice" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сок"
+          }
+        }
+      }
     },
     "Language" : {
       "localizations" : {
@@ -569,6 +623,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Средняя"
+          }
+        }
+      }
+    },
+    "Milk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Молоко"
           }
         }
       }
@@ -708,6 +773,28 @@
         }
       }
     },
+    "purple tulip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ф. тюльпан"
+          }
+        }
+      }
+    },
+    "red tulip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кр. тюльпан"
+          }
+        }
+      }
+    },
     "Register" : {
       "localizations" : {
         "ru" : {
@@ -781,6 +868,16 @@
         }
       }
     },
+    "Save Language Selection" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить выбор языка"
+          }
+        }
+      }
+    },
     "Select a date" : {
       "localizations" : {
         "ru" : {
@@ -834,12 +931,34 @@
         }
       }
     },
+    "Soda" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Газировка"
+          }
+        }
+      }
+    },
     "Success" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Успех"
+          }
+        }
+      }
+    },
+    "Tea" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чай"
           }
         }
       }
@@ -896,6 +1015,17 @@
     "Unable to complete your request at this time. Please check your internet connection." : {
 
     },
+    "Water" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вода"
+          }
+        }
+      }
+    },
     "Weight (kg)" : {
       "localizations" : {
         "ru" : {
@@ -916,6 +1046,17 @@
         }
       }
     },
+    "Wine" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вино"
+          }
+        }
+      }
+    },
     "You already have a growing plant!" : {
       "localizations" : {
         "ru" : {
@@ -931,7 +1072,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Здесь вы можете купить растения а затем вырастить"
+            "value" : "Здесь вы можете купить растения"
           }
         }
       }
@@ -991,9 +1132,6 @@
           }
         }
       }
-    },
-    "Сохранить выбор языка" : {
-
     }
   },
   "version" : "1.0"

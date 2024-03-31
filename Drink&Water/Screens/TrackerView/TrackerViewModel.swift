@@ -8,6 +8,8 @@
 import SwiftUI
 
 class TrackerViewModel: ObservableObject {
+    
+    
     @Published var progress: CGFloat = 0.5
     @Published var startAnimation: CGFloat = 0
     @Published var progressDrop: CGFloat = 0.1
@@ -17,6 +19,11 @@ class TrackerViewModel: ObservableObject {
     @Published var isAnimating: Bool = false
     @Published var drinkToDelete: Drink?
     @Published var todayDrinks: [Drink] = []
+    
+    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
+        let bundle = Bundle.forLanguage(language) ?? Bundle.main
+        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
+    }
     
     
     private let lastUpdateKey = "lastUpdate"
@@ -90,17 +97,18 @@ class TrackerViewModel: ObservableObject {
         }
     }
     
+
     func greetingBasedOnTime() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
         switch hour {
         case 6..<12:
-            return NSLocalizedString("Good Morning", comment: "Morning Greeting")
+            return localizedString(forKey: "Good Morning", language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en") + ", \(name)"
         case 12..<17:
-            return NSLocalizedString("Good Afternoon", comment: "Afternoon Greeting")
+            return localizedString(forKey: "Good Afternoon", language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en") + ", \(name)"
         case 17..<22:
-            return NSLocalizedString("Good Evening", comment: "Evening Greeting")
+            return localizedString(forKey: "Good Evening", language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en") + ", \(name)"
         default:
-            return NSLocalizedString("Good Night", comment: "Night Greeting")
+            return localizedString(forKey: "Good Night", language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en") + ", \(name)"
         }
     }
 }

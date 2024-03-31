@@ -11,6 +11,12 @@ import SwiftUI
 struct PlantsView: View {
     @StateObject var viewModel = PlantsViewModel()
     
+    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
+        let bundle = Bundle.forLanguage(language) ?? Bundle.main
+        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
+    }
+    
+    
     var body: some View {
         ZStack {
             Color(.brandBlue)
@@ -31,7 +37,7 @@ struct PlantsView: View {
                                 Image(plant.name + " adult")
                                     .resizable()
                                     .frame(width: 70, height: 100)
-                                Text(plant.name)
+                                Text(localizedString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                                 
                             }
                         }

@@ -10,10 +10,17 @@ import SwiftUI
 struct PlantView: View {
     var plant: Plant;
     var plantImageName: String;
+    
+    
+    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
+        let bundle = Bundle.forLanguage(language) ?? Bundle.main
+        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
+    }
+    
     var body: some View {
         
         VStack(spacing: 20) {
-            Text(plant.name)
+            Text(localizedString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en").capitalized)
                 .font(.headline)
                 .fontWeight(.bold)
             

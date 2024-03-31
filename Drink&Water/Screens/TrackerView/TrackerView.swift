@@ -32,7 +32,7 @@ struct TrackerView: View {
                             .padding(.top, 20)
                             .padding(.bottom, 10)
                         
-                        Text("\(viewModel.greetingBasedOnTime()), \(viewModel.name)")
+                        Text(viewModel.greetingBasedOnTime())
                             .font(.system(size: 24, weight: .bold))
                             .foregroundStyle(.black)
                             .multilineTextAlignment(.leading)
@@ -198,7 +198,7 @@ struct TrackerView: View {
                                         .cornerRadius(10)
                                     
                                     VStack(alignment: .leading) {
-                                        Text(drink.name)
+                                        Text(viewModel.localizedString(forKey: drink.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                                             .font(.headline)
                                         
                                         Text("\(drink.volume) ml")
@@ -261,6 +261,15 @@ struct TrackerView: View {
     }
     
 }
+
+extension Bundle {
+    static func forLanguage(_ lang: String) -> Bundle? {
+        guard let path = Bundle.main.path(forResource: lang, ofType: "lproj"),
+              let bundle = Bundle(path: path) else { return nil }
+        return bundle
+    }
+}
+
 #Preview {
     TrackerView(isShowingAddDrink: false)
 }
