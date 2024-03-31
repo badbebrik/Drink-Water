@@ -247,6 +247,25 @@ extension CoreDataManager {
         }
     }
     
+    func setPlantFinishDate(date: Date) {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<PlantEntity> = PlantEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "currentFillness < totalToGrow")
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let plants = try managedContext.fetch(fetchRequest)
+            if let plant = plants.first {
+                plant.finishGrowDate = date
+                try managedContext.save()
+            } else {
+                print("No plant found with current fillness less than total to grow")
+            }
+        } catch {
+            print("Failed to update plant current fillness: \(error)")
+        }
+    }
+    
     
     func updateFirstPlantCurrentFillness(newFillness: Int) {
         let managedContext = persistentContainer.viewContext

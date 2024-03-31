@@ -38,7 +38,6 @@ struct PlantsView: View {
                                     .resizable()
                                     .frame(width: 70, height: 100)
                                 Text(localizedString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
-                                
                             }
                         }
                     }

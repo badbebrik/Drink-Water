@@ -121,12 +121,20 @@ struct DrinkAddView: View {
                         
                         if trackerViewModel.checkStage(plant: currentPlant) == "adult" {
                             coreDataManager.addBalance(Int32(1.5 * Double(currentPlant.price)))
+                            coreDataManager.setPlantFinishDate(date: Date())
                         }
                     }
                     
                 }
                 
                 coreDataManager.updateTodayWaterIntake(Double(trackerViewModel.todayWaterIntake))
+                
+                if (trackerViewModel.todayWaterIntake >= trackerViewModel.dailyWaterIntakeGoal) {
+                    if (!trackerViewModel.isTodayGoalCompleted) {
+                        coreDataManager.addBalance(100)
+                        trackerViewModel.isTodayGoalCompleted = true
+                    }
+                }
                 
                 HealthKitManager.shared.addDrinkToHealthKit(volume: Double(selectedVolume ?? 0), coefficient: selectedDrink?.coefficient ?? 1)
                 

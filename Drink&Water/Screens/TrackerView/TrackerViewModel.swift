@@ -20,6 +20,15 @@ class TrackerViewModel: ObservableObject {
     @Published var drinkToDelete: Drink?
     @Published var todayDrinks: [Drink] = []
     
+    var isTodayGoalCompleted: Bool {
+        get {
+            UserDefaults.standard.object(forKey: isGoalCompleted) as? Bool ?? false
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: isGoalCompleted)
+        }
+    }
+    
     func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
         let bundle = Bundle.forLanguage(language) ?? Bundle.main
         return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
@@ -27,6 +36,7 @@ class TrackerViewModel: ObservableObject {
     
     
     private let lastUpdateKey = "lastUpdate"
+    private let isGoalCompleted = "isGoalCompleted"
     private var lastUpdate: Date? {
         get {
             UserDefaults.standard.object(forKey: lastUpdateKey) as? Date
@@ -48,6 +58,8 @@ class TrackerViewModel: ObservableObject {
             let coreDataManager = CoreDataManager()
             coreDataManager.deleteAllDrinks()
             coreDataManager.updateTodayWaterIntake(0)
+            coreDataManager.addBalance(100)
+            isTodayGoalCompleted = false
             lastUpdate = Date()
         } else if lastUpdate == nil {
             lastUpdate = Date()

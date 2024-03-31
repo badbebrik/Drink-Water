@@ -13,7 +13,7 @@ struct PlantShopView: View {
     
     @ObservedObject var shopViewModel: ShopViewModel
     
-    let plant: Plant
+    var plant: Plant
     
     var body: some View {
         VStack {
