@@ -10,7 +10,6 @@ import SwiftUI
 struct CircularProgressView: View {
     let progress: Double
     
-    
     var body: some View {
         ZStack {
             Circle()

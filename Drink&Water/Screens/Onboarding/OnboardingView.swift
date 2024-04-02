@@ -11,6 +11,12 @@ struct OnboardingView: View {
     
     @StateObject var viewModel = OnboardingViewModel()
     
+    
+    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
+        let bundle = Bundle.forLanguage(language) ?? Bundle.main
+        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
+    }
+    
     var body: some View {
         ZStack {
             Color(.brandBlue)
@@ -50,17 +56,21 @@ struct OnboardingView: View {
                                     .frame(width: viewModel.onboardingSteps[step].foregroundImageWidth, height: viewModel.onboardingSteps[step].foregroundImageHeight)
                             }
                             
-                            Text(viewModel.onboardingSteps[step].title)
-                                .multilineTextAlignment(.center)
-                                .font(.title)
-                                .fontWeight(.black)
-                                .foregroundColor(.white)
+                            VStack(spacing: 20) {
+                                Text(localizedString(forKey: viewModel.onboardingSteps[step].title, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
+                                    .multilineTextAlignment(.center)
+                                    .font(.title)
+                                    .fontWeight(.black)
+                                    .foregroundColor(.white)
+                                
+                                Text(localizedString(forKey: viewModel.onboardingSteps[step].description, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
+                                    .font(.headline)
+                                    .fontWeight(.semibold)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(Color(red: 0.38, green: 0.36, blue: 0.36))
+                            }
+                            .padding()
                             
-                            Text(viewModel.onboardingSteps[step].description)
-                                .font(.headline)
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(Color(red: 0.38, green: 0.36, blue: 0.36))
                             
                             Button {
                                 viewModel.nextStep()

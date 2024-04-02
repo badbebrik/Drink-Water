@@ -163,6 +163,17 @@
         }
       }
     },
+    "Achieve your hydration goals with a simple tap!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Достигай своих целей по питью простым нажатием!"
+          }
+        }
+      }
+    },
     "Activity" : {
       "localizations" : {
         "ru" : {
@@ -328,6 +339,17 @@
         }
       }
     },
+    "Custom remainders" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользовательские уведомления"
+          }
+        }
+      }
+    },
     "Data Error" : {
 
     },
@@ -387,6 +409,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разработчик"
+          }
+        }
+      }
+    },
+    "Drink water and water the plants! How many plants can you grow?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пей воду и поливай растения! Как много ты сможешь вырастить?"
           }
         }
       }
@@ -573,6 +606,20 @@
           }
         }
       }
+    },
+    "Keep motivation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохраняй мотивацию"
+          }
+        }
+      }
+    },
+    "Key" : {
+      "extractionState" : "manual"
     },
     "Language" : {
       "localizations" : {
@@ -780,6 +827,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ф. тюльпан"
+          }
+        }
+      }
+    },
+    "Quick and easy to set your custom remainders" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Быстро и легко устанавливай свои уведомления"
           }
         }
       }
@@ -998,6 +1056,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сегодняшние записи:"
+          }
+        }
+      }
+    },
+    "Track your daily water intake with Us" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отслеживай свой режим питья воды с нами"
           }
         }
       }

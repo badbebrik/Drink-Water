@@ -17,14 +17,14 @@ struct DrinkAddView: View {
     
     let drinks: [Drink] = [
         Drink(id: UUID(), name: "Water", imageName: "water", volume: 0, coefficient: 1),
-        Drink(id: UUID(), name: "Coffee", imageName: "coffee", volume: 0, coefficient: 0.7),
+        Drink(id: UUID(), name: "Coffee", imageName: "coffee", volume: 0, coefficient: 0.83),
         Drink(id: UUID(), name: "Tea", imageName: "tea", volume: 0, coefficient: 1),
         Drink(id: UUID(), name: "Milk", imageName: "milk", volume: 0, coefficient: 1),
-        Drink(id: UUID(), name: "Juice", imageName: "juice", volume: 0, coefficient: 0.8),
-        Drink(id: UUID(), name: "Soda", imageName: "soda", volume: 0, coefficient: 0.9),
-        Drink(id: UUID(), name: "Beer", imageName: "beer", volume: 0, coefficient: 0.5),
-        Drink(id: UUID(), name: "Wine", imageName: "wine", volume: 0, coefficient: 0.6),
-        Drink(id: UUID(), name: "Champagn", imageName: "champagn", volume: 0, coefficient: 0.6),
+        Drink(id: UUID(), name: "Juice", imageName: "juice", volume: 0, coefficient: 0.86),
+        Drink(id: UUID(), name: "Soda", imageName: "soda", volume: 0, coefficient: 0.88),
+        Drink(id: UUID(), name: "Beer", imageName: "beer", volume: 0, coefficient: 0.9),
+        Drink(id: UUID(), name: "Wine", imageName: "wine", volume: 0, coefficient: 0.85),
+        Drink(id: UUID(), name: "Champagn", imageName: "champagn", volume: 0, coefficient: 0.8),
         
     ]
     
@@ -38,6 +38,7 @@ struct DrinkAddView: View {
     @State private var selectedDrink: Drink?
     @State private var selectedVolume: Int?
     @ObservedObject var trackerViewModel: TrackerViewModel
+    
     
     var body: some View {
         VStack {
@@ -55,10 +56,11 @@ struct DrinkAddView: View {
                                 .cornerRadius(10)
                                 .padding(5)
                                 .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.black, lineWidth: 2)
-                                        .fill(selectedDrink == drink ? Color.gray.opacity(0.5) : Color.clear)
-                                )
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.black, lineWidth: 2)
+                                                .background(selectedDrink == drink ? Color.gray.opacity(0.5) : Color.clear)
+                                        )
+                                
                                 .onTapGesture {
                                     selectedDrink = drink
                                 }

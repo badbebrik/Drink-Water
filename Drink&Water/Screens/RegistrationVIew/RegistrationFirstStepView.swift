@@ -29,6 +29,11 @@ struct RegistrationFirstStepView: View {
     @State var isShowingNextStep = false
     @State private var showAlert = false
     
+    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
+        let bundle = Bundle.forLanguage(language) ?? Bundle.main
+        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
+    }
+    
     var body: some View {
         ZStack {
             Color(.brandBlue)
@@ -75,7 +80,7 @@ struct RegistrationFirstStepView: View {
                     HStack {
                         Picker("Gender", selection: $viewModel.genderIndex) {
                             ForEach(0..<genders.count) { index in
-                                Text(genders[index])
+                                Text(localizedString(forKey: genders[index], language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())

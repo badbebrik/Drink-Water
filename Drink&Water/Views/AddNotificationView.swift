@@ -15,11 +15,14 @@ struct AddNotificationView: View {
     
     var body: some View {
         VStack {
-            DatePicker("Select Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+            Text("Select Time")
+                .padding()
+            DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
                 .datePickerStyle(WheelDatePickerStyle())
             
             TextField("Notification Text", text: $notificationText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
             
             Button("Save") {
                 let calendar = Calendar.current
@@ -38,6 +41,7 @@ struct AddNotificationView: View {
             }
             .padding()
         }
+        .background(.white)
         .padding()
     }
 }
