@@ -8,20 +8,12 @@
 import SwiftUI
 
 class RegistrationSecondStepViewModel: ObservableObject {
-    var activity: String = "Low"
-    var selectedDate: Date = Date()
+    private var registrationFirstStepViewModel = RegistrationFirstStepViewModel()
+    @Published var activity: String = "Low"
+    @Published var selectedDate: Date = Date()
     @Published var height: Double = 100
     @Published var weight: Double = 20
-}
-
-struct RegistrationSecondStepView: View {
-    @StateObject var viewModel = RegistrationSecondStepViewModel()
-    let coreDataManager = CoreDataManager()
-    @Binding var name: String
-    @Binding var lastName: String
-    @Binding var genderIndex: Int
-    
-    @State private var isRegistrationFinished = false
+    @Published  var isRegistrationFinished = false
     let activityMode = ["Low", "Medium", "High"]
     
     let numberFormatter: NumberFormatter = {
@@ -31,6 +23,25 @@ struct RegistrationSecondStepView: View {
         return formatter
     }()
     
+    init(_ registrationFirstStepViewModel: RegistrationFirstStepViewModel) {
+        self.registrationFirstStepViewModel = registrationFirstStepViewModel
+    }
+    
+    func registerButtonPressed() {
+        let coreDataManager = CoreDataManager()
+        coreDataManager.saveUser(name: registrationFirstStepViewModel.name, lastName: registrationFirstStepViewModel.lastName, gender: registrationFirstStepViewModel.genderIndex, weight: weight, height: height, birthday: selectedDate, activity: activity, balance: 100)
+        UserDefaults.standard.set(true, forKey: "isUserRegistered")
+        
+        isRegistrationFinished = true
+    }
+    
+    
+}
+
+struct RegistrationSecondStepView: View {
+    @StateObject var viewModel = RegistrationSecondStepViewModel(RegistrationFirstStepViewModel())
+    
+
     var body: some View {
         ZStack {
             Color(.brandBlue)
@@ -58,7 +69,7 @@ struct RegistrationSecondStepView: View {
                     }
                         
                     .padding()
-                        Text("\(numberFormatter.string(for: viewModel.height) ?? "")")
+                        Text("\(viewModel.numberFormatter.string(for: viewModel.height) ?? "")")
                     }
                     
                     VStack(spacing: 10) {
@@ -71,7 +82,7 @@ struct RegistrationSecondStepView: View {
                         Text("300").font(.title2).fontWeight(.thin)
                     }
                     .padding()
-                        Text("\(numberFormatter.string(for: viewModel.weight) ?? "")")
+                        Text("\(viewModel.numberFormatter.string(for: viewModel.weight) ?? "")")
                         
                     }
                     
@@ -96,7 +107,7 @@ struct RegistrationSecondStepView: View {
                     Text("Activity")
                         .frame(width: 353, alignment: .leading)
                     Picker("Activity", selection: $viewModel.activity) {
-                        ForEach(activityMode, id: \.self) {
+                        ForEach(viewModel.activityMode, id: \.self) {
                             Text($0)
                         }
                     }
@@ -104,16 +115,13 @@ struct RegistrationSecondStepView: View {
                     .padding()
                     
                     Button {
-                        coreDataManager.saveUser(name: name, lastName: lastName, gender: genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.selectedDate, activity: viewModel.activity, balance: 100)
-                        UserDefaults.standard.set(true, forKey: "isUserRegistered")
-                        
-                        isRegistrationFinished = true
+                        viewModel.registerButtonPressed()
                     } label: {
                         Text("Register")
                     }
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.roundedRectangle)
-                    .fullScreenCover(isPresented: $isRegistrationFinished, content: {
+                    .fullScreenCover(isPresented: $viewModel.isRegistrationFinished, content: {
                         DrinkWaterTabView()
                     })
                     
@@ -126,7 +134,7 @@ struct RegistrationSecondStepView: View {
 }
 
 #Preview {
-    RegistrationSecondStepView(name: .constant("Bob"), lastName: .constant("Poopkins"), genderIndex: .constant(0))
+    RegistrationSecondStepView(viewModel: RegistrationSecondStepViewModel(RegistrationFirstStepViewModel()))
 }
 
 

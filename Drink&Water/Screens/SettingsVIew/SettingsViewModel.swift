@@ -13,20 +13,25 @@ class SettingsViewModel: ObservableObject {
     @Published var isResetAccountAlertPresented = false
     @Published var isShowingAboutPage = false
     @Published var notifications: [NotificationModel] = []
+    @Published var isShowingContentView = false
+    @Published var showingAddNotificationView = false
+    @Published var showRestartAlert = false
 
+    let coreDataManager = CoreDataManager()
     
-    let coreDataManager: CoreDataManager
-    
-    init(coreDataManager: CoreDataManager = CoreDataManager()) {
-        self.coreDataManager = coreDataManager
-    }
+    private let itemFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
     
     func deleteAccount() {
         coreDataManager.deleteUser()
         coreDataManager.deleteAllDrinks()
         coreDataManager.deleteAllPlants()
         coreDataManager.deleteAllNotifications()
-        
     }
     
     func resetProgress() {
@@ -39,5 +44,10 @@ class SettingsViewModel: ObservableObject {
     func fetchNotifications() {
         notifications = coreDataManager.getAllNotifications()
     }
+    
+    func saveLanguageSelection(language: Language) {
+        UserDefaults.standard.set(language.rawValue, forKey: "SelectedLanguage")
+            showRestartAlert = true
+        }
     
 }

@@ -10,9 +10,12 @@ import SwiftUI
 
 class RegistrationFirstStepViewModel: ObservableObject {
     
-    var name: String = ""
-    var lastName: String = ""
+    @Published var name: String = ""
+    @Published var lastName: String = ""
     @Published var genderIndex = 0
+    @Published var isShowingNextStep = false
+    @Published var showAlert = false
+    let genders = ["Male", "Female"]
     
     func validateFields() -> Bool {
         if name.isEmpty || lastName.isEmpty {
@@ -20,20 +23,20 @@ class RegistrationFirstStepViewModel: ObservableObject {
         }
         return true
     }
+    
+    func nextButtonPressed() {
+        if validateFields() {
+            isShowingNextStep = true
+        } else {
+            showAlert = true
+        }
+    }
 }
 
 
 struct RegistrationFirstStepView: View {
-    let genders = ["Male", "Female"]
     @StateObject private var viewModel = RegistrationFirstStepViewModel()
-    @State var isShowingNextStep = false
-    @State private var showAlert = false
-    
-    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
-        let bundle = Bundle.forLanguage(language) ?? Bundle.main
-        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
-    }
-    
+
     var body: some View {
         ZStack {
             Color(.brandBlue)
@@ -79,8 +82,8 @@ struct RegistrationFirstStepView: View {
                         .frame(width: 353, alignment: .leading)
                     HStack {
                         Picker("Gender", selection: $viewModel.genderIndex) {
-                            ForEach(0..<genders.count) { index in
-                                Text(localizedString(forKey: genders[index], language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
+                            ForEach(0..<viewModel.genders.count) { index in
+                                Text(LocalizationManager.shared.localizeString(forKey: viewModel.genders[index], language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
@@ -90,22 +93,18 @@ struct RegistrationFirstStepView: View {
                 }
                 
                 Button {
-                    if viewModel.validateFields() {
-                        isShowingNextStep = true
-                    } else {
-                        showAlert = true
-                    }
+                    viewModel.nextButtonPressed()
                 } label: {
                     Text("Next")
                 }
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.roundedRectangle)
-                .fullScreenCover(isPresented: $isShowingNextStep, content: {
-                    RegistrationSecondStepView(name: $viewModel.name, lastName: $viewModel.lastName, genderIndex: $viewModel.genderIndex)
+                .fullScreenCover(isPresented: $viewModel.isShowingNextStep, content: {
+                    RegistrationSecondStepView(viewModel: RegistrationSecondStepViewModel(viewModel))
                 })
                 
             }
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text("Empty Fields"), message: Text("Please fill in both first name and last name."), dismissButton: .default(Text("OK")))
             }
         }

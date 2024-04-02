@@ -11,12 +11,6 @@ struct OnboardingView: View {
     
     @StateObject var viewModel = OnboardingViewModel()
     
-    
-    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
-        let bundle = Bundle.forLanguage(language) ?? Bundle.main
-        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
-    }
-    
     var body: some View {
         ZStack {
             Color(.brandBlue)
@@ -57,13 +51,13 @@ struct OnboardingView: View {
                             }
                             
                             VStack(spacing: 20) {
-                                Text(localizedString(forKey: viewModel.onboardingSteps[step].title, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
+                                Text(LocalizationManager.shared.localizeString(forKey: viewModel.onboardingSteps[step].title, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                                     .multilineTextAlignment(.center)
                                     .font(.title)
                                     .fontWeight(.black)
                                     .foregroundColor(.white)
                                 
-                                Text(localizedString(forKey: viewModel.onboardingSteps[step].description, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
+                                Text(LocalizationManager.shared.localizeString(forKey: viewModel.onboardingSteps[step].description, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                                     .font(.headline)
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.center)

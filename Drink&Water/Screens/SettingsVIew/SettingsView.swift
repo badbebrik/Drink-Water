@@ -10,14 +10,6 @@ import SwiftUI
 struct SettingsView: View {
     
     @StateObject var viewModel = SettingsViewModel()
-    @State private var isShowingContentView = false
-    @State private var showingAddNotificationView = false
-    @State private var showRestartAlert = false
-    
-    func saveLanguageSelection(language: Language) {
-        UserDefaults.standard.set(language.rawValue, forKey: "SelectedLanguage")
-            showRestartAlert = true
-        }
     
     var body: some View {
         ZStack {
@@ -43,10 +35,10 @@ struct SettingsView: View {
                             }
                         }
                         Button("Save Language Selection") {
-                            saveLanguageSelection(language: viewModel.selectedLanguage)
-                                    showRestartAlert = true
+                            viewModel.saveLanguageSelection(language: viewModel.selectedLanguage)
+                            viewModel.showRestartAlert = true
                                 }
-                                .alert(isPresented: $showRestartAlert) {
+                        .alert(isPresented: $viewModel.showRestartAlert) {
                                     Alert(
                                         title: Text("Restart Required"),
                                         message: Text("Please restart the app to apply the language change."),
@@ -66,7 +58,7 @@ struct SettingsView: View {
                             }
                             
                             Button(action: {
-                                showingAddNotificationView = true
+                                viewModel.showingAddNotificationView = true
                             }) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
@@ -93,7 +85,7 @@ struct SettingsView: View {
                                   primaryButton: .cancel(Text("Cancel")),
                                   secondaryButton: .destructive(Text("Delete"), action: {
                                 viewModel.deleteAccount()
-                                isShowingContentView = true
+                                viewModel.isShowingContentView = true
                                 
                             }))
                         }
@@ -130,8 +122,8 @@ struct SettingsView: View {
             let languageCode = UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"
             viewModel.selectedLanguage = Language(rawValue: languageCode) ?? .eng
         }
-        .disabled(showingAddNotificationView || viewModel.isShowingAboutPage)
-        .blur(radius: showingAddNotificationView || viewModel.isShowingAboutPage ? 3 : 0)
+        .disabled(viewModel.showingAddNotificationView || viewModel.isShowingAboutPage)
+        .blur(radius: viewModel.showingAddNotificationView || viewModel.isShowingAboutPage ? 3 : 0)
         
         .overlay() {
             viewModel.isShowingAboutPage ? AboutView().transition(.opacity) : nil
@@ -139,55 +131,15 @@ struct SettingsView: View {
         }
         .animation(.easeInOut, value: viewModel.isShowingAboutPage)
         .overlay() {
-            showingAddNotificationView ? AddNotificationView(viewModel: viewModel).transition(.opacity) : nil
+            viewModel.showingAddNotificationView ? AddNotificationView(viewModel: viewModel).transition(.opacity) : nil
         }
-        .animation(.easeInOut, value: showingAddNotificationView)
-        .fullScreenCover(isPresented: $isShowingContentView) {
+        .animation(.easeInOut, value: viewModel.showingAddNotificationView)
+        .fullScreenCover(isPresented: $viewModel.isShowingContentView) {
             ContentView()
         }
     }
     
 }
-
-
-
-struct NotificationCell: View {
-    var notification: NotificationModel
-    var onDelete: (UUID) -> Void
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(notification.text)
-                    .font(.headline)
-                Text("\(notification.hour):\(notification.minute)")
-                    .font(.caption)
-                
-            }
-            
-            Spacer()
-            
-            Button(action: { self.onDelete(notification.id) }) {
-                Image(systemName: "xmark.circle")
-                    .foregroundColor(.red)
-            }
-            
-        }
-        .padding()
-    }
-    
-}
-
-
-
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .none
-    formatter.timeStyle = .short
-    return formatter
-}()
-
 
 
 #Preview {

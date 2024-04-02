@@ -38,7 +38,6 @@ class HealthKitManager {
             return
         }
         
-    
         let waterQuantity = HKQuantity(unit: HKUnit.literUnit(with: .milli), doubleValue: volume * coefficient)
         let now = Date()
         let sample = HKQuantitySample(type: waterType, quantity: waterQuantity, start: now, end: now)

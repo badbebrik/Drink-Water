@@ -20,7 +20,7 @@ struct PlantView: View {
     var body: some View {
         
         VStack(spacing: 20) {
-            Text(localizedString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en").capitalized)
+            Text(LocalizationManager.shared.localizeString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en").capitalized)
                 .font(.headline)
                 .fontWeight(.bold)
             

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 struct Drink: Hashable, Equatable  {
     let id: UUID
