@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct AddNotificationView: View {
-    @ObservedObject var viewModel: SettingsViewModel
-    @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var settingsViewModel: SettingsViewModel
     @State private var selectedTime = Date()
     @State private var notificationText = ""
     
     var body: some View {
         VStack {
-            Text("Select Time")
-                .padding()
-            DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                .datePickerStyle(WheelDatePickerStyle())
             
+            Text("Select Time")
+                .font(.title)
+                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding([.leading, .top], 16)
+            HStack {
+                Spacer()
+                DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                    .datePickerStyle(WheelDatePickerStyle())
+                Spacer()
+            }
+        
             TextField("Notification Text", text: $notificationText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -35,12 +42,20 @@ struct AddNotificationView: View {
                 NotificationManager.shared.scheduleDailyNotification(hour: hour, minute: minute, identifier: identifier, body: notificationText)
                 
                 let notification = NotificationModel(id: UUID(), hour: hour, minute: minute, text: notificationText)
-                viewModel.coreDataManager.saveNotification(notificationModel: notification)
-                viewModel.fetchNotifications()
-                presentationMode.wrappedValue.dismiss()
+                settingsViewModel.coreDataManager.saveNotification(notificationModel: notification)
+                settingsViewModel.fetchNotifications()
             }
             .padding()
         }
+        .overlay(
+            Button(action: {
+                settingsViewModel.showingAddNotificationView = false
+            }) {
+                Image(systemName: "xmark")
+                    .padding()
+            },
+            alignment: .topTrailing
+        )
         .background(.white)
         .padding()
     }
@@ -48,5 +63,5 @@ struct AddNotificationView: View {
 
 
 #Preview {
-    AddNotificationView(viewModel: SettingsViewModel())
+    AddNotificationView(settingsViewModel: SettingsViewModel())
 }

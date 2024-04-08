@@ -123,4 +123,20 @@ class TrackerViewModel: ObservableObject {
             return localizedString(forKey: "Good Night", language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en") + ", \(name)"
         }
     }
+    
+    func deleteDrink() {
+        if let drinkToDelete {
+            todayWaterIntake -= Double(drinkToDelete.volume)
+            let coreDataManager = CoreDataManager()
+            coreDataManager.deleteDrink(id: drinkToDelete.id)
+            coreDataManager.updateTodayWaterIntake(todayWaterIntake)
+            if (((currentGrowingPlant?.currentFillness ?? 0) - drinkToDelete.volume) > 0) {
+                currentGrowingPlant?.currentFillness -= drinkToDelete.volume
+                coreDataManager.updateFirstPlantCurrentFillness(newFillness: currentGrowingPlant?.currentFillness ?? 0)
+            }
+                fetchData()
+        }
+    }
+    
+    
 }

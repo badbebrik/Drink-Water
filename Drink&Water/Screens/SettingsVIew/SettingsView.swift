@@ -131,7 +131,7 @@ struct SettingsView: View {
         }
         .animation(.easeInOut, value: viewModel.isShowingAboutPage)
         .overlay() {
-            viewModel.showingAddNotificationView ? AddNotificationView(viewModel: viewModel).transition(.opacity) : nil
+            viewModel.showingAddNotificationView ? AddNotificationView(settingsViewModel: viewModel).transition(.opacity) : nil
         }
         .animation(.easeInOut, value: viewModel.showingAddNotificationView)
         .fullScreenCover(isPresented: $viewModel.isShowingContentView) {

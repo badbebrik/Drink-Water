@@ -123,7 +123,7 @@ struct AccountView: View {
                         
                         Section(header: Text("Save Changes")) {
                             Button() {
-                                coreDataManager.updateUser(name: viewModel.firstName, lastName: viewModel.lastName, gender: viewModel.genderIndex, weight: viewModel.weight, height: viewModel.height, birthday: viewModel.birthday, activity: viewModel.activity, todayWaterIntake: 0, balance: 100)
+                                viewModel.updateUser()
                             } label: {
                                 Text("Save")
                             }
@@ -132,20 +132,7 @@ struct AccountView: View {
                 }
             }
             .onAppear {
-                if let userData = coreDataManager.getUserData() {
-                    viewModel.firstName = userData.name ?? ""
-                    viewModel.lastName = userData.lastName ?? ""
-                    viewModel.height = userData.height
-                    viewModel.weight = userData.weight
-                    viewModel.genderIndex = Int(userData.gender)
-                    viewModel.activity = userData.activity ?? "Low"
-                    viewModel.birthday = userData.birthday!
-                    
-                    if let profileImagePath = userData.profileImagePath {
-                                self.viewModel.image = FileManagerService.shared.loadImageFromFileSystem(fileName: profileImagePath)
-                            }
-                }
-            
+                viewModel.fetchData()
             }
         }
     }

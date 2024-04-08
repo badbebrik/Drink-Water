@@ -10,10 +10,6 @@ import SwiftUI
 @main
 struct Drink_WaterApp: App {
     
-    init() {
-        print(UserDefaults.standard.string(forKey: "SelectedLanguage"))
-    }
-    
     var body: some Scene {
         WindowGroup {
             ContentView()

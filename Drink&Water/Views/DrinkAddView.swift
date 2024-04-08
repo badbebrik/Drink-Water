@@ -10,11 +10,6 @@ import SwiftUI
 
 struct DrinkAddView: View {
     
-    func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
-        let bundle = Bundle.forLanguage(language) ?? Bundle.main
-        return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
-    }
-    
     let drinks: [Drink] = [
         Drink(id: UUID(), name: "Water", imageName: "water", volume: 0, coefficient: 1),
         Drink(id: UUID(), name: "Coffee", imageName: "coffee", volume: 0, coefficient: 0.83),
@@ -42,9 +37,14 @@ struct DrinkAddView: View {
     
     var body: some View {
         VStack {
-            Text("Choose The Drink")
-                .padding()
             
+            Text("Choose The Drink")
+                .font(.title)
+                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding([.leading, .top], 16)
+            
+        
             ScrollView(.horizontal) {
                 LazyHGrid(rows: [GridItem(.fixed(150))]) {
                     ForEach(drinks, id: \.id) { drink in
@@ -52,30 +52,32 @@ struct DrinkAddView: View {
                             Image(drink.imageName)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 50)
+                                .frame(width: 60, height: 60)
                                 .cornerRadius(10)
-                                .padding(5)
+                                .padding(10)
                                 .background(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.black, lineWidth: 2)
-                                                .background(selectedDrink == drink ? Color.gray.opacity(0.5) : Color.clear)
-                                        )
-                                
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.black, lineWidth: 2)
+                                        .background(selectedDrink == drink ? Color.gray.opacity(0.5) : Color.clear)
+                                )
+                            
                                 .onTapGesture {
                                     selectedDrink = drink
                                 }
-                            Text(localizedString(forKey: drink.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
+                            Text(LocalizationManager.shared.localizeString(forKey: drink.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                                 .font(.caption)
                         }
                         .padding()
                     }
                 }
-                .padding()
             }
             .scrollIndicators(.hidden)
             
             Text("Choose Volume")
-                .padding()
+                .font(.title)
+                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding([.leading, .top], 16)
             
             ScrollView(.horizontal) {
                 LazyHGrid(rows: [GridItem(.fixed(100))]) {
@@ -83,10 +85,11 @@ struct DrinkAddView: View {
                         VStack {
                             Text("\(volume)ml")
                                 .font(.title3)
-                                .frame(width: 70, height: 25)
+                                .frame(width: 70, height: 35)
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(selectedVolume == volume ? Color.gray : Color.black, lineWidth: 2)
+                                        .stroke(Color.black, lineWidth: 2)
+                                        .background(selectedVolume == volume ? Color.gray.opacity(0.5) : Color.clear)
                                 )
                                 .onTapGesture {
                                     selectedVolume = volume
@@ -118,7 +121,7 @@ struct DrinkAddView: View {
                 }
                 if var currentPlant = trackerViewModel.currentGrowingPlant {
                     if trackerViewModel.checkStage(plant: currentPlant) != "adult" {
-                        currentPlant.currentFillness += Int(Double(selectedVolume ?? 0) * (selectedDrink?.coefficient ?? 1)) 
+                        currentPlant.currentFillness += Int(Double(selectedVolume ?? 0) * (selectedDrink?.coefficient ?? 1))
                         coreDataManager.updateFirstPlantCurrentFillness(newFillness: currentPlant.currentFillness )
                         
                         if trackerViewModel.checkStage(plant: currentPlant) == "adult" {
@@ -145,6 +148,7 @@ struct DrinkAddView: View {
                 
             }) {
                 Text("Drink!")
+                    .frame(width: 100)
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
@@ -161,7 +165,7 @@ struct DrinkAddView: View {
             Button(action: {
                 isShowingDetail = false
             }) {
-                Text("Back")
+                Image(systemName: "xmark")
                     .padding()
             },
             alignment: .topTrailing

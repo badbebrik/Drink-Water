@@ -29,6 +29,7 @@
 		1D56E7332B83799000311C6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D56E7322B83799000311C6F /* ContentView.swift */; };
 		1D56E7352B83799200311C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7342B83799200311C6F /* Assets.xcassets */; };
 		1D56E7382B83799200311C6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7372B83799200311C6F /* Preview Assets.xcassets */; };
+		1D6AADD02BC41D2500580E44 /* DrinkAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AADCF2BC41D2500580E44 /* DrinkAddViewModel.swift */; };
 		1D7BE89D2BB3C755004D383A /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE89C2BB3C755004D383A /* FileManagerService.swift */; };
 		1D7BE89F2BB4E49C004D383A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */; };
 		1D7BE8A12BB4E670004D383A /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE8A02BB4E670004D383A /* NotificationModel.swift */; };
@@ -79,6 +80,7 @@
 		1D56E7322B83799000311C6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1D56E7342B83799200311C6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D56E7372B83799200311C6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1D6AADCF2BC41D2500580E44 /* DrinkAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkAddViewModel.swift; sourceTree = "<group>"; };
 		1D7BE89C2BB3C755004D383A /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
 		1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		1D7BE8A02BB4E670004D383A /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				1D1D51BF2BA3CCA400DEF6B9 /* PlantShopView.swift */,
 				1D7BE8A22BB4E6E9004D383A /* AddNotificationView.swift */,
 				1D7BE8C72BBBDB45004D383A /* NotificationCell.swift */,
+				1D6AADCF2BC41D2500580E44 /* DrinkAddViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				1DA40DED2BA0CE2800921ADF /* Drink&Water.xcdatamodeld in Sources */,
 				1D8317C52B869731009DF17F /* AddDrinkButtonView.swift in Sources */,
 				1D8317BF2B8674AF009DF17F /* AccountView.swift in Sources */,
+				1D6AADD02BC41D2500580E44 /* DrinkAddViewModel.swift in Sources */,
 				1D1D51C62BA45CB200DEF6B9 /* AccountViewModel.swift in Sources */,
 				1D1D51D72BA4636F00DEF6B9 /* CircleOverlayModifier.swift in Sources */,
 				1D8317BB2B86749E009DF17F /* ShopView.swift in Sources */,

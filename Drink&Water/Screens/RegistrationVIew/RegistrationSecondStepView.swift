@@ -108,7 +108,7 @@ struct RegistrationSecondStepView: View {
                         .frame(width: 353, alignment: .leading)
                     Picker("Activity", selection: $viewModel.activity) {
                         ForEach(viewModel.activityMode, id: \.self) {
-                            Text($0)
+                            Text(LocalizationManager.shared.localizeString(forKey:$0, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())

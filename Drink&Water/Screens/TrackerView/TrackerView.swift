@@ -155,7 +155,7 @@ struct TrackerView: View {
                                     .foregroundColor(.clear)
                                     .frame(width: 100, height: 100)
                                     .background(
-                                        PlantView(plant: currentPlant, plantImageName: currentPlant.name  + " " + viewModel.checkStage(plant: currentPlant))
+                                        PlantView(plant: currentPlant , plantImageName: currentPlant.name  + " " + viewModel.checkStage(plant: currentPlant))
                                     )
                                 
                                 CircularProgressView(progress: Double(currentPlant.currentFillness) / Double( currentPlant.totalToGrow))
@@ -226,17 +226,7 @@ struct TrackerView: View {
                                 title: Text("Delete Drink"),
                                 message: Text("Are you sure you want to delete this drink?"),
                                 primaryButton: .destructive(Text("Delete")) {
-                                    if let drinkToDelete = viewModel.drinkToDelete {
-                                        viewModel.todayWaterIntake -= Double(drinkToDelete.volume)
-                                        let coreDataManager = CoreDataManager()
-                                        coreDataManager.deleteDrink(id: drinkToDelete.id)
-                                        coreDataManager.updateTodayWaterIntake(viewModel.todayWaterIntake)
-                                        if (((viewModel.currentGrowingPlant?.currentFillness ?? 0) - drinkToDelete.volume) > 0) {
-                                            viewModel.currentGrowingPlant?.currentFillness -= drinkToDelete.volume
-                                            coreDataManager.updateFirstPlantCurrentFillness(newFillness: viewModel.currentGrowingPlant?.currentFillness ?? 0)
-                                        }
-                                            viewModel.fetchData()
-                                    }
+                                    viewModel.deleteDrink()
                                 },
                                 secondaryButton: .cancel()
                             )
