@@ -32,6 +32,9 @@ class SettingsViewModel: ObservableObject {
         coreDataManager.deleteAllDrinks()
         coreDataManager.deleteAllPlants()
         coreDataManager.deleteAllNotifications()
+        coreDataManager.isTodayGoalCompleted = false
+        coreDataManager.lastUpdate = nil
+        print(coreDataManager.lastUpdate)
     }
     
     func resetProgress() {
@@ -39,6 +42,8 @@ class SettingsViewModel: ObservableObject {
         coreDataManager.deleteAllPlants()
         coreDataManager.updateTodayWaterIntake(0)
         coreDataManager.updateBalance(100)
+        coreDataManager.isTodayGoalCompleted = false
+        coreDataManager.lastUpdate = nil
     }
     
     func fetchNotifications() {

@@ -15,6 +15,6 @@ struct Drink_WaterApp: App {
             ContentView()
                 .preferredColorScheme(.light)
         }
-        .environment(\.locale, Locale.init(identifier: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "ru"))
+        .environment(\.locale, Locale.init(identifier: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
     }
 }

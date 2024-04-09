@@ -21,6 +21,7 @@ class TrackerViewModel: ObservableObject {
     @Published var progressDrop: CGFloat = 0.1
     @Published var name = ""
     var dailyWaterIntakeGoal: Double = 0
+    let coreDataManager = CoreDataManager()
     @Published var todayWaterIntake: Double = 0
     @Published var isAnimating: Bool = false
     @Published var drinkToDelete: Drink?
@@ -28,50 +29,34 @@ class TrackerViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var activeAlert: ActiveAlert = .growCompleted
     
-    var isTodayGoalCompleted: Bool {
-        get {
-            UserDefaults.standard.object(forKey: isGoalCompleted) as? Bool ?? false
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: isGoalCompleted)
-        }
-    }
+   
     
     func localizedString(forKey key: String, value: String? = nil, language: String) -> String {
         let bundle = Bundle.forLanguage(language) ?? Bundle.main
         return NSLocalizedString(key, bundle: bundle, value: value ?? "", comment: "")
     }
-    
-    
-    private let lastUpdateKey = "lastUpdate"
-    private let isGoalCompleted = "isGoalCompleted"
-    private var lastUpdate: Date? {
-        get {
-            UserDefaults.standard.object(forKey: lastUpdateKey) as? Date
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: lastUpdateKey)
-        }
-    }
+
     
     init() {
-        lastUpdate = Date()
         checkForDailyReset()
+        coreDataManager.lastUpdate = Date()
     }
     
     func checkForDailyReset() {
         let calendar = Calendar.current
-        if var lastUpdate = lastUpdate, !calendar.isDateInToday(lastUpdate) {
-            let coreDataManager = CoreDataManager()
+        if var lastUpdate = coreDataManager.lastUpdate, !calendar.isDateInToday(lastUpdate) {
             coreDataManager.deleteAllDrinks()
             coreDataManager.updateTodayWaterIntake(0)
-            coreDataManager.addBalance(100)
-            isTodayGoalCompleted = false
-            lastUpdate = Date()
+            coreDataManager.addBalance(50)
+            coreDataManager.isTodayGoalCompleted = false
+            coreDataManager.lastUpdate = Date()
             activeAlert = .dailyReward
             showAlert = true
-        } else if lastUpdate == nil {
-            lastUpdate = Date()
+        } else if coreDataManager.lastUpdate == nil {
+            coreDataManager.lastUpdate = Date()
+            activeAlert = .dailyReward
+            showAlert = true
+            coreDataManager.addBalance(50)
         }
     }
     

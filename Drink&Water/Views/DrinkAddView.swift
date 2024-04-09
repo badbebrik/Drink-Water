@@ -24,7 +24,7 @@ struct DrinkAddView: View {
     ]
     
     @State private var isCustomVolume = false
-    @State private var customVolume: String = "100"
+    @State private var customVolume: String = ""
     @State private var isErrorCustomVolumeCasting = false
     
     func addDrink(_ drink: Drink) {
@@ -113,9 +113,10 @@ struct DrinkAddView: View {
                 .scrollIndicators(.hidden)
             } else {
                 HStack {
-                    TextField("", text: $customVolume)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(.leading, 16)
+                    TextField("Enter volume", text: $customVolume)
+                        .keyboardType(.numberPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
                     Text("ml")
                         .padding(.trailing, 16)
                 }
@@ -134,7 +135,10 @@ struct DrinkAddView: View {
                 isErrorCustomVolumeCasting = false
                 
                 if (isCustomVolume) {
-                    guard let selectedVolume = Int(customVolume) else {
+                    if let selectedVolume = Int(customVolume) {
+                        self.selectedVolume = selectedVolume
+                        
+                    } else {
                         isErrorCustomVolumeCasting = true
                         return
                     }
@@ -174,9 +178,9 @@ struct DrinkAddView: View {
                 coreDataManager.updateTodayWaterIntake(Double(trackerViewModel.todayWaterIntake))
                 
                 if (trackerViewModel.todayWaterIntake >= trackerViewModel.dailyWaterIntakeGoal) {
-                    if (!trackerViewModel.isTodayGoalCompleted) {
+                    if (!coreDataManager.isTodayGoalCompleted) {
                         coreDataManager.addBalance(100)
-                        trackerViewModel.isTodayGoalCompleted = true
+                        coreDataManager.isTodayGoalCompleted = true
                         trackerViewModel.activeAlert = .goalCompleted
                         trackerViewModel.showAlert = true
                     }

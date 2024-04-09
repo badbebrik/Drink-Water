@@ -16,9 +16,9 @@ struct PlantView: View {
     var body: some View {
         
         VStack(spacing: 20) {
-//            Text(LocalizationManager.shared.localizeString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en").capitalized)
-//                .font(.headline)
-//                .fontWeight(.bold)
+            Text(LocalizationManager.shared.localizeString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en").capitalized)
+                .font(.headline)
+                .fontWeight(.bold)
             
             Image(plantImageName)
                 .resizable()

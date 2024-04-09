@@ -17,7 +17,7 @@ struct PlantShopView: View {
     
     var body: some View {
         VStack {
-            PlantView(plant: plant, plantImageName: plant.name + " " + "adult", width: 80, height: 100)
+            PlantView(plant: plant, plantImageName: plant.name + " " + "adult", width: 65, height: 90)
             Button(action: {
                 if isPlantAlreadyExists() {
                     showAlert = true

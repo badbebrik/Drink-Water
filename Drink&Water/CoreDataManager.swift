@@ -12,6 +12,38 @@ import UserNotifications
 class CoreDataManager {
     let persistentContainer: NSPersistentContainer
     
+    let lastUpdateKey = "lastUpdate"
+    let isGoalCompleted = "isGoalCompleted"
+    let gotDailyReward = "gotDailyReward"
+    
+    var isTodayGoalCompleted: Bool {
+        get {
+            UserDefaults.standard.object(forKey: isGoalCompleted) as? Bool ?? false
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: isGoalCompleted)
+        }
+    }
+    
+    var hasGotDailyReward: Bool {
+        get {
+            UserDefaults.standard.object(forKey: gotDailyReward) as? Bool ?? false
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: gotDailyReward)
+        }
+    }
+    
+    
+    var lastUpdate: Date? {
+        get {
+            UserDefaults.standard.object(forKey: lastUpdateKey) as? Date
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: lastUpdateKey)
+        }
+    }
+    
     init() {
         persistentContainer = NSPersistentContainer(name: "Drink&Water")
         persistentContainer.loadPersistentStores { (description, error) in

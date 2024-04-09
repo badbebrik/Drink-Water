@@ -467,6 +467,9 @@
         }
       }
     },
+    "Enter volume" : {
+
+    },
     "Enter weight (kg)" : {
       "localizations" : {
         "ru" : {
@@ -814,6 +817,9 @@
       }
     },
     "Please restart the app to apply the language change." : {
+
+    },
+    "Please type whole number in this field!" : {
 
     },
     "Profile Error" : {
