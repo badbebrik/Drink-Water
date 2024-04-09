@@ -30,6 +30,7 @@
 		1D56E7352B83799200311C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7342B83799200311C6F /* Assets.xcassets */; };
 		1D56E7382B83799200311C6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D56E7372B83799200311C6F /* Preview Assets.xcassets */; };
 		1D6AADD02BC41D2500580E44 /* DrinkAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AADCF2BC41D2500580E44 /* DrinkAddViewModel.swift */; };
+		1D6AADD22BC5A10F00580E44 /* PlantInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AADD12BC5A10F00580E44 /* PlantInfoOverlayView.swift */; };
 		1D7BE89D2BB3C755004D383A /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE89C2BB3C755004D383A /* FileManagerService.swift */; };
 		1D7BE89F2BB4E49C004D383A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */; };
 		1D7BE8A12BB4E670004D383A /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BE8A02BB4E670004D383A /* NotificationModel.swift */; };
@@ -81,6 +82,7 @@
 		1D56E7342B83799200311C6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D56E7372B83799200311C6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1D6AADCF2BC41D2500580E44 /* DrinkAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkAddViewModel.swift; sourceTree = "<group>"; };
+		1D6AADD12BC5A10F00580E44 /* PlantInfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantInfoOverlayView.swift; sourceTree = "<group>"; };
 		1D7BE89C2BB3C755004D383A /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
 		1D7BE89E2BB4E49C004D383A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		1D7BE8A02BB4E670004D383A /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				1D7BE8A22BB4E6E9004D383A /* AddNotificationView.swift */,
 				1D7BE8C72BBBDB45004D383A /* NotificationCell.swift */,
 				1D6AADCF2BC41D2500580E44 /* DrinkAddViewModel.swift */,
+				1D6AADD12BC5A10F00580E44 /* PlantInfoOverlayView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				1D1D51CE2BA4611900DEF6B9 /* ShopViewModel.swift in Sources */,
 				1DA40DFA2BA21AF400921ADF /* Alert.swift in Sources */,
 				1D1D51CA2BA45F4A00DEF6B9 /* AppTheme.swift in Sources */,
+				1D6AADD22BC5A10F00580E44 /* PlantInfoOverlayView.swift in Sources */,
 				1D1D51C02BA3CCA400DEF6B9 /* PlantShopView.swift in Sources */,
 				1D24204F2B92029D00B4E08D /* DrinkWaterTabView.swift in Sources */,
 				1D7BE8A12BB4E670004D383A /* NotificationModel.swift in Sources */,

@@ -346,6 +346,9 @@
     "Congrats!" : {
 
     },
+    "Cost: %lld" : {
+
+    },
     "Custom remainders" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -705,6 +708,9 @@
       }
     },
     "ml" : {
+
+    },
+    "Needs to grow: %lld ml" : {
 
     },
     "Next" : {
