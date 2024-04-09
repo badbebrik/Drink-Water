@@ -19,6 +19,7 @@ class TrackerViewModel: ObservableObject {
     @Published var isAnimating: Bool = false
     @Published var drinkToDelete: Drink?
     @Published var todayDrinks: [Drink] = []
+    @Published var isShowingGoalCompletedAlert = false
     
     var isTodayGoalCompleted: Bool {
         get {
@@ -137,6 +138,12 @@ class TrackerViewModel: ObservableObject {
                 fetchData()
         }
     }
+    
+    func clearPlant() {
+        currentGrowingPlant = nil
+    }
+    
+    
     
     
 }

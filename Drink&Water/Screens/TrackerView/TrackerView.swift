@@ -143,25 +143,40 @@ struct TrackerView: View {
                         .frame(width: 353, height: 26, alignment: .leading)
                     
                     if let currentPlant = viewModel.currentGrowingPlant {
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 352, height: 167)
-                                .background(.white)
-                                .cornerRadius(30)
-                            
-                            HStack(spacing: 50) {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 100, height: 100)
-                                    .background(
-                                        PlantView(plant: currentPlant , plantImageName: currentPlant.name  + " " + viewModel.checkStage(plant: currentPlant))
-                                    )
+                    
+                    if (currentPlant.currentFillness < currentPlant.totalToGrow) {
+                        Text("You are growing a \(currentPlant.name)")
+                            .frame(width: 353, alignment: .leading)
+                            .font(.callout)
+
+                    } else {
+                        Text("You have grown the plant! It's time to buy a new one in the shop!")
+                            .frame(width: 353, alignment: .leading)
+                    }
+                    
+                    
+                        
+                        VStack(spacing: 10) {
+                            HStack(spacing: 100) {
+                                
+                                PlantView(plant: currentPlant , plantImageName: currentPlant.name  + " " + viewModel.checkStage(plant: currentPlant), width: 80, height: 100)
+                                
                                 
                                 CircularProgressView(progress: Double(currentPlant.currentFillness) / Double( currentPlant.totalToGrow))
                                     .frame(width: 100)
+                                
                             }
+
                         }
+                        .frame(width: 352, height: 180)
+                        .background(.white)
+                        .cornerRadius(30)
+                        .shadow(color: Color(.black)
+                        .opacity(0.25), radius: 2, x: 0, y: 4)
+                        
+                        
+                        
+                        
                     } else {
                         ZStack {
                             Rectangle()
@@ -246,7 +261,7 @@ struct TrackerView: View {
             isShowingAddDrink ? DrinkAddView(isShowingDetail: $isShowingAddDrink, trackerViewModel: viewModel)
                 .transition(.opacity): nil
             
-                )
+        )
         .animation(.easeInOut, value: isShowingAddDrink)
     }
     

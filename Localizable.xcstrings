@@ -123,6 +123,9 @@
         }
       }
     },
+    "100%" : {
+
+    },
     "240" : {
       "localizations" : {
         "ru" : {
@@ -1137,6 +1140,9 @@
         }
       }
     },
+    "You are growing %@" : {
+
+    },
     "You can buy plants here and then grow" : {
       "localizations" : {
         "ru" : {
@@ -1146,6 +1152,9 @@
           }
         }
       }
+    },
+    "You have grown the plant! It's time to buy a new one in the shop!" : {
+
     },
     "You have no grown plants yet." : {
       "localizations" : {

@@ -18,11 +18,19 @@ struct CircularProgressView: View {
                     lineWidth: 15
                 )
             
-            Text("\(Int(progress * 100))%")
-                .font(.system(size: 12, weight: .regular))
-                .foregroundStyle(.black)
-                .multilineTextAlignment(.center)
-                .frame(width: 66, height: 72, alignment: .center)
+            if (progress >= 1) {
+                Text("100%")
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundStyle(.black)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 66, height: 72, alignment: .center)
+            } else {
+                Text("\(Int(progress * 100))%")
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundStyle(.black)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 66, height: 72, alignment: .center)
+            }
             
             Circle()
                 .trim(from: 0, to: progress)

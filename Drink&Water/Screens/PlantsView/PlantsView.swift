@@ -31,7 +31,7 @@ struct PlantsView: View {
                                 Image(plant.name + " adult")
                                     .resizable()
                                     .frame(width: 70, height: 100)
-                                Text(LocalizationManager.shared.localizeString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en"))
+                                Text(LocalizationManager.shared.localizeString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en").capitalized)
                             }
                         }
                     }

@@ -17,7 +17,7 @@ struct PlantShopView: View {
     
     var body: some View {
         VStack {
-            PlantView(plant: plant, plantImageName: plant.name + " " + "adult")
+            PlantView(plant: plant, plantImageName: plant.name + " " + "adult", width: 100, height: 70)
             Button(action: {
                 if isPlantAlreadyExists() {
                     showAlert = true
@@ -41,9 +41,6 @@ struct PlantShopView: View {
             }
         }
         .disabled(shopViewModel.balance < Int32(plant.price))
-        .alert(isPresented: $successAlert) {
-            Alert(title: Text("Success"), message: Text("You have successfully purchased the \(plant.name). To grow it, you need to drink \(plant.totalToGrow) milliliters of water."), dismissButton: .default(Text("OK")))
-        }
         .alert(isPresented: Binding<Bool>(
             get: { showAlert || successAlert },
             set: { _ in
@@ -54,7 +51,7 @@ struct PlantShopView: View {
             if showAlert {
                 return Alert(title: Text("Error"), message: Text("You already have a growing plant!"), dismissButton: .default(Text("OK")))
             } else if successAlert {
-                return Alert(title: Text("Success"), message: Text("You have successfully purchased the \(plant.name). To grow it, you need to drink \(plant.totalToGrow) milliliters of water."), dismissButton: .default(Text("OK")))
+                return Alert(title: Text("Success"), message: Text("You have successfully purchased the \(LocalizationManager.shared.localizeString(forKey: plant.name, language: UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en")). To grow it, you need to drink \(plant.totalToGrow) milliliters of water."), dismissButton: .default(Text("OK")))
             } else {
                 return Alert(title: Text(""), message: Text(""), dismissButton: .default(Text("OK")))
             }
