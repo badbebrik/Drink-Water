@@ -343,6 +343,9 @@
         }
       }
     },
+    "Congrats!" : {
+
+    },
     "Custom remainders" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -353,6 +356,9 @@
           }
         }
       }
+    },
+    "Custom Volume" : {
+
     },
     "Data Error" : {
 
@@ -480,6 +486,9 @@
           }
         }
       }
+    },
+    "Excellent job!" : {
+
     },
     "Female" : {
       "extractionState" : "manual",
@@ -611,6 +620,9 @@
         }
       }
     },
+    "Keep going!" : {
+
+    },
     "Keep motivation" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -688,6 +700,9 @@
           }
         }
       }
+    },
+    "ml" : {
+
     },
     "Next" : {
       "localizations" : {
@@ -1119,6 +1134,9 @@
         }
       }
     },
+    "Welcome back! Your daily reward: 50 coins" : {
+
+    },
     "Wine" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1140,7 +1158,7 @@
         }
       }
     },
-    "You are growing %@" : {
+    "You are growing a %@" : {
 
     },
     "You can buy plants here and then grow" : {
@@ -1152,6 +1170,12 @@
           }
         }
       }
+    },
+    "You have completed today goal! You get the reward: 100 coins" : {
+
+    },
+    "You have grown the plant and get the reward." : {
+
     },
     "You have grown the plant! It's time to buy a new one in the shop!" : {
 

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct TrackerView: View {
     
     @ObservedObject var viewModel = TrackerViewModel()
@@ -154,8 +153,6 @@ struct TrackerView: View {
                             .frame(width: 353, alignment: .leading)
                     }
                     
-                    
-                        
                         VStack(spacing: 10) {
                             HStack(spacing: 100) {
                                 
@@ -225,25 +222,46 @@ struct TrackerView: View {
                                     
                                     Button(action: {
                                         self.viewModel.drinkToDelete = drink
-                                        self.showingDeleteAlert = true
+                                        viewModel.activeAlert = .delete
+                                        viewModel.showAlert = true
+                                        print(viewModel.showAlert)
                                     }) {
                                         Image(systemName: "xmark.circle.fill")
                                             .foregroundColor(.red)
                                     }
+                                    
                                 }
                                 .padding()
                             }
                             .frame(width: 353, height: 80)
                             .padding(.horizontal)
                         }
-                        .alert(isPresented: $showingDeleteAlert) {
-                            Alert(
+                    }
+                    .alert(isPresented: $viewModel.showAlert) {
+                        switch(viewModel.activeAlert) {
+                        case .delete:
+                            return Alert(
                                 title: Text("Delete Drink"),
                                 message: Text("Are you sure you want to delete this drink?"),
                                 primaryButton: .destructive(Text("Delete")) {
                                     viewModel.deleteDrink()
                                 },
                                 secondaryButton: .cancel()
+                            )
+                        case .growCompleted:
+                            return Alert(
+                                title: Text("Congrats!"),
+                                message: Text("You have grown the plant and get the reward.")
+                            )
+                        case .goalCompleted:
+                            return Alert(
+                                title: Text("Excellent job!"),
+                                message: Text("You have completed today goal! You get the reward: 100 coins")
+                            )
+                        case .dailyReward:
+                            return Alert(
+                                title: Text("Keep going!"),
+                                message: Text("Welcome back! Your daily reward: 50 coins")
                             )
                         }
                         

@@ -23,6 +23,10 @@ struct DrinkAddView: View {
         
     ]
     
+    @State private var isCustomVolume = false
+    @State private var customVolume: String = "100"
+    @State private var isErrorCustomVolumeCasting = false
+    
     func addDrink(_ drink: Drink) {
         trackerViewModel.todayDrinks.append(drink)
     }
@@ -79,30 +83,63 @@ struct DrinkAddView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding([.leading, .top], 16)
             
-            ScrollView(.horizontal) {
-                LazyHGrid(rows: [GridItem(.fixed(100))]) {
-                    ForEach(waterVolumes, id: \.self) { volume in
-                        VStack {
-                            Text("\(volume)ml")
-                                .font(.title3)
-                                .frame(width: 70, height: 35)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.black, lineWidth: 2)
-                                        .background(selectedVolume == volume ? Color.gray.opacity(0.5) : Color.clear)
-                                )
-                                .onTapGesture {
-                                    selectedVolume = volume
-                                }
+            
+            Toggle("Custom Volume", isOn: $isCustomVolume)
+                .padding()
+
+           
+            if (!isCustomVolume) {
+                ScrollView(.horizontal) {
+                    LazyHGrid(rows: [GridItem(.fixed(100))]) {
+                        ForEach(waterVolumes, id: \.self) { volume in
+                            VStack {
+                                Text("\(volume)ml")
+                                    .font(.title3)
+                                    .frame(width: 70, height: 35)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.black, lineWidth: 2)
+                                            .background(selectedVolume == volume ? Color.gray.opacity(0.5) : Color.clear)
+                                    )
+                                    .onTapGesture {
+                                        selectedVolume = volume
+                                    }
+                            }
+                            .padding()
                         }
-                        .padding()
+                    }
+                    
+                }
+                .scrollIndicators(.hidden)
+            } else {
+                HStack {
+                    TextField("", text: $customVolume)
+                        .textFieldStyle(.roundedBorder)
+                        .padding(.leading, 16)
+                    Text("ml")
+                        .padding(.trailing, 16)
+                }
+            }
+            
+            if (isErrorCustomVolumeCasting) {
+                Text("Please type whole number in this field!")
+                    .font(.caption)
+                    .foregroundStyle(.red)
+                
+            }
+            
+            
+            Button(action: {
+                
+                isErrorCustomVolumeCasting = false
+                
+                if (isCustomVolume) {
+                    guard let selectedVolume = Int(customVolume) else {
+                        isErrorCustomVolumeCasting = true
+                        return
                     }
                 }
                 
-            }
-            .scrollIndicators(.hidden)
-            
-            Button(action: {
                 HealthKitManager.shared.requestHealthKitAuthorization()
                 let coreDataManager = CoreDataManager()
                 
@@ -127,6 +164,8 @@ struct DrinkAddView: View {
                         if trackerViewModel.checkStage(plant: currentPlant) == "adult" {
                             coreDataManager.addBalance(Int32(1.5 * Double(currentPlant.price)))
                             coreDataManager.setPlantFinishDate(date: Date())
+                            trackerViewModel.activeAlert = .growCompleted
+                            trackerViewModel.showAlert = true
                         }
                     }
                     
@@ -138,6 +177,8 @@ struct DrinkAddView: View {
                     if (!trackerViewModel.isTodayGoalCompleted) {
                         coreDataManager.addBalance(100)
                         trackerViewModel.isTodayGoalCompleted = true
+                        trackerViewModel.activeAlert = .goalCompleted
+                        trackerViewModel.showAlert = true
                     }
                 }
                 
@@ -157,7 +198,7 @@ struct DrinkAddView: View {
             }
             .padding()
         }
-        .frame(width: 350, height: 525)
+        .frame(width: 350, height: 575)
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(radius: 40)

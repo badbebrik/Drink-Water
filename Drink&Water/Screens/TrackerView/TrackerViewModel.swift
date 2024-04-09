@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+
+enum ActiveAlert {
+    case delete, growCompleted, goalCompleted, dailyReward
+}
+
+
 class TrackerViewModel: ObservableObject {
     
     
@@ -19,7 +25,8 @@ class TrackerViewModel: ObservableObject {
     @Published var isAnimating: Bool = false
     @Published var drinkToDelete: Drink?
     @Published var todayDrinks: [Drink] = []
-    @Published var isShowingGoalCompletedAlert = false
+    @Published var showAlert = false
+    @Published var activeAlert: ActiveAlert = .growCompleted
     
     var isTodayGoalCompleted: Bool {
         get {
@@ -55,13 +62,14 @@ class TrackerViewModel: ObservableObject {
     func checkForDailyReset() {
         let calendar = Calendar.current
         if var lastUpdate = lastUpdate, !calendar.isDateInToday(lastUpdate) {
-            todayWaterIntake = 0
             let coreDataManager = CoreDataManager()
             coreDataManager.deleteAllDrinks()
             coreDataManager.updateTodayWaterIntake(0)
             coreDataManager.addBalance(100)
             isTodayGoalCompleted = false
             lastUpdate = Date()
+            activeAlert = .dailyReward
+            showAlert = true
         } else if lastUpdate == nil {
             lastUpdate = Date()
         }
