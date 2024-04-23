@@ -46,7 +46,14 @@ class AccountViewModel: ObservableObject {
     }
     
     func updateUser() {
-        coreDataManager.updateUser(name: firstName, lastName: lastName, gender: genderIndex, weight: weight, height: height, birthday: birthday, activity: activity, todayWaterIntake: 0, balance: 100)
+        
+        if let user = coreDataManager.getUserData() {
+            let balance = user.balance
+            let intake = user.todayWaterIntake
+            coreDataManager.updateUser(name: firstName, lastName: lastName, gender: genderIndex, weight: weight, height: height, birthday: birthday, activity: activity, todayWaterIntake: intake, balance: balance)
+        }
+        
+        
     }
 
 }

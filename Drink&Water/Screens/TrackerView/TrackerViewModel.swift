@@ -136,7 +136,4 @@ class TrackerViewModel: ObservableObject {
         currentGrowingPlant = nil
     }
     
-    
-    
-    
 }

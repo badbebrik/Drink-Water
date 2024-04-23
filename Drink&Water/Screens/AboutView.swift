@@ -19,28 +19,28 @@ struct DeveloperModel {
 
 class AboutViewModel: ObservableObject {
     let developerModel = DeveloperModel()
+    
 }
 
 struct AboutView: View {
     @StateObject var viewModel = AboutViewModel()
+    @StateObject var settingsViewModel = SettingsViewModel()
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             
             Text("Dev: \(viewModel.developerModel.developerName)")
                 .font(.title)
                 .foregroundColor(.blue)
-                .padding()
+
             
             Text("Phone number: \(viewModel.developerModel.contactNumber)")
                 .font(.headline)
                 .foregroundColor(.gray)
-                .padding()
             
             Text("Email: \(viewModel.developerModel.email)")
                 .font(.headline)
                 .foregroundColor(.gray)
-                .padding()
             
             Button(action: {
                             if let url = URL(string: "https://t.me/badbebrik") {
@@ -60,11 +60,26 @@ struct AboutView: View {
                 .cornerRadius(10)
                 .padding()
         }
+        .frame(height: 600)
         .background(Color.white)
         .cornerRadius(20)
-        .shadow(radius: 10)
         .padding()
+        .shadow(radius: 10)
+        .overlay(
+            Button(action: {
+                settingsViewModel.isShowingAboutPage = false
+            })
+            {
+                Image(systemName: "xmark")
+                    .padding()
+            }.padding(),
+            alignment: .topTrailing
+                
+            
+        )
+        
     }
+    
 }
 
 struct MapView: UIViewRepresentable {

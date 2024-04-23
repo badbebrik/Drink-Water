@@ -226,11 +226,12 @@ class CoreDataManager {
 }
 
 extension CoreDataManager {
-    func savePlant(name: String, totalToGrow: Int, price: Int, startGrowDate: Date, currentFillness: Int, finishGrowDate: Date) {
+    func savePlant(id: UUID, name: String, totalToGrow: Int, price: Int, startGrowDate: Date, currentFillness: Int, finishGrowDate: Date) {
         let managedContext = persistentContainer.viewContext
         
         let plantToAdd = PlantEntity(context: managedContext)
         plantToAdd.name = name
+        plantToAdd.id = id
         plantToAdd.totalToGrow = Int32(totalToGrow)
         plantToAdd.price = Int32(price)
         plantToAdd.startGrowDate = startGrowDate
@@ -252,7 +253,7 @@ extension CoreDataManager {
             let plantEntities = try managedContext.fetch(fetchRequest)
             var plants: [Plant] = []
             for entity in plantEntities {
-                let plant = Plant(id: UUID(), name: entity.name ?? "",
+                let plant = Plant(id: entity.id!, name: entity.name ?? "",
                                   totalToGrow: Int(entity.totalToGrow),
                                   price: Int(entity.price),
                                   startGrowDate: entity.startGrowDate ?? Date(),
@@ -445,6 +446,22 @@ extension CoreDataManager {
             print("Все уведомления успешно удалены.")
         } catch {
             print("Ошибка при удалении всех уведомлений: \(error.localizedDescription)")
+        }
+    }
+    
+    func deletePlantById(id: UUID) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = PlantEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+
+        do {
+            let results = try persistentContainer.viewContext.fetch(fetchRequest)
+            if let plantToDelete = results.first as? PlantEntity {
+                persistentContainer.viewContext.delete(plantToDelete)
+                try persistentContainer.viewContext.save()
+                print("Plant successfully deleted.")
+            }
+        } catch let error as NSError {
+            print("Error deleting plant: \(error), \(error.userInfo)")
         }
     }
     

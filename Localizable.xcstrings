@@ -124,7 +124,14 @@
       }
     },
     "100%" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100%"
+          }
+        }
+      }
     },
     "240" : {
       "localizations" : {
@@ -224,6 +231,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вы уверены, что хотите удалить напиток?"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete this plant? This action cannot be undone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите удалить это растение? Это действие не может быть отменено."
           }
         }
       }
@@ -344,10 +361,24 @@
       }
     },
     "Congrats!" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поздравляем!"
+          }
+        }
+      }
     },
     "Cost: %lld" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стоимость: %lld"
+          }
+        }
+      }
     },
     "Custom remainders" : {
       "extractionState" : "manual",
@@ -361,7 +392,14 @@
       }
     },
     "Custom Volume" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свой объем"
+          }
+        }
+      }
     },
     "Data Error" : {
 
@@ -392,6 +430,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить напиток"
+          }
+        }
+      }
+    },
+    "Delete Plant" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить растение"
           }
         }
       }
@@ -471,7 +519,14 @@
       }
     },
     "Enter volume" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите объем"
+          }
+        }
+      }
     },
     "Enter weight (kg)" : {
       "localizations" : {
@@ -494,7 +549,14 @@
       }
     },
     "Excellent job!" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отличная работа!"
+          }
+        }
+      }
     },
     "Female" : {
       "extractionState" : "manual",
@@ -503,6 +565,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Женщина"
+          }
+        }
+      }
+    },
+    "Finish: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конец: %@"
           }
         }
       }
@@ -575,7 +647,38 @@
         }
       }
     },
+    "Got the reward: %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Получена награда: %lld"
+          }
+        }
+      }
+    },
+    "Have drunk to grow: %lld ml" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Было выпито: %lld лм"
+          }
+        }
+      }
+    },
+    "Height (cm)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рост (см)"
+          }
+        }
+      }
+    },
     "Height (m)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -627,7 +730,14 @@
       }
     },
     "Keep going!" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ежедневная награда!"
+          }
+        }
+      }
     },
     "Keep motivation" : {
       "extractionState" : "manual",
@@ -639,9 +749,6 @@
           }
         }
       }
-    },
-    "Key" : {
-      "extractionState" : "manual"
     },
     "Language" : {
       "localizations" : {
@@ -708,10 +815,24 @@
       }
     },
     "ml" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "мл"
+          }
+        }
+      }
     },
     "Needs to grow: %lld ml" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы вырастить: %lld мл"
+          }
+        }
+      }
     },
     "Next" : {
       "localizations" : {
@@ -764,7 +885,14 @@
       }
     },
     "OK" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОК"
+          }
+        }
+      }
     },
     "Personal Information" : {
       "localizations" : {
@@ -823,10 +951,24 @@
       }
     },
     "Please restart the app to apply the language change." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, перезагрузите приложение, чтобы применить изменения."
+          }
+        }
+      }
     },
     "Please type whole number in this field!" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, введите целое число!"
+          }
+        }
+      }
     },
     "Profile Error" : {
 
@@ -935,7 +1077,14 @@
       }
     },
     "Restart Required" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Требуется перезапуск приложения"
+          }
+        }
+      }
     },
     "Save" : {
       "localizations" : {
@@ -1027,6 +1176,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Газировка"
+          }
+        }
+      }
+    },
+    "Start: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало: %@"
           }
         }
       }
@@ -1147,7 +1306,14 @@
       }
     },
     "Welcome back! Your daily reward: 50 coins" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С возвращением! Ваша ежедневная награда: 50 монет"
+          }
+        }
+      }
     },
     "Wine" : {
       "extractionState" : "manual",
@@ -1171,7 +1337,14 @@
       }
     },
     "You are growing a %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы выращиваете %@"
+          }
+        }
+      }
     },
     "You can buy plants here and then grow" : {
       "localizations" : {
@@ -1184,13 +1357,34 @@
       }
     },
     "You have completed today goal! You get the reward: 100 coins" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы завершили ежедневную цель! Ваша награда: 100 монет"
+          }
+        }
+      }
     },
     "You have grown the plant and get the reward." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы вырастили растение и получаете награду!"
+          }
+        }
+      }
     },
     "You have grown the plant! It's time to buy a new one in the shop!" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы вырастили растение! Время купить новое в магазине!"
+          }
+        }
+      }
     },
     "You have no grown plants yet." : {
       "localizations" : {

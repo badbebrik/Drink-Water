@@ -14,7 +14,7 @@ struct DrinkWaterTabView: View {
     @State private var selectedTab = 2
     
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             ShopView(viewModel: ShopViewModel())
                 .tabItem {
                     Image(systemName: "cart")
@@ -52,10 +52,6 @@ struct DrinkWaterTabView: View {
         }
         .tabViewStyle(.automatic)
         .accentColor(.blue)
-        .onAppear {
-            selectedTab = 2
-        }
-        
     }
     
 }

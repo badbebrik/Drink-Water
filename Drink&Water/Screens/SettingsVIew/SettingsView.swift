@@ -59,6 +59,7 @@ struct SettingsView: View {
                             
                             Button(action: {
                                 viewModel.showingAddNotificationView = true
+                                NotificationManager.shared.requestAuthorization()
                             }) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
@@ -126,7 +127,7 @@ struct SettingsView: View {
         .blur(radius: viewModel.showingAddNotificationView || viewModel.isShowingAboutPage ? 3 : 0)
         
         .overlay() {
-            viewModel.isShowingAboutPage ? AboutView().transition(.opacity) : nil
+            viewModel.isShowingAboutPage ? AboutView(settingsViewModel: viewModel).transition(.opacity) : nil
             
         }
         .animation(.easeInOut, value: viewModel.isShowingAboutPage)

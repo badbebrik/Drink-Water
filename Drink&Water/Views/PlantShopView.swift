@@ -75,7 +75,7 @@ struct PlantShopView: View {
     
     func savePlant() {
         let coreDataManager = CoreDataManager()
-        coreDataManager.savePlant(name: plant.name, totalToGrow: plant.totalToGrow, price: plant.price, startGrowDate: plant.startGrowDate, currentFillness: plant.currentFillness, finishGrowDate: plant.finishGrowDate)
+        coreDataManager.savePlant(id: plant.id, name: plant.name, totalToGrow: plant.totalToGrow, price: plant.price, startGrowDate: plant.startGrowDate, currentFillness: plant.currentFillness, finishGrowDate: plant.finishGrowDate)
         coreDataManager.updateBalance(shopViewModel.balance)
     }
 }

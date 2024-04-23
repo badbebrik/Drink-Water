@@ -117,6 +117,7 @@ struct TrackerView: View {
                         
                         Button {
                             isShowingAddDrink = true
+                            HealthKitManager.shared.requestHealthKitAuthorization()
                             viewModel.progressDrop = viewModel.todayWaterIntake / viewModel.dailyWaterIntakeGoal
                         } label: {
                             ZStack {

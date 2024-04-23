@@ -44,6 +44,7 @@ struct AddNotificationView: View {
                 let notification = NotificationModel(id: UUID(), hour: hour, minute: minute, text: notificationText)
                 settingsViewModel.coreDataManager.saveNotification(notificationModel: notification)
                 settingsViewModel.fetchNotifications()
+                settingsViewModel.showingAddNotificationView = false
             }
             .padding()
         }

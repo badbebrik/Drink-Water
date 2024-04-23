@@ -59,7 +59,7 @@ struct RegistrationSecondStepView: View {
                 VStack(spacing: 20) {
                     
                     VStack(spacing: 10) {
-                        Text("Height (m)")
+                        Text("Height (cm)")
                             .frame(width: 353, alignment: .leading)
                         Slider(value: $viewModel.height, in: 100...240) {}
                     minimumValueLabel: {

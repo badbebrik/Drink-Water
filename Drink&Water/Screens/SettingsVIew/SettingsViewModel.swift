@@ -43,7 +43,6 @@ class SettingsViewModel: ObservableObject {
         coreDataManager.updateTodayWaterIntake(0)
         coreDataManager.updateBalance(100)
         coreDataManager.isTodayGoalCompleted = false
-        coreDataManager.lastUpdate = nil
     }
     
     func fetchNotifications() {
